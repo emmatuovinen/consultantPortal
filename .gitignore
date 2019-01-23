@@ -40,9 +40,9 @@ WebApi/[Bb]uild[Ll]og.*
 WebApi/TestResult.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
+WebApi/[Dd]ebugPS/
+WebApi/[Rr]eleasePS/
+WebApi/dlldata.c
 
 # DNX
 WebApi/project.lock.json
@@ -75,7 +75,7 @@ WebApi/artifacts/
 *.scc
 
 # Chutzpah Test files
-_Chutzpah*
+WebApi/_Chutzpah*
 
 
 # Visual Studio profiler
@@ -88,7 +88,7 @@ _Chutzpah*
 *.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper*/
+WebApi/_ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
@@ -112,10 +112,10 @@ nCrunchTemp_*
 
 # MightyMoose
 *.mm.*
-AutoTest.Net/
+WebApi/AutoTest.Net/
 
 # Web workbench (sass)
-.sass-cache/
+WebApi/.sass-cache/
 
 # Installshield output folder
 WebApi/[Ee]xpress/
