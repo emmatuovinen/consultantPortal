@@ -14,6 +14,10 @@ namespace WebApi.Models
         // api/[POST]
         Task Create(User user);
 
+        Task<bool> Update(User user);
+
+        Task<bool> Delete(long id);
+
         Task<long> GetNextId();
     }
 }
