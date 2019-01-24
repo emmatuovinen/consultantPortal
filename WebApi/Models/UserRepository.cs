@@ -40,6 +40,30 @@ namespace WebApi.Models
             await _context.Users.InsertOneAsync(user);
         }
 
+        public async Task<bool> Update(User user)
+        {
+            ReplaceOneResult updateResult =
+                await _context.Users.ReplaceOneAsync(
+                    filter: u => u.DBId == user.DBId,
+                    replacement: user);
+
+            return updateResult.IsAcknowledged
+                && updateResult.ModifiedCount > 0;
+
+        }
+
+        public async Task<bool> Delete(long id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.UserId, id);
+
+            DeleteResult deleteResult = await _context
+                                                .Users
+                                                .DeleteOneAsync(filter);
+
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
+        }
+
         public async Task<long> GetNextId()
         {
             return await _context.Users.CountDocumentsAsync(new BsonDocument()) + 1;

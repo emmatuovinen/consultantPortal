@@ -48,5 +48,43 @@ namespace WebApi.Controllers
             return new OkObjectResult(user);
         }
 
+        // PUT: api/users/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(long id, [FromBody]User user)
+        {
+            var updatedUser = await _repo.GetUser(id);
+
+            if (updatedUser == null)
+            {
+                return new NotFoundResult();
+            }
+
+            updatedUser.UserId = id;
+            updatedUser.FirstName = user.FirstName;
+            updatedUser.LastName = user.LastName;
+            updatedUser.Role = user.Role;
+
+            await _repo.Update(updatedUser);
+
+            return new OkObjectResult(updatedUser);
+
+        }
+
+        //DELETE: api/users/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var userFromDb = await _repo.GetUser(id);
+
+            if (userFromDb == null)
+            {
+                return new NotFoundResult();
+            }
+
+            await _repo.Delete(id);
+
+            return new OkResult();
+        }
+
     }
 }
