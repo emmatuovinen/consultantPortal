@@ -42,8 +42,8 @@ namespace WebApi.Models
 
         public async Task<long> GetNextId()
         {
-            long muuttuja = await _context.Users.CountDocumentsAsync(new BsonDocument()) + 1;
-            return muuttuja;
+            return await _context.Users.CountDocumentsAsync(new BsonDocument()) + 1;
+
 
         }
     }

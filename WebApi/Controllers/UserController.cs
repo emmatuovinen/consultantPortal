@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             return new ObjectResult(user);
         }
 
-        // POST: api/Users
+        // POST: api/users
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
