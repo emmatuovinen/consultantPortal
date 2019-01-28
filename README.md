@@ -13,7 +13,7 @@ Run application on Docker
 
 `docker-compose up-d`
 
-	-This will load files needed for setting up Docker and MongoDB and starts them.
+- This will load files needed for setting up Docker and MongoDB and starts them.
 
 
 
