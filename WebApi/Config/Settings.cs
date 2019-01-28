@@ -9,6 +9,7 @@ namespace WebApi.Config
     {
         public string ConnectionString { get; set; }
         public string Database { get; set; }
-
+        public string Container { get; internal set; }
+        public bool IsContained { get; internal set; }
     }
 }

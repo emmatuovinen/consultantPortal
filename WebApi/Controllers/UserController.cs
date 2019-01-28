@@ -60,9 +60,14 @@ namespace WebApi.Controllers
             }
 
             updatedUser.UserId = id;
+
             updatedUser.FirstName = user.FirstName;
             updatedUser.LastName = user.LastName;
             updatedUser.Role = user.Role;
+            updatedUser.Email = user.Email;
+            updatedUser.PhoneNumber = user.PhoneNumber;
+            updatedUser.Description = user.Description;
+
 
             await _repo.Update(updatedUser);
 
