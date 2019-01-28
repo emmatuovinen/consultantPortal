@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Runtime.InteropServices;
 using Swashbuckle.AspNetCore.Swagger;
 using WebApi.Config;
 using WebApi.Models;
@@ -30,14 +31,17 @@ namespace WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Configure<Settings>(
-                options =>
-                {
-                    options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-                    options.Database = Configuration.GetSection("MongoDb:Database").Value;
-                });
+              options =>
+              {
+                  options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
+                  options.Database = Configuration.GetSection("MongoDb:Database").Value;
+                  options.Container = Configuration.GetSection("MongoDb:Container").Value;
+                  options.IsContained = Configuration["DOTNET_RUNNING_IN_CONTAINER"] != null;
+              });
 
             services.AddTransient<IUserContext, UserContext>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddCors();
 
             services.AddSwaggerGen(c =>
             {
@@ -51,6 +55,7 @@ namespace WebApi
         {
             app.UseSwagger();
 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +64,11 @@ namespace WebApi
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseSwaggerUI(c =>
             {

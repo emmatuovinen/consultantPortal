@@ -9,9 +9,24 @@ namespace WebApi.Models
 {
     public class Company
     {
-        public ObjectId CompanyObjId { get; set; }
+        [BsonId, BsonElement("companyObjId")]
+        public ObjectId CompanyObjId { get; private set; }
+
+        [BsonElement("companyId")]
         public string CompanyID { get; set; }
+
+        [BsonElement("companyName")]
         public string CompanyName { get; set; }
+
+        [BsonElement("consultantsWorking")]
+        public List<User> ConsultantsWorking { get; set; }
+
+        [BsonElement("consultantFavorite")]
+        public List<User> ConsultantFavorite { get; set; }
+
+        [BsonElement("companyContact")]
+        public List<ContactInfo> CompanyContact { get; set; }
+
 
     }
 }
