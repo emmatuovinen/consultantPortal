@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Context;
 
-namespace WebApi.Models
+namespace WebApi.Repository
 {
     public class UserRepository : IUserRepository
     {
@@ -67,8 +68,18 @@ namespace WebApi.Models
         public async Task<long> GetNextId()
         {
             return await _context.Users.CountDocumentsAsync(new BsonDocument()) + 1;
+        }
 
+        public async Task<bool> DeleteAllMockData()
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Role, "MockRole");
 
+            DeleteResult deleteResult = await _context
+                                                .Users
+                                                .DeleteManyAsync(filter);
+
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
         }
     }
 }

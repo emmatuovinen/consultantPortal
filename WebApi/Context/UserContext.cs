@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Config;
 
-namespace WebApi.Models
+namespace WebApi.Context
 {
     public class UserContext : IUserContext
     {

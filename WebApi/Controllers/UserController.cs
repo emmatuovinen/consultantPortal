@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Models;
+using WebApi.Context;
+using WebApi.Repository;
 
 namespace WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[Controller]")]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IUserRepository _repo;
 
