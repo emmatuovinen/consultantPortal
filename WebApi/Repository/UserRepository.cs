@@ -70,9 +70,9 @@ namespace WebApi.Repository
             return await _context.Users.CountDocumentsAsync(new BsonDocument()) + 1;
         }
 
-        public async Task<bool> DeleteAll()
+        public async Task<bool> DeleteAllMockData()
         {
-            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Role, "Rooli");
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Role, "MockRole");
 
             DeleteResult deleteResult = await _context
                                                 .Users

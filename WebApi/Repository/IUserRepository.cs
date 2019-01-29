@@ -20,7 +20,7 @@ namespace WebApi.Repository
         Task<bool> Delete(long id);
 
         Task<long> GetNextId();
+        Task<bool> DeleteAllMockData();
 
-        Task<bool> DeleteAll();
     }
 }

@@ -32,20 +32,29 @@ namespace WebApi.Controllers
 
             for (int i = 0; i < howMany; i++)
             {
-                var user = new User { UserId = await _repo.GetNextId(), FirstName = "Testi" + i, LastName = "Testaaja" + i, Role = "Rooli", Email = "pekka" + i + "@hotmail.com", PhoneNumber = "05012345" + i, Description = "But of aisle venerable and one fabled scorching his spent honeyed them his his nor he een had and a" };
+                var user = new User
+                {
+                    UserId = await _repo.GetNextId(),
+                    FirstName = "Testi" + i,
+                    LastName = "Testaaja" + i,
+                    Role = "MockRole",
+                    Email = "pekka" + i + "@hotmail.com",
+                    PhoneNumber = "05012345" + i,
+                    Description = "But of aisle venerable and one fabled scorching his spent honeyed them his his nor he een had and a"
+                };
                 await _repo.Create(user);
             }
 
             return Ok("Mock data created");
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/MockData/key
         [HttpDelete("{key}")]
         public void Delete(string key)
         {
             if (key == "remove")
             {
-                _repo.DeleteAll();
+                _repo.DeleteAllMockData();
             }
         }
     }
