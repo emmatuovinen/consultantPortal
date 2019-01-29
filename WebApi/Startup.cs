@@ -13,7 +13,8 @@ using Microsoft.Extensions.Options;
 using System.Runtime.InteropServices;
 using Swashbuckle.AspNetCore.Swagger;
 using WebApi.Config;
-using WebApi.Models;
+using WebApi.Context;
+using WebApi.Repository;
 
 namespace WebApi
 {
