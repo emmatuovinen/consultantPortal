@@ -11,7 +11,7 @@ Docker
 Run application on Docker
 -On the commandline go to the root directory and write
 
-`docker-compose up-d`
+`docker-compose up`
 
 - This will load files needed for setting up Docker and MongoDB and starts them.
 
@@ -20,3 +20,5 @@ Run application on Docker
 
 
 You are ready to run!
+
+When you pull new version of WebApi you need to run `docker-compose build` before `docker-compose up`
