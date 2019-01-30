@@ -36,6 +36,8 @@ namespace WebApi.Context
         [BsonElement("Description"), StringLength(1000)]
         public string Description { get; set; }
 
+        public bool IsDemoData { get; set; }
+
         //public List<Company> Favorites { get; set; }
 
     }

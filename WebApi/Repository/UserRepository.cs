@@ -36,6 +36,17 @@ namespace WebApi.Repository
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<User>> GetAllConsultants()
+        {
+            FilterDefinition<User> filter =
+                Builders<User>.Filter.Eq(u => u.Role, "Consultant");
+
+            return await _context
+                        .Users
+                        .Find(filter)
+                        .ToListAsync();
+        }
+
         public async Task Create(User user)
         {
             await _context.Users.InsertOneAsync(user);
@@ -72,7 +83,7 @@ namespace WebApi.Repository
 
         public async Task<bool> DeleteAllMockData()
         {
-            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Role, "MockRole");
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.IsDemoData, true);
 
             DeleteResult deleteResult = await _context
                                                 .Users
