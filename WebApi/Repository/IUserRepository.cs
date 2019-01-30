@@ -10,10 +10,12 @@ namespace WebApi.Repository
     {
         // api/[GET]
         Task<IEnumerable<User>> GetAllUsers();
-        // api/{id}/[GET]
+        // api/users/{id}/[GET]
         Task<User> GetUser(long id);
         // api/[POST]
         Task Create(User user);
+
+        Task<IEnumerable<User>> GetAllConsultants();
 
         Task<bool> Update(User user);
 

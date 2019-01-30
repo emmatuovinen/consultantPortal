@@ -39,6 +39,12 @@ namespace WebApi.Controllers
 
             return new ObjectResult(user);
         }
+        // GET api/users/consultants
+        [HttpGet, Route("consultants")]
+        public async Task<ActionResult<IEnumerable<User>>> GetAllConsultants()
+        {
+            return new ObjectResult(await _repo.GetAllConsultants());
+        }
 
         // POST: api/users
         [HttpPost]
