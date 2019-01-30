@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace WebApi.Context
+namespace WebApi.Models
 {
     public class Company
     {

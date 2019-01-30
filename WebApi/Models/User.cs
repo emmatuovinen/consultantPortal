@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace WebApi.Context
+namespace WebApi.Models
 {
     public class User
     {
@@ -38,7 +38,12 @@ namespace WebApi.Context
 
         public bool IsDemoData { get; set; }
 
-        //public List<Company> Favorites { get; set; }
+        public List<TechTree> UserTechTree { get; set; }
+
+        public List<Position> PositionsInterested { get; set; }
+
+        public List<Company> FavoriteCompanies { get; set; }
+
 
     }
 }

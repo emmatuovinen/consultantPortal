@@ -7,8 +7,8 @@ using WebApi.Models;
 
 namespace WebApi.Context
 {
-    public interface IUserContext
+    public interface ITechTreeContext
     {
-        IMongoCollection<User> Users { get; }
+        IMongoCollection<TechTree> TechTree { get; }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Context;
+using WebApi.Models;
 using WebApi.Repository;
 
 namespace WebApi.Controllers

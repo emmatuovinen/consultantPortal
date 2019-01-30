@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Context;
+using WebApi.Models;
 
 namespace WebApi.Repository
 {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Context;
+using WebApi.Models;
 using WebApi.Repository;
 
 namespace WebApi.Controllers

@@ -9,18 +9,17 @@ using WebApi.Models;
 
 namespace WebApi.Context
 {
-    public class UserContext : IUserContext
+    public class TechTreeContext : ITechTreeContext
     {
         private readonly IMongoDatabase _db;
 
-        public UserContext(IOptions<Settings> config)
+        public TechTreeContext(IOptions<Settings> config)
         {
             var client = new MongoClient(config.Value.ConnectionString);
             _db = client.GetDatabase(config.Value.Database);
         }
 
-        public IMongoCollection<User> Users =>
-            _db.GetCollection<User>("Users");
-
+        public IMongoCollection<TechTree> TechTree =>
+            _db.GetCollection<TechTree>("techTree");
     }
 }
