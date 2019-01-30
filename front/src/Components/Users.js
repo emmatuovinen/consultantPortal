@@ -26,7 +26,7 @@ class Users extends Component {
     render() {
         let users = this.state.users.map((user, index) => {
             return (
-                <Col md="3">
+                <Col key={index} md="3">
                     <UserCard
                         key={user.userId}
                         firstName={user.firstName}
