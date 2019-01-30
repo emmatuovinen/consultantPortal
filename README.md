@@ -4,6 +4,18 @@
 
 # Install requirements
 
+## Front
+
+git bash: 
+`git clone https://github.com/MikaelStenstrand/consultant-app.git`
+
+Open project folder in VS Code.
+In VS Code terminal: 
+- `npm install`
+- `npm start`
+
+
+## Back
 Docker
 -Download  https://www.docker.com/get-started
 -If Hyper V is not enabled, do it by pushing ok when opening Docker(your computer will restart).
