@@ -46,5 +46,4 @@ export function EditProfile(userId, user, callback) {
   });
 }
 
-
 export default function() {}
