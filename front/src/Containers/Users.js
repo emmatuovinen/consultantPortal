@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import UserCard from './UserCard';
 import { Container, Row, Col } from 'reactstrap';
+
+import UserCard from '../Components/UserCard';
 
 const API = "http://localhost:5000/api/users"
 

@@ -1,15 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { Router, Switch, Route } from 'react-router-dom';
+
+import Home from './Views/Home';
+import * as serviceWorker from './serviceWorker';
 import history from './history';
 
 ReactDOM.render(
     <Router history={history}>
         <Switch>
-            <Route exact path='/' component={App} />
+            <Route exact path='/' component={Home} />
         </Switch>
     </Router>,
     document.getElementById('root'));
