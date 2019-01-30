@@ -2,7 +2,7 @@
 # dependencies
 front/node_modules
 front/.pnp
-.pnp.js
+front/.pnp.js
 
 # testing
 front/coverage
@@ -17,9 +17,9 @@ front/.env.development.local
 front/.env.test.local
 front/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+front/npm-debug.log*
+front/yarn-debug.log*
+front/yarn-error.log*
 
 
 
