@@ -40,7 +40,20 @@ namespace WebApi.Controllers
                     Role = "MockRole",
                     Email = "pekka" + i + "@hotmail.com",
                     PhoneNumber = "05012345" + i,
+                    IsDemoData = true,
                     Description = "But of aisle venerable and one fabled scorching his spent honeyed them his his nor he een had and a"
+                };
+                await _repo.Create(user);
+                user = new User
+                {
+                    UserId = await _repo.GetNextId(),
+                    FirstName = "Consult" + i,
+                    LastName = "Konsultti" + i,
+                    Role = "Consult",
+                    Email = "Consult" + i + "@hotmail.com",
+                    PhoneNumber = "04012345" + i,
+                    IsDemoData = true,
+                    Description = "These did fall thence given hight ungodly any his talethis aye before fondly scene pangs sight done uses fall left me will in of woe of or mood in name name whateer virtues girls did by time heart way from some go his bacchanals his is the thou the like"
                 };
                 await _repo.Create(user);
             }
