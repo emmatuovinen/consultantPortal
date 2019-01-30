@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import UserCard from './UserCard';
 import { Container, Row, Col } from 'reactstrap';
+
+import UserCard from '../Components/UserCard';
 
 const API = "http://localhost:5000/api/users"
 
@@ -26,7 +27,7 @@ class Users extends Component {
     render() {
         let users = this.state.users.map((user, index) => {
             return (
-                <Col md="3">
+                <Col key={index} md="3">
                     <UserCard
                         key={user.userId}
                         firstName={user.firstName}
