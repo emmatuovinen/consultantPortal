@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 import Users from './Components/Users'
+import NavigationBar from './Components/NavigationBar';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>App.js</h1>
+        <NavigationBar/>
         <Users />
       </div>
     );
