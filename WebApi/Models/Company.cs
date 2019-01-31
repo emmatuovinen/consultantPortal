@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace WebApi.Context
+namespace WebApi.Models
 {
     public class Company
     {
@@ -13,20 +13,22 @@ namespace WebApi.Context
         public ObjectId CompanyObjId { get; private set; }
 
         [BsonElement("companyId")]
-        public string CompanyID { get; set; }
+        public long CompanyID { get; set; }
 
         [BsonElement("companyName")]
         public string CompanyName { get; set; }
 
+        /*
         [BsonElement("consultantsWorking")]
         public List<User> ConsultantsWorking { get; set; }
+        
 
         [BsonElement("consultantFavorite")]
         public List<User> ConsultantFavorite { get; set; }
 
         [BsonElement("companyContact")]
         public List<ContactInfo> CompanyContact { get; set; }
-
+        */
 
     }
 }

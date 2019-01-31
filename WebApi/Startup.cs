@@ -40,8 +40,12 @@ namespace WebApi
                   options.IsContained = Configuration["DOTNET_RUNNING_IN_CONTAINER"] != null;
               });
 
-            services.AddTransient<IUserContext, UserContext>();
+            services.AddTransient<IDbContext, DbContext>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITechTreeRepository, TechTreeRepository>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+
+
             services.AddCors();
 
             services.AddSwaggerGen(c =>

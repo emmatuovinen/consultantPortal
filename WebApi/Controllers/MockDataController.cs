@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Context;
+using WebApi.Models;
 using WebApi.Repository;
 
 namespace WebApi.Controllers
@@ -14,11 +15,13 @@ namespace WebApi.Controllers
     public class MockDataController : ControllerBase
     {
 
-        private readonly IUserRepository _repo;
+        private readonly IUserRepository _userRepo;
+        private readonly ITechTreeRepository _techRepo;
 
-        public MockDataController(IUserRepository repo)
+        public MockDataController(IUserRepository user, ITechTreeRepository tech)
         {
-            _repo = repo;
+            _userRepo = user;
+            _techRepo = tech;
         }
 
         // POST: api/MockData
@@ -34,7 +37,7 @@ namespace WebApi.Controllers
             {
                 var user = new User
                 {
-                    UserId = await _repo.GetNextId(),
+                    UserId = await _userRepo.GetNextId(),
                     FirstName = "Testi" + i,
                     LastName = "Testaaja" + i,
                     Role = "MockRole",
@@ -43,10 +46,10 @@ namespace WebApi.Controllers
                     IsDemoData = true,
                     Description = "But of aisle venerable and one fabled scorching his spent honeyed them his his nor he een had and a"
                 };
-                await _repo.Create(user);
+                await _userRepo.Create(user);
                 user = new User
                 {
-                    UserId = await _repo.GetNextId(),
+                    UserId = await _userRepo.GetNextId(),
                     FirstName = "Consult" + i,
                     LastName = "Konsultti" + i,
                     Role = "Consult",
@@ -55,10 +58,10 @@ namespace WebApi.Controllers
                     IsDemoData = true,
                     Description = "These did fall thence given hight ungodly any his talethis aye before fondly scene pangs sight done uses fall left me will in of woe of or mood in name name whateer virtues girls did by time heart way from some go his bacchanals his is the thou the like"
                 };
-                await _repo.Create(user);
+                await _userRepo.Create(user);
             }
 
-            return Ok("Mock data created");
+            return Ok("Mock users created");
         }
 
         // DELETE: api/MockData/key
@@ -67,8 +70,25 @@ namespace WebApi.Controllers
         {
             if (key == "remove")
             {
-                _repo.DeleteAllMockData();
+                _userRepo.DeleteAllMockData();
             }
+        }
+
+        [HttpPost, Route("CreateTech")]
+        public async Task<IActionResult> CreateTech()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var tech = new TechTree
+                {
+                    TechId = await _techRepo.GetNextId(),
+                    Tech = "tech" + i,
+                };
+
+                await _techRepo.Create(tech);
+            }
+
+            return Ok("Mock tech's created");
         }
     }
 }
