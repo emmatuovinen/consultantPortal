@@ -25,6 +25,8 @@ export function GetAllConsultants(callback) {
 export function GetAllUsers(callback) {
   Axios.get(API + "Users/").then(response => {
     callback(response.data);
+  }).catch(error => {
+    console.log(error);
   });
 }
 

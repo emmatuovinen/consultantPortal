@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
 import UserCard from '../Components/UserCard';
+import { GetAllUsers } from '../ServiceClient';
 
-const API = "http://localhost:5000/api/users"
+// const API = "http://localhost:5000/api/users"
 
 class Users extends Component {
     constructor(props) {
@@ -13,15 +14,23 @@ class Users extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch(API)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                this.setState({ users: data })
-            })
-            .catch(err => console.log("ERROR: ", err))
+    // componentDidMount() {
+    //     fetch(API)
+    //         .then(response => {
+    //             return response.json()
+    //         })
+    //         .then(data => {
+    //             this.setState({ users: data })
+    //         })
+    //         .catch(err => console.log("ERROR: ", err))
+    // }
+
+    componentDidMount = () => {
+        GetAllUsers(response => {
+            let allUsers = response;
+            this.setState({users:allUsers})
+            console.log("allUsers: ", allUsers)
+        });
     }
 
     render() {
