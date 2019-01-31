@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Config;
+using WebApi.Models;
 
 namespace WebApi.Context
 {
-    public class UserContext : IUserContext
+    public class DbContext : IDbContext
     {
         private readonly IMongoDatabase _db;
 
-        public UserContext(IOptions<Settings> config)
+        public DbContext(IOptions<Settings> config)
         {
             var client = new MongoClient(config.Value.ConnectionString);
             _db = client.GetDatabase(config.Value.Database);
@@ -21,5 +22,10 @@ namespace WebApi.Context
         public IMongoCollection<User> Users =>
             _db.GetCollection<User>("Users");
 
+        public IMongoCollection<TechTree> TechTree =>
+            _db.GetCollection<TechTree>("TechTree");
+
+        public IMongoCollection<Company> Companies =>
+            _db.GetCollection<Company>("Companies");
     }
 }

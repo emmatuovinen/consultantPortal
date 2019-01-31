@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Context;
+using WebApi.Models;
 
 namespace WebApi.Repository
 {
     public interface IUserRepository
     {
-        // api/[GET]
+        // api/users
         Task<IEnumerable<User>> GetAllUsers();
         // api/users/{id}/[GET]
         Task<User> GetUser(long id);
-        // api/[POST]
+        // api/users/[POST]
         Task Create(User user);
 
         Task<IEnumerable<User>> GetAllConsultants();
