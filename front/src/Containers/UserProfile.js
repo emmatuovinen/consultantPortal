@@ -86,6 +86,7 @@ export default class UserProfile extends Component {
         let buttonText = this.state.isEditing ? 'Save' : 'Edit';
         return (
             <div className='container'>
+                <h2>User profile</h2>
                 {this.state.isEditing ? this.renderUserProfileForm() : this.renderUserProfileDetails()}
                 <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
             </div>
