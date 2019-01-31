@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/TechTree/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetTech")]
         public async Task<ActionResult<TechTree>> Get(long id)
         {
             var tech = await _repo.GetTech(id);
@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         {
             techTree.TechId = await _repo.GetNextId();
             await _repo.Create(techTree);
-            return new ObjectResult(techTree);
+            return new OkObjectResult(techTree);
         }
 
         // DELETE: api/ApiWithActions/5

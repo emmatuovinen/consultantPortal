@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         // POST: api/MockData
-        [HttpPost("{howMany}"), Route("users")]
+        [HttpPost("{howMany}")]
         public async Task<IActionResult> CreateUsers(int howMany)
         {
             if (howMany > 50)
@@ -65,7 +65,7 @@ namespace WebApi.Controllers
         }
 
         // DELETE: api/MockData/key
-        [HttpDelete("{key}"), Route("users")]
+        [HttpDelete("{key}")]
         public void Delete(string key)
         {
             if (key == "remove")

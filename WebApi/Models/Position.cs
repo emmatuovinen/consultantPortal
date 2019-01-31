@@ -13,8 +13,8 @@ namespace WebApi.Models
         public string PositionRole { get; set; }
         public string Location { get; set; }
         public string Tech { get; set; }
-        public List<User> InternalContact { get; set; }
-        public List<User> IsInterested { get; set; }
+        //public List<User> InternalContact { get; set; }
+        //public List<User> IsInterested { get; set; }
 
     }
 }
