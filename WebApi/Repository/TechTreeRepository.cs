@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace WebApi.Repository
 {
     public class TechTreeRepository : ITechTreeRepository
     {
-        private readonly ITechTreeContext _context;
+        private readonly IDbContext _context;
 
-        public TechTreeRepository(ITechTreeContext context)
+        public TechTreeRepository(IDbContext context)
         {
             _context = context;
         }
@@ -55,6 +56,11 @@ namespace WebApi.Repository
 
             return deleteResult.IsAcknowledged
                 && deleteResult.DeletedCount < 0;
+        }
+
+        public async Task<long> GetNextId()
+        {
+            return await _context.TechTree.CountDocumentsAsync(new BsonDocument()) + 1;
         }
     }
 }

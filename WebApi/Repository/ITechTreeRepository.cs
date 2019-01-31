@@ -15,5 +15,7 @@ namespace WebApi.Repository
         Task Create(TechTree tech);
 
         Task<bool> Delete(long id);
+
+        Task<long> GetNextId();
     }
 }
