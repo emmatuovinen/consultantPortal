@@ -69,7 +69,7 @@ namespace WebApi.Controllers
 
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Companies/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {

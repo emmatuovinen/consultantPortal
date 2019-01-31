@@ -50,7 +50,7 @@ namespace WebApi.Controllers
             return new OkObjectResult(techTree);
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/TechTree/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
