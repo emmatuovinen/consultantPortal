@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import {
-    Button, Form, FormGroup, Label, Input,
-    Table,
-} from 'reactstrap';
-import { GetConsultantInfo } from '../ServiceClient'
+import { Button } from 'reactstrap';
 
-class UserProfile extends Component {
+import { GetConsultantInfo } from '../ServiceClient'
+import UserProfileForm from '../Components/UserProfileForm';
+import UserProfileDetails from '../Components/UserProfileDetails';
+
+const USER_ID = '10';
+
+export default class UserProfile extends Component {
     state = {
-        userId: '15',
+        userId: USER_ID,
         user: {},
-        editingDisabled: true,
+        isEditing: false,
         userIsConsultant: true,
     }
 
@@ -18,21 +20,23 @@ class UserProfile extends Component {
 
             if (callback.status === 200) {
                 this.setState({ user: callback.data });
-                console.log('stateen laitettu user', this.state.user)
             } else {
-                console.log('ei voida tulostaa, error', callback.status);
+                console.log('error', callback.status);
+                // some kind of error message?
             }
         });
     }
 
-    edit = () => {
-        this.setState({ editingDisabled: !this.state.editingDisabled });
+    editMode = (btn) => {
+        this.setState({ isEditing: !this.state.isEditing });
+        if (btn.target.value === 'Save') {
+            console.log('sending put request to the backend');
+            // Axios call
+        }
     }
 
     handleChange = event => {
-
         let copyOfUser = { ...this.state.user }
-
         switch (event.target.id) {
             case 'firstName':
                 copyOfUser.firstName = event.target.value;
@@ -55,7 +59,6 @@ class UserProfile extends Component {
                 this.setState({ user: copyOfUser });
                 break;
             case 'role':
-                console.log('radio button painettu', event.target)
                 copyOfUser.role = event.target.value;
                 this.setState({
                     userIsConsultant: !this.state.userIsConsultant,
@@ -67,92 +70,25 @@ class UserProfile extends Component {
         }
     }
 
-    renderForm() {
-        let user = this.state.user;
+    renderUserProfileForm() {
         return (
-            <Form>
-                <FormGroup controlid="firstName">
-                    <Label for="firstName">First name</Label>
-                    <Input onChange={this.handleChange} type="text" name="firstName" id="firstName" value={user.firstName} />
-                </FormGroup>
-                <FormGroup controlid="lastName">
-                    <Label for="lastName">Last name</Label>
-                    <Input onChange={this.handleChange} type="text" name="lastName" id="lastName" value={user.lastName} />
-                </FormGroup>
-                <FormGroup controlid="email">
-                    <Label for="email">Email</Label>
-                    <Input onChange={this.handleChange} type="email" name="email" id="email" value={user.email} />
-                </FormGroup>
-                <FormGroup controlid="phoneNumber">
-                    <Label for="phoneNumber">Phone</Label>
-                    <Input onChange={this.handleChange} type="number" name="phoneNumber" id="phoneNumber" value={user.phoneNumber} />
-                </FormGroup>
-                <FormGroup controlid="description">
-                    <Label for="description">Description</Label>
-                    <Input onChange={this.handleChange} type="text" name="description" id="description" value={user.description} />
-                </FormGroup>
-                <FormGroup tag="fieldset">
-                    <FormGroup controlid="role">
-                        <FormGroup check>
-                            <Label check>
-                                <Input onChange={this.handleChange} type="radio" id="role" name="role" value="Consultant" checked={this.state.userIsConsultant} />{' '}
-                                Consultant
-                                </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                            <Label check>
-                                <Input onChange={this.handleChange} type="radio" id="role" name="role" value="AM" checked={!this.state.userIsConsultant} />{' '}
-                                AM
-                                </Label>
-                        </FormGroup>
-                    </FormGroup>
-                </FormGroup>
-            </Form>
+            <UserProfileForm user={this.state.user} handleChange={this.handleChange} userIsConsultant={this.state.userIsConsultant} />
         )
     }
 
-    renderUserDetails() {
-        let user = this.state.user;
+    renderUserProfileDetails() {
         return (
-            <Table>
-                <tbody>
-                    <tr>
-                        <th scope="row"><Label>First name: </Label></th>
-                        <td><Label>{user.firstName}</Label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><Label>Last name: </Label></th>
-                        <td><Label>{user.lastName}</Label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><Label>Email: </Label></th>
-                        <td><Label>{user.email}</Label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><Label>Phone number: </Label></th>
-                        <td><Label>{user.phoneNumber}</Label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><Label>Description: </Label></th>
-                        <td><Label>{user.description}</Label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><Label>Role: </Label></th>
-                        <td><Label>{user.role}</Label></td>
-                    </tr>
-                </tbody>
-            </Table>
+            <UserProfileDetails user={this.state.user} />
         )
     }
 
     render() {
+        let buttonText = this.state.isEditing ? 'Save' : 'Edit';
         return (
             <div className='container'>
-                {this.state.editingDisabled ? this.renderUserDetails() : this.renderForm()}
-                <Button onClick={this.edit}>{this.state.editingDisabled ? 'Edit' : 'Save'}</Button>
+                {this.state.isEditing ? this.renderUserProfileForm() : this.renderUserProfileDetails()}
+                <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
             </div>
         );
     }
 }
-
-export default UserProfile;
