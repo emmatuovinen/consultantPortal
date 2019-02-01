@@ -23,7 +23,7 @@ export default class UserProfile extends Component {
                 this.setState({ user, userIsConsultant });
             } else {
                 console.log('error', callback.status);
-                // some kind of error message for the user?
+                // some kind of redirect to an error page?
             }
         });
     }
@@ -32,7 +32,13 @@ export default class UserProfile extends Component {
         this.setState({ isEditing: !this.state.isEditing });
         if (btn.target.value === 'Save') {
             EditProfile(this.state.userId, this.state.user, callback => {
-                console.dir(callback);
+                if (callback.status === 200) {
+                    console.log('success', callback.status);
+                    // some kind of 'save successfull' message for the user?
+                } else {
+                    console.log('error', callback.status);
+                    // some kind of redirect to an error page?
+                }
             });
         }
     }
@@ -79,7 +85,7 @@ export default class UserProfile extends Component {
     }
 
     renderUserProfileDetails() {
-        return (            
+        return (
             <UserProfileDetails user={this.state.user} />
         )
     }

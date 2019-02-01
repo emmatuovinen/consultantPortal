@@ -45,8 +45,12 @@ export function DeleteUser(userId, callback) {
 }
 
 export function EditProfile(userId, user, callback) {
-  Axios.put(API + "Users/" + userId, user).then(response => {
+  Axios.put(API + "Users/" + userId, user)
+  .then(response => {
     callback(response);
+  })
+  .catch(error => {
+    callback(error.response);
   });
 }
 
