@@ -37,9 +37,13 @@ export function GetAllUsers(callback) {
 }
 
 export function GetConsultantInfo(userId, callback) {
-  Axios.get(API + "Users/" + userId).then(response => {
-    callback(response.data);
-  });
+  Axios.get(API + "Users/" + userId)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function DeleteUser(userId, callback) {
@@ -49,9 +53,13 @@ export function DeleteUser(userId, callback) {
 }
 
 export function EditProfile(userId, user, callback) {
-  Axios.put(API + "Users/" + userId, user).then(response => {
+  Axios.put(API + "Users/" + userId, user)
+  .then(response => {
     callback(response);
+  })
+  .catch(error => {
+    callback(error.response);
   });
 }
 
-export default function() {}
+export default function () { }
