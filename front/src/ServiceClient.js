@@ -17,15 +17,23 @@ export function CreateUser(userData, callback) {
 }
 
 export function GetAllConsultants(callback) {
-  Axios.get(API + "Users/consultants").then(response => {
-    callback(response.data);
-  });
+  Axios.get(API + "Users/Consultants")
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function GetAllUsers(callback) {
-  Axios.get(API + "Users/").then(response => {
-    callback(response.data);
-  });
+  Axios.get(API + "Users/")
+    .then(response => {
+      callback(response.data);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function GetConsultantInfo(userId, callback) {
