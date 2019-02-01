@@ -14,17 +14,6 @@ class Users extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     fetch(API)
-    //         .then(response => {
-    //             return response.json()
-    //         })
-    //         .then(data => {
-    //             this.setState({ users: data })
-    //         })
-    //         .catch(err => console.log("ERROR: ", err))
-    // }
-
     componentDidMount = () => {
         GetAllUsers(response => {
             let allUsers = response;
