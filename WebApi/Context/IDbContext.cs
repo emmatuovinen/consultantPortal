@@ -12,5 +12,6 @@ namespace WebApi.Context
         IMongoCollection<TechTree> TechTree { get; }
         IMongoCollection<User> Users { get; }
         IMongoCollection<Company> Companies { get; }
+        IMongoCollection<Position> Positions { get; }
     }
 }
