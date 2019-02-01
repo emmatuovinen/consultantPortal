@@ -25,7 +25,7 @@ class ConsultantList extends Component {
   render() {
     let users = this.state.users.map((user, index) => {
       return (
-        <Col key={index} md="3">
+        <Col key={index} sm="12" md="6" lg="3">
           <UserCard
             key={user.userId}
             firstName={user.firstName}
