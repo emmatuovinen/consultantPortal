@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
-import { GetConsultantInfo } from '../ServiceClient'
+import { GetConsultantInfo, EditProfile } from '../ServiceClient'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
-const USER_ID = '10';
+const USER_ID = '1';
 
 export default class UserProfile extends Component {
     state = {
@@ -17,12 +17,13 @@ export default class UserProfile extends Component {
 
     componentDidMount() {
         GetConsultantInfo(this.state.userId, callback => {
-
             if (callback.status === 200) {
-                this.setState({ user: callback.data });
+                let user = callback.data;
+                let userIsConsultant = (user.role === 'Consultant');
+                this.setState({ user, userIsConsultant });
             } else {
                 console.log('error', callback.status);
-                // some kind of error message?
+                // some kind of error message for the user?
             }
         });
     }
@@ -30,8 +31,9 @@ export default class UserProfile extends Component {
     editMode = (btn) => {
         this.setState({ isEditing: !this.state.isEditing });
         if (btn.target.value === 'Save') {
-            console.log('sending put request to the backend');
-            // Axios call
+            EditProfile(this.state.userId, this.state.user, callback => {
+                console.dir(callback);
+            });
         }
     }
 
@@ -77,7 +79,7 @@ export default class UserProfile extends Component {
     }
 
     renderUserProfileDetails() {
-        return (
+        return (            
             <UserProfileDetails user={this.state.user} />
         )
     }
