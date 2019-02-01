@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Label, Table } from 'reactstrap';
 
 const UserProfileDetails = (props) => {
