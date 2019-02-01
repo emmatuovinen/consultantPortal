@@ -7,15 +7,15 @@ class ConsultantList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      consultants: []
     };
   }
 
   componentDidMount = () => {
     GetAllConsultants(response => {
       if (response.status === 200) {
-        let allUsers = response.data;
-        this.setState({ users: allUsers });
+        let allConsultants = response.data;
+        this.setState({ consultants: allConsultants });
       } else {
         console.log("Error, response status: " + response.status);
       }
@@ -23,17 +23,17 @@ class ConsultantList extends Component {
   };
 
   render() {
-    let users = this.state.users.map((user, index) => {
+    let consultantsListed = this.state.consultants.map((consultant, index) => {
       return (
         <Col key={index} sm="12" md="6" lg="3">
           <UserCard
-            key={user.userId}
-            firstName={user.firstName}
-            lastName={user.lastName}
-            role={user.role}
-            description={user.description}
-            phoneNumber={user.phoneNumber}
-            email={user.email}
+            key={consultant.userId}
+            firstName={consultant.firstName}
+            lastName={consultant.lastName}
+            role={consultant.role}
+            description={consultant.description}
+            phoneNumber={consultant.phoneNumber}
+            email={consultant.email}
           />
         </Col>
       );
@@ -41,7 +41,7 @@ class ConsultantList extends Component {
 
     return (
       <Container>
-        <Row>{users}</Row>
+        <Row>{consultantsListed}</Row>
       </Container>
     );
   }

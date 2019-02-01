@@ -17,7 +17,7 @@ export function CreateUser(userData, callback) {
 }
 
 export function GetAllConsultants(callback) {
-  Axios.get(API + "Users/consultants")
+  Axios.get(API + "Users/Consultants")
     .then(response => {
       callback(response);
     })
