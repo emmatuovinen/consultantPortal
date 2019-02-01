@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Context;
+using WebApi.Models;
 using WebApi.Repository;
 
 namespace WebApi.Controllers
@@ -27,7 +28,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<ActionResult<User>> Get(long id)
         {
             var user = await _repo.GetUser(id);

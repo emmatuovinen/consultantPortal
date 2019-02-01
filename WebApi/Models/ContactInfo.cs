@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Context
+namespace WebApi.Models
 {
     public class ContactInfo
     {
