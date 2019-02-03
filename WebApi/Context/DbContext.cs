@@ -27,5 +27,8 @@ namespace WebApi.Context
 
         public IMongoCollection<Company> Companies =>
             _db.GetCollection<Company>("Companies");
+
+        public IMongoCollection<Position> Positions =>
+            _db.GetCollection<Position>("Positions");
     }
 }
