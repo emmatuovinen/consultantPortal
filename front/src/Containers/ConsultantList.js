@@ -27,6 +27,7 @@ class ConsultantList extends Component {
       return (
         <Col key={index} sm="12" md="6" lg="3">
           <UserCard
+            userId={consultant.userId}
             key={consultant.userId}
             firstName={consultant.firstName}
             lastName={consultant.lastName}
