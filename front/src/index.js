@@ -7,6 +7,7 @@ import Home from './Views/Home';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import ProfileView from './Views/ProfileView';
+import AutoSuggestions from './Containers/AutoSuggestions';
 import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 
@@ -17,6 +18,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/profile' component={ProfileView} />
                 <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
+                <Route path='/auto-suggest' component={AutoSuggestions} />
                 <Route exact path='/' component={Home} />
             </Switch>
         </Router>
