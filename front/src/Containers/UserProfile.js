@@ -88,7 +88,7 @@ export default class UserProfile extends Component {
 
     renderUserProfileDetails() {
         return (
-            <UserProfileDetails user={this.state.user} />
+            <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant}/>
         )
     }
 

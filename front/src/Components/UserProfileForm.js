@@ -5,7 +5,6 @@ import UserProfileConsultantForm from '../Components/UserProfileConsultantForm';
 
 const UserProfileForm = (props) => {
     let user = props.user;
-    console.log(props.userIsConsultant)
     return (
         <div>
             <Form>
