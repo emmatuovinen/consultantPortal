@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { withRouter } from 'history';
 
-import { GetConsultantInfo } from '../ServiceClient';
+import { GetConsultantInfo } from '../serviceClients/UserService';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
 class ViewNonEditableProfile extends Component {
