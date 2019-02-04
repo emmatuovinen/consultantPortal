@@ -13,6 +13,9 @@ export function CreateUser(userData, callback) {
   };
   Axios.post(API + "Users/", newUser).then(response => {
     callback(response);
+  })
+  .catch(error => {
+    callback(error.response);
   });
 }
 
