@@ -19,7 +19,7 @@ export default class UserProfile extends Component {
             role: ''
         },
         isEditing: false,
-        userIsConsultant: true,
+        userIsConsultant: false,
     }
 
     componentDidMount() {

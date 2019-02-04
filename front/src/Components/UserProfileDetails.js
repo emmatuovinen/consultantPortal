@@ -1,9 +1,11 @@
 import React from 'react';
 import { Label, Table } from 'reactstrap';
+import UserProfileConsultantDetails from './UserProfileConsultantDetails';
 
 const UserProfileDetails = (props) => {
     let user = props.user;
     return (
+        <div>
         <Table>
             <tbody>
                 <tr>
@@ -32,6 +34,8 @@ const UserProfileDetails = (props) => {
                 </tr>
             </tbody>
         </Table>
+        {props.userIsConsultant && <UserProfileConsultantDetails user={user}/>}
+        </div>        
     );
 }
 
