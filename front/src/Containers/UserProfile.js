@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Container } from 'reactstrap';
 
-import { GetConsultantInfo, EditProfile } from '../ServiceClient'
+import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 

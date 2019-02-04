@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import UserCard from "../Components/UserCard";
-import { GetAllConsultants } from "../ServiceClient";
+import { GetAllConsultants } from "../serviceClients/UserService";
 
 class ConsultantList extends Component {
   constructor(props) {
