@@ -14,7 +14,6 @@ class PositionsList extends Component {
   componentDidMount = () => {
     GetAllPositions(response => {
       if (response.status === 200) {
-        console.log(response.data);
         let allPositions = response.data;
         this.setState({ positions: allPositions });
       } else {
@@ -28,7 +27,7 @@ class PositionsList extends Component {
       return (
         <Col key={index} sm="12" md="4" lg="3">
           <PositionCard
-            key={position.positionId}
+            positionId={position.positionId}
             description={position.positionDescription}
             role={position.positionRole}
             location={position.location}
