@@ -7,6 +7,7 @@ import Home from './Views/Home';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import ProfileView from './Views/ProfileView';
+import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Router history={history}>
             <Switch>
                 <Route path='/profile' component={ProfileView} />
+                <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
                 <Route exact path='/' component={Home} />
             </Switch>
         </Router>
