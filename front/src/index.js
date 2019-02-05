@@ -19,7 +19,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/profile' component={ProfileView} />
                 <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
-                <Route path='/position-details/:id' component={PositionDetails} name='position-details' />
+                <Route path='/position-details/:positionId' component={PositionDetails} name='position-details' />
                 <Route path='/positions' component={PositionsList} />
                 <Route exact path='/' component={Home} />
             </Switch>
