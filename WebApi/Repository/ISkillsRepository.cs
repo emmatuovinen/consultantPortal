@@ -6,13 +6,13 @@ using WebApi.Models;
 
 namespace WebApi.Repository
 {
-    public interface ITechTreeRepository
+    public interface ISkillsRepository
     {
-        Task<IEnumerable<TechTree>> GetAllTechs();
+        Task<IEnumerable<Skills>> GetAllSkills();
 
-        Task<TechTree> GetTech(string _id);
+        Task<Skills> GetSkill(string _id);
 
-        Task Create(TechTree tech);
+        Task Create(Skills tech);
 
         Task<bool> Delete(string _id);
 

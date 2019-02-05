@@ -16,9 +16,9 @@ namespace WebApi.Controllers
     {
 
         private readonly IUserRepository _userRepo;
-        private readonly ITechTreeRepository _techRepo;
+        private readonly ISkillsRepository _techRepo;
 
-        public MockDataController(IUserRepository user, ITechTreeRepository tech)
+        public MockDataController(IUserRepository user, ISkillsRepository tech)
         {
             _userRepo = user;
             _techRepo = tech;
@@ -79,9 +79,9 @@ namespace WebApi.Controllers
         {
             for (int i = 0; i < 10; i++)
             {
-                var tech = new TechTree
+                var tech = new Skills
                 {
-                    Tech = "tech" + i,
+                    Skill = "tech" + i,
                 };
 
                 await _techRepo.Create(tech);

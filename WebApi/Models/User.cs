@@ -39,9 +39,7 @@ namespace WebApi.Models
 
         public bool IsDemoData { get; set; }
 
-        public List<string> UserTechs { get; set; }
-
-        //public List<TechTree> UserTechTree { get; set; }
+        public List<string> UserSkills { get; set; }
 
         //public List<Position> PositionsInterested { get; set; }
 

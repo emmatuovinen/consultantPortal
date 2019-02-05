@@ -17,7 +17,7 @@ namespace WebApi.Models
         public string PositionRole { get; set; }
         public string Location { get; set; }
         public bool IsActive { get; set; }
-        public List<string> TechList { get; set; }
+        public List<string> PositionSkills { get; set; }
         //public List<User> InternalContact { get; set; }
         //public List<User> IsInterested { get; set; }
 

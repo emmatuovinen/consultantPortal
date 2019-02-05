@@ -75,10 +75,10 @@ namespace WebApi.Controllers
             updatedUser.Email = user.Email;
             updatedUser.PhoneNumber = user.PhoneNumber;
             updatedUser.Description = user.Description;
-            updatedUser.UserTechs = new List<string>();
-            foreach (var item in user.UserTechs)
+            updatedUser.UserSkills = new List<string>();
+            foreach (var item in user.UserSkills)
             {
-                updatedUser.UserTechs.Add(item);
+                updatedUser.UserSkills.Add(item);
             }
 
 
