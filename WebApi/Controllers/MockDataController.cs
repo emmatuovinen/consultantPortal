@@ -52,7 +52,7 @@ namespace WebApi.Controllers
                     UserId = await _userRepo.GetNextId(),
                     FirstName = "Consult" + i,
                     LastName = "Konsultti" + i,
-                    Role = "Consult",
+                    Role = "Consultant",
                     Email = "Consult" + i + "@hotmail.com",
                     PhoneNumber = "04012345" + i,
                     IsDemoData = true,

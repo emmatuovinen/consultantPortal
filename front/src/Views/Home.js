@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import Users from '../Containers/Users'
-import NavigationBar from '../Containers/NavigationBar';
+import ConsultantList from '../Containers/ConsultantList'
 
 class Home extends Component {
     render() {
         return (
             <div>
-                <NavigationBar />
-                <Users />
+                <ConsultantList />
             </div>
         );
     }

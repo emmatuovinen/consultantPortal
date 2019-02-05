@@ -44,6 +44,7 @@ namespace WebApi
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITechTreeRepository, TechTreeRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IPositionRepository, PositionRepository>();
 
 
             services.AddCors();
