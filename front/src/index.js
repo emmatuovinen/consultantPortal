@@ -7,6 +7,7 @@ import Home from './Views/Home';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import ProfileView from './Views/ProfileView';
+import AutoSuggestions from './Containers/AutoSuggestions';
 import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
@@ -21,6 +22,7 @@ ReactDOM.render(
                 <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
                 <Route path='/position-details/:positionId' component={PositionDetails} name='position-details' />
                 <Route path='/positions' component={PositionsList} />
+                <Route path='/auto-suggest' component={AutoSuggestions} />
                 <Route exact path='/' component={Home} />
             </Switch>
         </Router>
