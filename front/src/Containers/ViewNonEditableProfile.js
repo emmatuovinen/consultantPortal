@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 import { GetConsultantInfo } from '../serviceClients/UserService';
 import UserProfileDetails from '../Components/UserProfileDetails';
@@ -16,11 +16,19 @@ class ViewNonEditableProfile extends Component {
             description: '',
             role: ''
         },
+        userIsConsultant: false,
     }
 
     componentDidMount() {
         GetConsultantInfo(this.state.userId, response => {
-            this.setState({ user: response.data })
+            if (response.status === 200) {
+                let user = response.data;
+                let userIsConsultant = (user.role === 'Consultant');
+                this.setState({ user, userIsConsultant });
+            } else {
+                console.log('error', response.status);
+                // some kind of redirect to an error page?
+            }
         });
     }
 
@@ -30,11 +38,11 @@ class ViewNonEditableProfile extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <h2>Consultant profile</h2>
-                <UserProfileDetails user={this.state.user} />
+                <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant} />
                 <Button onClick={this.returnToFrontPage}>Back</Button>
-            </div>
+            </Container>
         );
     }
 }
