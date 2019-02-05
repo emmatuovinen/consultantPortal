@@ -81,7 +81,6 @@ namespace WebApi.Controllers
             {
                 var tech = new TechTree
                 {
-                    TechId = await _techRepo.GetNextId(),
                     Tech = "tech" + i,
                 };
 

@@ -75,6 +75,11 @@ namespace WebApi.Controllers
             updatedUser.Email = user.Email;
             updatedUser.PhoneNumber = user.PhoneNumber;
             updatedUser.Description = user.Description;
+            updatedUser.UserTechs = new List<string>();
+            foreach (var item in user.UserTechs)
+            {
+                updatedUser.UserTechs.Add(item);
+            }
 
 
             await _repo.Update(updatedUser);

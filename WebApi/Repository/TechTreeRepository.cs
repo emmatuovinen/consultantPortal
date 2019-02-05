@@ -28,10 +28,12 @@ namespace WebApi.Repository
 
         }
 
-        public Task<TechTree> GetTech(long id)
+        public Task<TechTree> GetTech(string _id)
         {
+            var objectId = GetObjectId(_id);
+
             FilterDefinition<TechTree> filter =
-                Builders<TechTree>.Filter.Eq(t => t.TechId, id);
+                Builders<TechTree>.Filter.Eq(t => t.DBId, objectId);
 
             return _context
                 .TechTree
@@ -45,10 +47,12 @@ namespace WebApi.Repository
             await _context.TechTree.InsertOneAsync(tech);
         }
 
-        public async Task<bool> Delete(long id)
+        public async Task<bool> Delete(string _id)
         {
+            var objectId = GetObjectId(_id);
+
             FilterDefinition<TechTree> filter =
-                Builders<TechTree>.Filter.Eq(t => t.TechId, id);
+                Builders<TechTree>.Filter.Eq(t => t.DBId, objectId);
 
             DeleteResult deleteResult = await _context
                                         .TechTree
@@ -61,6 +65,14 @@ namespace WebApi.Repository
         public async Task<long> GetNextId()
         {
             return await _context.TechTree.CountDocumentsAsync(new BsonDocument()) + 1;
+        }
+
+        private ObjectId GetObjectId(string id)
+        {
+            if (!ObjectId.TryParse(id, out ObjectId objectId))
+                objectId = ObjectId.Empty;
+
+            return objectId;
         }
     }
 }

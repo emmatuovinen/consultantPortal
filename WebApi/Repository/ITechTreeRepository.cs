@@ -10,12 +10,11 @@ namespace WebApi.Repository
     {
         Task<IEnumerable<TechTree>> GetAllTechs();
 
-        Task<TechTree> GetTech(long id);
+        Task<TechTree> GetTech(string _id);
 
         Task Create(TechTree tech);
 
-        Task<bool> Delete(long id);
+        Task<bool> Delete(string _id);
 
-        Task<long> GetNextId();
     }
 }

@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         // GET: api/TechTree/5
         [HttpGet("{id}", Name = "GetTech")]
-        public async Task<ActionResult<TechTree>> Get(long id)
+        public async Task<ActionResult<TechTree>> Get(string id)
         {
             var tech = await _repo.GetTech(id);
 
@@ -45,14 +45,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] TechTree techTree)
         {
-            techTree.TechId = await _repo.GetNextId();
             await _repo.Create(techTree);
             return new OkObjectResult(techTree);
         }
 
         // DELETE: api/TechTree/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             var techFromDb = await _repo.GetTech(id);
 
