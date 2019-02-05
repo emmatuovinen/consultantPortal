@@ -1,18 +1,19 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Badge } from 'reactstrap';
+
+import AutoSuggestions from '../Containers/AutoSuggestions';
 
 // HARD CODED FOR DEMO PURPOSES
-const TECH_STACK = ["Javascript", "ReactJS", "GIT", "CSS", "REST API", "Scrum"];
 const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
 const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileForm = (props) => {
-
     return (
         <Form>
             <FormGroup controlid="techStack">
                 <Label for="techStack">Competence highlights</Label>
-                <Input onChange={props.handleChange} type="text" name="techStack" id="techStack" value={TECH_STACK} />
+                <AutoSuggestions handleChange={props.handleChange} />
+                {props.user.techStack.map((tech, index) => { return <Badge key={index}>{tech}</Badge> })}
             </FormGroup>
             <FormGroup controlid="roleInterests">
                 <Label for="roleInterests">Role interests</Label>

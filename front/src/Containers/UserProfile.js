@@ -4,6 +4,8 @@ import { Button, Container } from 'reactstrap';
 import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
+import AutoSuggestions from '../Containers/AutoSuggestions';
+
 
 const USER_ID = '1'; // hard coded userId for demo purposes
 
@@ -16,7 +18,8 @@ export default class UserProfile extends Component {
             email: '',
             phoneNumber: '',
             description: '',
-            role: ''
+            role: '',
+            techStack: []
         },
         isEditing: false,
         userIsConsultant: false,
@@ -27,6 +30,7 @@ export default class UserProfile extends Component {
             if (response.status === 200) {
                 let user = response.data;
                 let userIsConsultant = (user.role === 'Consultant');
+                user.techStack = []; // for demo purposes only since not in db yet!
                 this.setState({ user, userIsConsultant });
             } else {
                 console.log('error', response.status);
@@ -74,6 +78,9 @@ export default class UserProfile extends Component {
                     userIsConsultant: !this.state.userIsConsultant,
                 });
                 break;
+            case 'techStack':
+                this.state.user.techStack.push(event.target.innerHTML);
+                break;
             default:
                 break;
         }
@@ -82,7 +89,7 @@ export default class UserProfile extends Component {
 
     renderUserProfileForm() {
         return (
-            <UserProfileForm user={this.state.user} handleChange={this.handleChange} userIsConsultant={this.state.userIsConsultant} />
+            <UserProfileForm user={this.state.user} handleChange={this.handleChange} userIsConsultant={this.state.userIsConsultant} onChange={this.clickedItem} />
         )
     }
 
