@@ -10,16 +10,16 @@ using WebApi.Models;
 
 namespace WebApi.Repository
 {
-    public class TechTreeRepository : ITechTreeRepository
+    public class SkillsRepository : ISkillsRepository
     {
         private readonly IDbContext _context;
 
-        public TechTreeRepository(IDbContext context)
+        public SkillsRepository(IDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<TechTree>> GetAllTechs()
+        public async Task<IEnumerable<Skills>> GetAllSkills()
         {
             return await _context
                         .TechTree
@@ -28,10 +28,12 @@ namespace WebApi.Repository
 
         }
 
-        public Task<TechTree> GetTech(long id)
+        public Task<Skills> GetSkill(string _id)
         {
-            FilterDefinition<TechTree> filter =
-                Builders<TechTree>.Filter.Eq(t => t.TechId, id);
+            var objectId = GetObjectId(_id);
+
+            FilterDefinition<Skills> filter =
+                Builders<Skills>.Filter.Eq(t => t.DBId, objectId);
 
             return _context
                 .TechTree
@@ -40,15 +42,17 @@ namespace WebApi.Repository
 
         }
 
-        public async Task Create(TechTree tech)
+        public async Task Create(Skills skill)
         {
-            await _context.TechTree.InsertOneAsync(tech);
+            await _context.TechTree.InsertOneAsync(skill);
         }
 
-        public async Task<bool> Delete(long id)
+        public async Task<bool> Delete(string _id)
         {
-            FilterDefinition<TechTree> filter =
-                Builders<TechTree>.Filter.Eq(t => t.TechId, id);
+            var objectId = GetObjectId(_id);
+
+            FilterDefinition<Skills> filter =
+                Builders<Skills>.Filter.Eq(t => t.DBId, objectId);
 
             DeleteResult deleteResult = await _context
                                         .TechTree
@@ -61,6 +65,14 @@ namespace WebApi.Repository
         public async Task<long> GetNextId()
         {
             return await _context.TechTree.CountDocumentsAsync(new BsonDocument()) + 1;
+        }
+
+        private ObjectId GetObjectId(string id)
+        {
+            if (!ObjectId.TryParse(id, out ObjectId objectId))
+                objectId = ObjectId.Empty;
+
+            return objectId;
         }
     }
 }

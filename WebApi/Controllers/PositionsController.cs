@@ -73,6 +73,11 @@ namespace WebApi.Models
             updatedPosition.Location = position.Location;
             updatedPosition.PositionDescription = position.PositionDescription;
             updatedPosition.IsActive = position.IsActive;
+            updatedPosition.PositionSkills = new List<string>();
+            foreach (var item in position.PositionSkills)
+            {
+                updatedPosition.PositionSkills.Add(item);
+            }
 
             await _repo.Update(updatedPosition);
 

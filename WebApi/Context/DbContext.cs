@@ -22,8 +22,8 @@ namespace WebApi.Context
         public IMongoCollection<User> Users =>
             _db.GetCollection<User>("Users");
 
-        public IMongoCollection<TechTree> TechTree =>
-            _db.GetCollection<TechTree>("TechTree");
+        public IMongoCollection<Skills> TechTree =>
+            _db.GetCollection<Skills>("TechTree");
 
         public IMongoCollection<Company> Companies =>
             _db.GetCollection<Company>("Companies");

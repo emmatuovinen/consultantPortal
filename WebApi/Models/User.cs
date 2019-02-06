@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
+using MongoDB.Driver;
 
 namespace WebApi.Models
 {
@@ -39,7 +39,7 @@ namespace WebApi.Models
 
         public bool IsDemoData { get; set; }
 
-        //public List<TechTree> UserTechTree { get; set; }
+        public List<string> UserSkills { get; set; }
 
         //public List<Position> PositionsInterested { get; set; }
 
