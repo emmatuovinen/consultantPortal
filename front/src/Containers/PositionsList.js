@@ -8,7 +8,7 @@ class PositionsList extends Component {
     super(props);
     this.state = {
       positions: [],
-      onlyActivePositions: false
+      onlyActivePositions: true
     };
   }
 
@@ -45,7 +45,8 @@ class PositionsList extends Component {
         return "";
       }
     });
-    return activePositions.length <= 0 ? (
+    console.log(activePositions.length);
+    return activePositions.length > 0 ? (
       <Row>{activePositions} </Row>
     ) : (
       <Row>

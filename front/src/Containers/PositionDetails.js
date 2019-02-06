@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { GetPositionInfo } from "../serviceClients/PositionService";
-import { Jumbotron, Container, Button } from "reactstrap";
+import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
 class PositionDetails extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class PositionDetails extends Component {
         positionDescription: "",
         positionRole: "",
         location: "",
+        positionSkills: [],
         isActive: true
       }
     };
@@ -33,14 +34,33 @@ class PositionDetails extends Component {
   };
 
   render() {
+    let positionSkills = []
+    if(this.state.position.positionSkills != null){
+      positionSkills =this.state.position.positionSkills.map((skill, i) => {
+        return(
+          <li key={i}>{skill}</li>
+        )
+      });
+    }
+
+
     return (
       <div className="buttons_group">
         <Jumbotron fluid>
           <Container>
             <h3>Position: </h3>
+            <Row>
+              <Col>
+            <img alt="logo" src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg" height="120px" length="120px"></img>
+            </Col>
+            <Col>
             <p>Role: {this.state.position.positionRole}</p>
             <p>Location: {this.state.position.location}</p>
             <p>Description: {this.state.position.positionDescription}</p>
+            <p>Skills:</p>
+            <ul>{positionSkills}</ul>
+            </Col>
+            </Row>
             <Button outline color="danger">
               <span
                 role="img"
@@ -48,7 +68,7 @@ class PositionDetails extends Component {
                 title="Add to favorites"
                 onClick={this.handleAddFavorite}
               >
-                ❤️
+                ❤️ Add to favorites
               </span>
             </Button>
           </Container>
