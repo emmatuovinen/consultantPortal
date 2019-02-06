@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Badge } from 'reactstrap';
 import Autosuggest from 'react-autosuggest';
 
 import { GetSkillsStackOptions } from '../serviceClients/ConsultantSkillsService';
@@ -17,15 +16,14 @@ export default class ConsultantSkillsAutoSuggestions extends Component {
     componentDidMount() {
         GetSkillsStackOptions(response => {
             if (response.status === 200) {
-                response.data.map(skillsStackItem => {
-                    this.state.skillsStackOptions.push(skillsStackItem);
-                });
+                response.data.map(skillsStackItem => (
+                    this.state.skillsStackOptions.push(skillsStackItem)                    
+                ));
             } else {
                 console.log('error', response.status);
                 // redirect to an error page?
             }
         });
-        console.log(this.state.skillsStackOptions)
     }
 
     getSuggestionValue = suggestion => suggestion.skill;

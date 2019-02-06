@@ -4,8 +4,6 @@ import { Button, Container } from 'reactstrap';
 import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
-import ConsultantSkillsAutoSuggestions from '../Containers/ConsultantSkillsAutoSuggestions';
-
 
 const USER_ID = '1'; // hard coded userId for demo purposes
 
@@ -30,7 +28,6 @@ export default class UserProfile extends Component {
             if (response.status === 200) {
                 let user = response.data;
                 let userIsConsultant = (user.role === 'Consultant');
-                user.userSkills = []; // for demo purposes only since not in db yet!
                 this.setState({ user, userIsConsultant });
             } else {
                 console.log('error', response.status);
