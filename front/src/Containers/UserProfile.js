@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Col, Row } from 'reactstrap';
 
 import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
@@ -93,7 +93,7 @@ export default class UserProfile extends Component {
 
     renderUserProfileDetails() {
         return (
-            <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant}/>
+            <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant} />
         )
     }
 
@@ -101,9 +101,14 @@ export default class UserProfile extends Component {
         let buttonText = this.state.isEditing ? 'Save' : 'Edit';
         return (
             <Container>
-                <h2>User profile</h2>
+                {/* <h2>User profile</h2> */}
                 {this.state.isEditing ? this.renderUserProfileForm() : this.renderUserProfileDetails()}
-                <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
+                <Row>
+                    <Col lg='1' /*style={{ backgroundColor: 'yellow' }}*/ ></Col>
+                    <Col lg='11'>
+                        <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
+                    </Col>
+                </Row>
             </Container>
         );
     }
