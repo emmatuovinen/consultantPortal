@@ -2,34 +2,34 @@ import React, { Component } from 'react';
 import { Badge } from 'reactstrap';
 import Autosuggest from 'react-autosuggest';
 
-import { GetTechStackOptions } from '../serviceClients/TechStackService';
+import { GetSkillsStackOptions } from '../serviceClients/ConsultantSkillsService';
 
-export default class AutoSuggestions extends Component {
+export default class ConsultantSkillsAutoSuggestions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            techStackOptions: [],
+            skillsStackOptions: [],
             value: '',
             suggestions: []
         };
     }
 
     componentDidMount() {
-        GetTechStackOptions(response => {
+        GetSkillsStackOptions(response => {
             if (response.status === 200) {
-                response.data.map(techStackItem => {
-                    this.state.techStackOptions.push(techStackItem);
+                response.data.map(skillsStackItem => {
+                    this.state.skillsStackOptions.push(skillsStackItem);
                 });
             } else {
                 console.log('error', response.status);
                 // redirect to an error page?
             }
         });
-        console.log(this.state.techStackOptions)
+        console.log(this.state.skillsStackOptions)
     }
-    
-    getSuggestionValue = suggestion => suggestion.tech;
-    
+
+    getSuggestionValue = suggestion => suggestion.skill;
+
     onChange = (event, { newValue }) => {
         this.setState({ value: newValue });
     };
@@ -41,15 +41,13 @@ export default class AutoSuggestions extends Component {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
         return inputLength === 0 ?
-            [] : this.state.techStackOptions.filter(techItem => techItem.tech.toLowerCase().slice(0, inputLength) === inputValue);
+            [] : this.state.skillsStackOptions.filter(skillItem => skillItem.skill.toLowerCase().slice(0, inputLength) === inputValue);
     };
 
-    renderSuggestion = (techSuggestion) => (
-        <h5>
-            <Badge name='techStack' id='techStack' value={techSuggestion.tech} onClick={this.props.handleChange}>
-                {techSuggestion.tech}
-            </Badge>
-        </h5>
+    renderSuggestion = (suggestion) => (
+        <div name='userSkills' id='userSkills' value={suggestion.skill} onClick={this.props.handleChange}>
+            {suggestion.skill}
+        </div>
     );
 
     onSuggestionsClearRequested = () => {
@@ -78,56 +76,55 @@ export default class AutoSuggestions extends Component {
 // FOR DEMO PURPOSES
 const theme = {
     container: {
-      position: 'relative'
+        position: 'relative'
     },
     input: {
-      width: '100%',
-      height: 'calc(2.25rem + 2px)',
-      padding: '10px 20px',
-      fontFamily: 'Helvetica, sans-serif',
-      fontWeight: 300,
-      fontSize: 16,
-      border: '1px solid #ced4da',
-      borderTopLeftRadius: 4,
-      borderTopRightRadius: 4,
-      borderBottomLeftRadius: 4,
-      borderBottomRightRadius: 4,
+        width: '100%',
+        height: 'calc(2.25rem + 2px)',
+        padding: '10px 20px',
+        fontFamily: 'Helvetica, sans-serif',
+        fontWeight: 300,
+        fontSize: 16,
+        border: '1px solid #ced4da',
+        borderTopLeftRadius: 4,
+        borderTopRightRadius: 4,
+        borderBottomLeftRadius: 4,
+        borderBottomRightRadius: 4,
     },
     inputFocused: {
-      outline: 'none'
+        outline: 'none'
     },
     inputOpen: {
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
     },
     suggestionsContainer: {
-      display: 'none'
+        display: 'none'
     },
     suggestionsContainerOpen: {
-      display: 'block',
-      position: 'absolute',
-      top: 51,
-      width: 280,
-      border: '1px solid #aaa',
-      backgroundColor: '#fff',
-      fontFamily: 'Helvetica, sans-serif',
-      fontWeight: 300,
-      fontSize: 16,
-      borderBottomLeftRadius: 4,
-      borderBottomRightRadius: 4,
-      zIndex: 2
+        display: 'block',
+        position: 'absolute',
+        top: 51,
+        width: 280,
+        border: '1px solid #aaa',
+        backgroundColor: '#fff',
+        fontFamily: 'Helvetica, sans-serif',
+        fontWeight: 300,
+        fontSize: 16,
+        borderBottomLeftRadius: 4,
+        borderBottomRightRadius: 4,
+        zIndex: 2
     },
     suggestionsList: {
-      margin: 0,
-      padding: 0,
-      listStyleType: 'none',
+        margin: 0,
+        padding: 0,
+        listStyleType: 'none',
     },
     suggestion: {
-      cursor: 'pointer',
-      padding: '10px 20px'
+        cursor: 'pointer',
+        padding: '10px 20px'
     },
     suggestionHighlighted: {
-      backgroundColor: '#ddd'
+        backgroundColor: '#ddd'
     }
-  };
-  
+};
