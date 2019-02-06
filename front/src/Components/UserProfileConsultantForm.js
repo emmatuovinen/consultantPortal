@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, Badge } from 'reactstrap';
 
-import AutoSuggestions from '../Containers/AutoSuggestions';
+import ConsultantSkillsAutoSuggestions from '../Containers/ConsultantSkillsAutoSuggestions';
 
 // HARD CODED FOR DEMO PURPOSES
 const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
@@ -10,10 +10,10 @@ const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 const UserProfileForm = (props) => {
     return (
         <Form>
-            <FormGroup controlid="techStack">
-                <Label for="techStack">Competence highlights</Label>
-                <AutoSuggestions handleChange={props.handleChange} />
-                {props.user.techStack.map((tech, index) => { return <Badge key={index}>{tech}</Badge> })}
+            <FormGroup controlid="userSkills">
+                <Label for="userSkills">Competence highlights</Label>
+                <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
+                {props.user.userSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })}
             </FormGroup>
             <FormGroup controlid="roleInterests">
                 <Label for="roleInterests">Role interests</Label>
