@@ -28,6 +28,7 @@ export default class UserProfile extends Component {
             if (response.status === 200) {
                 let user = response.data;
                 let userIsConsultant = (user.role === 'Consultant');
+                user.userSkills = user.userSkills || [];
                 this.setState({ user, userIsConsultant });
             } else {
                 console.log('error', response.status);
@@ -76,7 +77,7 @@ export default class UserProfile extends Component {
                 });
                 break;
             case 'userSkills':
-                this.state.user.userSkills.push(event.target.innerHTML);
+                copyOfUser.userSkills.push(event.target.innerHTML);
                 break;
             default:
                 break;
