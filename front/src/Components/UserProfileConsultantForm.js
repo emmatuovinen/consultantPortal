@@ -8,14 +8,12 @@ const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
 const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileForm = (props) => {
-    const userSkills = props.user.userSkills || [''];
-
     return (
         <Form>
             <FormGroup controlid="userSkills">
                 <Label for="userSkills">Competence highlights</Label>
                 <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
-                {userSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })}
+                {props.user.userSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })}
             </FormGroup>
             <FormGroup controlid="roleInterests">
                 <Label for="roleInterests">Role interests</Label>

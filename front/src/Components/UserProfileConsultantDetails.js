@@ -6,15 +6,13 @@ const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
 const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileConsultantDetails = props => {
-    const userSkills = props.user.userSkills || [''];
-
     return (
         <Table>
             <tbody>
                 <tr>
                     <th scope="row"><Label>Competence highlights: </Label></th>
                     <td>
-                        {userSkills.map((tag, index) => {
+                        {props.user.userSkills.map((tag, index) => {
                             return (<span key={index}><Badge>{tag}</Badge>&nbsp;</span>)
                         })}
                     </td>
