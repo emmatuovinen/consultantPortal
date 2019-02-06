@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
-    public class TechTree
+    public class Skills
     {
         [BsonId, BsonElement("dbId")]
         public ObjectId DBId { get; private set; }
-        public long TechId { get; set; }
-        public string Tech { get; set; }
+        public string Skill { get; set; }
     }
 }

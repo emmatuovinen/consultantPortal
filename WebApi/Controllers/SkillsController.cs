@@ -11,27 +11,27 @@ namespace WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[Controller]")]
-    public class TechTreeController : ControllerBase
+    public class SkillsController : ControllerBase
     {
-        private readonly ITechTreeRepository _repo;
+        private readonly ISkillsRepository _repo;
 
-        public TechTreeController(ITechTreeRepository repo)
+        public SkillsController(ISkillsRepository repo)
         {
             _repo = repo;
         }
 
         // GET: api/TechTree
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TechTree>>> Get()
+        public async Task<ActionResult<IEnumerable<Skills>>> Get()
         {
-            return new ObjectResult(await _repo.GetAllTechs());
+            return new ObjectResult(await _repo.GetAllSkills());
         }
 
         // GET: api/TechTree/5
         [HttpGet("{id}", Name = "GetTech")]
-        public async Task<ActionResult<TechTree>> Get(long id)
+        public async Task<ActionResult<Skills>> Get(string id)
         {
-            var tech = await _repo.GetTech(id);
+            var tech = await _repo.GetSkill(id);
 
             if (tech == null)
             {
@@ -43,18 +43,17 @@ namespace WebApi.Controllers
 
         // POST: api/TechTree
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] TechTree techTree)
+        public async Task<IActionResult> Post([FromBody] Skills skill)
         {
-            techTree.TechId = await _repo.GetNextId();
-            await _repo.Create(techTree);
-            return new OkObjectResult(techTree);
+            await _repo.Create(skill);
+            return new OkObjectResult(skill);
         }
 
         // DELETE: api/TechTree/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var techFromDb = await _repo.GetTech(id);
+            var techFromDb = await _repo.GetSkill(id);
 
             if (techFromDb == null)
             {

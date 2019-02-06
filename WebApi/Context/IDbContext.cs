@@ -9,7 +9,7 @@ namespace WebApi.Context
 {
     public interface IDbContext
     {
-        IMongoCollection<TechTree> TechTree { get; }
+        IMongoCollection<Skills> TechTree { get; }
         IMongoCollection<User> Users { get; }
         IMongoCollection<Company> Companies { get; }
         IMongoCollection<Position> Positions { get; }

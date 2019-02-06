@@ -42,7 +42,7 @@ namespace WebApi
 
             services.AddTransient<IDbContext, DbContext>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ITechTreeRepository, TechTreeRepository>();
+            services.AddTransient<ISkillsRepository, SkillsRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
             services.AddTransient<IPositionRepository, PositionRepository>();
 
