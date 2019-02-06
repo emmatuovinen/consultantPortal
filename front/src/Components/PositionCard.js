@@ -4,6 +4,15 @@ import { Link } from "react-router-dom";
 
 const PositionCard = props => {
   const positionUrl = `position-details/${props.positionId}`;
+  let activePosition = "";
+  
+  if(props.active) {
+      activePosition="✅";
+    
+  } else {
+      activePosition="🛑";
+  }
+
   return (
     <div>
       <Link to={positionUrl}>
@@ -16,7 +25,7 @@ const PositionCard = props => {
             />
             <CardTitle>{props.role}</CardTitle>
             <CardSubtitle>{props.location}</CardSubtitle>
-            <CardSubtitle>{props.active}</CardSubtitle>
+            <CardSubtitle>{activePosition}</CardSubtitle>
           </CardBody>
         </Card>
       </Link>

@@ -45,7 +45,6 @@ class PositionsList extends Component {
         return "";
       }
     });
-    console.log(activePositions.length);
     return activePositions.length > 0 ? (
       <Row>{activePositions} </Row>
     ) : (
