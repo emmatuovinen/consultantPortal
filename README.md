@@ -29,9 +29,15 @@ Run application on Docker
 - This will load files needed for setting up Docker and MongoDB and starts them.
 
 
+### New Backend Updates
+For new changes to backend, you have to re-build the backend with the following commands
+
+`docker-compose build`
+
+`docker-compose up`
 
 
 
-You are ready to run!
 
-When you pull new version of WebApi you need to run `docker-compose build` before `docker-compose up`
+You are ready to be awesome!
+
