@@ -41,6 +41,12 @@ namespace WebApi.Models
 
         public List<string> UserSkills { get; set; }
 
+        public string LinkedInUrl { get; set; }
+        public string GitHubUrl { get; set; }
+        public string PictureUrl { get; set; }
+        public List<string> PreferableRoles { get; set; }
+        public List<string> LessPreferableRoles { get; set; }
+
         //public List<Position> PositionsInterested { get; set; }
 
         //public List<Company> FavoriteCompanies { get; set; }
