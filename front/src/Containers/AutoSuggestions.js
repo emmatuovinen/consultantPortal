@@ -25,6 +25,7 @@ export default class AutoSuggestions extends Component {
                 // redirect to an error page?
             }
         });
+        console.log(this.state.techStackOptions)
     }
     
     getSuggestionValue = suggestion => suggestion.tech;
@@ -67,9 +68,66 @@ export default class AutoSuggestions extends Component {
                     getSuggestionValue={this.getSuggestionValue}
                     renderSuggestion={this.renderSuggestion}
                     inputProps={inputProps}
-                // theme={the css setting can be added as const here}
+                    theme={theme} // theme={the css setting can be added as const here}
                 />
             </div>
         );
     }
 }
+
+// FOR DEMO PURPOSES
+const theme = {
+    container: {
+      position: 'relative'
+    },
+    input: {
+      width: '100%',
+      height: 'calc(2.25rem + 2px)',
+      padding: '10px 20px',
+      fontFamily: 'Helvetica, sans-serif',
+      fontWeight: 300,
+      fontSize: 16,
+      border: '1px solid #ced4da',
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4,
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 4,
+    },
+    inputFocused: {
+      outline: 'none'
+    },
+    inputOpen: {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0
+    },
+    suggestionsContainer: {
+      display: 'none'
+    },
+    suggestionsContainerOpen: {
+      display: 'block',
+      position: 'absolute',
+      top: 51,
+      width: 280,
+      border: '1px solid #aaa',
+      backgroundColor: '#fff',
+      fontFamily: 'Helvetica, sans-serif',
+      fontWeight: 300,
+      fontSize: 16,
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 4,
+      zIndex: 2
+    },
+    suggestionsList: {
+      margin: 0,
+      padding: 0,
+      listStyleType: 'none',
+    },
+    suggestion: {
+      cursor: 'pointer',
+      padding: '10px 20px'
+    },
+    suggestionHighlighted: {
+      backgroundColor: '#ddd'
+    }
+  };
+  
