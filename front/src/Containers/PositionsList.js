@@ -48,10 +48,10 @@ class PositionsList extends Component {
     return activePositions.length > 0 ? (
       <Row>{activePositions} </Row>
     ) : (
-      <Row>
-        <p>Sorry, no active positions.</p>
-      </Row>
-    );
+        <Row>
+          <p>Sorry, no active positions.</p>
+        </Row>
+      );
   };
 
   renderAllPositions = () => {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { GetPositionInfo } from "../serviceClients/PositionService";
+import { GetAllConsultants } from "../serviceClients/UserService";
 import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
 const userRoles = ["consultant", "AW"]; // test array
@@ -17,8 +18,9 @@ class PositionDetails extends Component {
         positionStatus: "",
         positionSkills: [],
         isActive: true
-      }, 
-      userIsConsultant: true
+      },
+      userIsConsultant: true,
+      consultants: [],
     };
   }
 
@@ -26,16 +28,25 @@ class PositionDetails extends Component {
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
         let position = response.data;
-        this.setState({ position });
+        this.setState({ position: position });
       } else {
         console.log("Error: " + response.status);
       }
     });
+    GetAllConsultants(response => {
+      if (response.status === 200) {
+        let users = response.data;
+        this.setState({ consultants: users });
+      } else {
+        console.log("Error: ", response.status);
+      }
+    });
+
   };
 
   handleAddFavorite = () => {
-      console.log("Position added to favorites");
-      //Here we need to add logic to add the position to current user's favorites
+    console.log("Position added to favorites");
+    //Here we need to add logic to add the position to current user's favorites
   };
 
   handleClick = () => {
@@ -44,17 +55,19 @@ class PositionDetails extends Component {
   }
 
   render() {
+    console.log("Positiondetails user: ", this.state.consultants);
+
     let positionSkills = []
-    if(this.state.position.positionSkills != null){
-      positionSkills =this.state.position.positionSkills.map((skill, i) => {
-        return(
+    if (this.state.position.positionSkills != null) {
+      positionSkills = this.state.position.positionSkills.map((skill, i) => {
+        return (
           <li key={i}>{skill}</li>
         )
       });
     }
 
-    let positionStatus="";
-    if(this.state.position.positionSkills != null){
+    let positionStatus = "";
+    if (this.state.position.positionSkills != null) {
       positionStatus = this.state.position.positionStatus;
     }
 
@@ -65,16 +78,16 @@ class PositionDetails extends Component {
           <Container>
             <Row>
               <Col>
-            <img alt="logo" src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg" height="120px" length="120px"></img>
-            </Col>
-            <Col>
-            <h3>{this.state.position.positionRole}</h3>
-            <p>Location: {this.state.position.location}</p>
-            <p>Description: {this.state.position.positionDescription}</p>
-            <p>Position status: {positionStatus}</p>
-            <p>Skills:</p>
-            <ul>{positionSkills}</ul>
-            </Col>
+                <img alt="logo" src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg" height="120px" length="120px"></img>
+              </Col>
+              <Col>
+                <h3>{this.state.position.positionRole}</h3>
+                <p>Location: {this.state.position.location}</p>
+                <p>Description: {this.state.position.positionDescription}</p>
+                <p>Position status: {positionStatus}</p>
+                <p>Skills:</p>
+                <ul>{positionSkills}</ul>
+              </Col>
             </Row>
             <Button outline color="danger">
               <span
