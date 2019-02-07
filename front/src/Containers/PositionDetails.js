@@ -4,14 +4,17 @@ import { GetAllConsultants } from "../serviceClients/UserService";
 import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
 const userRoles = ["consultant", "AW"]; // test array
+let hits = 0;
 
 class PositionDetails extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       userRoles: userRoles[0],
       positionId: this.props.match.params.positionId,
       position: {
+        company: "",
         positionDescription: "",
         positionRole: "",
         location: "",
@@ -21,6 +24,7 @@ class PositionDetails extends Component {
       },
       userIsConsultant: true,
       consultants: [],
+      topCandidates: [],
     };
   }
 
@@ -54,8 +58,33 @@ class PositionDetails extends Component {
 
   }
 
+  handleTopCandidates = () => {
+    console.log("handletop:");
+
+    let consultants = [...this.state.consultants];
+    console.log("consultants: ", consultants);
+    if (this.state.position != null) {
+      let candidates = this.state.position.positionSkills.map(positionSkill => {
+        let users = consultants.map(user => {
+          return user.userSkills.map(userSkill => {
+            if (positionSkill === userSkill) {
+              console.log("positionskill: ", positionSkill, "UserSkill: ", userSkill);
+            }
+
+          })
+
+        })
+        return users;
+      })
+      console.log("candidates: ", candidates, "hits: ", consultants.hits)
+    }
+
+  }
+
+
+
   render() {
-    console.log("Positiondetails user: ", this.state.consultants);
+    console.log("Positiondetails user: ", this.state.consultants, "Position: ", this.state.position);
 
     let positionSkills = []
     if (this.state.position.positionSkills != null) {
@@ -82,6 +111,7 @@ class PositionDetails extends Component {
               </Col>
               <Col>
                 <h3>{this.state.position.positionRole}</h3>
+                <h4>Company name: {this.state.position.company}</h4>
                 <p>Location: {this.state.position.location}</p>
                 <p>Description: {this.state.position.positionDescription}</p>
                 <p>Position status: {positionStatus}</p>
@@ -101,7 +131,12 @@ class PositionDetails extends Component {
             </Button>
             <Button outline color="primary" onClick={this.handleClick}>Edit</Button>
           </Container>
+          <Container>
+            <h2 align="center">Top candidates</h2>
+            {this.state.topCandidates ? this.handleTopCandidates() : <p>testi</p>}
+          </Container>
         </Jumbotron>
+
       </div>
     );
   }
