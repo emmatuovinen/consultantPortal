@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
-import { Col, Container, Row, Button } from "reactstrap";
+import { Col, Container, Button } from "reactstrap";
 import PositionCard from "../Components/PositionCard";
 
 class PositionsList extends Component {
@@ -8,7 +8,7 @@ class PositionsList extends Component {
     super(props);
     this.state = {
       positions: [],
-      onlyActivePositions: false
+      onlyActivePositions: true
     };
   }
 
@@ -45,12 +45,12 @@ class PositionsList extends Component {
         return "";
       }
     });
-    return activePositions.length <= 0 ? (
-      <Row>{activePositions} </Row>
+    return activePositions.length > 0 ? (
+      <Container>{activePositions} </Container>
     ) : (
-      <Row>
+      <Container>
         <p>Sorry, no active positions.</p>
-      </Row>
+      </Container>
     );
   };
 
@@ -68,7 +68,7 @@ class PositionsList extends Component {
         </Col>
       );
     });
-    return <Row>{positionsList}</Row>;
+    return <Container>{positionsList}</Container>;
   };
 
   render() {
