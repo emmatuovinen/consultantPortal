@@ -4,7 +4,7 @@ const EditPositionForm = (props) => {
     
         return (
             <div>
-                
+                Here we will add a form for position editing.
             </div>
         );
     

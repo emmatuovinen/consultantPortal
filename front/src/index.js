@@ -11,7 +11,7 @@ import ConsultantSkillsAutoSuggestions from './Containers/ConsultantSkillsAutoSu
 import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
-import PositionDetails from './Containers/PositionDetails';
+import PositionSelection from './Containers/PositionSelection';
 
 ReactDOM.render(
     <div>
@@ -20,7 +20,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/profile' component={ProfileView} />
                 <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
-                <Route path='/position-details/:positionId' component={PositionDetails} name='position-details' />
+                <Route path='/position-details/:positionId' component={PositionSelection} name='position-details' />
                 <Route path='/positions' component={PositionsList} />
                 <Route path='/auto-suggest' component={ConsultantSkillsAutoSuggestions} />
                 <Route exact path='/' component={Home} />
