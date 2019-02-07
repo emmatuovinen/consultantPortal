@@ -42,7 +42,7 @@ class ConsultantList extends Component {
 
     return (
       <Container>
-        <Row>{consultantsListed}</Row>
+        {consultantsListed}
       </Container>
     );
   }

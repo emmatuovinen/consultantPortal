@@ -20,7 +20,6 @@ const PositionCard = props => {
           </CardBody>
         </Card>
       </Link>
-      
     </div>
   );
 };
