@@ -4,7 +4,6 @@ import { GetAllConsultants } from "../serviceClients/UserService";
 import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
 const userRoles = ["consultant", "AW"]; // test array
-let hits = 0;
 
 class PositionDetails extends Component {
   constructor(props) {
