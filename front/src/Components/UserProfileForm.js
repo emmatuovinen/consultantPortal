@@ -24,6 +24,14 @@ const UserProfileForm = (props) => {
                     <Label for="phoneNumber">Phone</Label>
                     <Input onChange={props.handleChange} type="number" name="phoneNumber" id="phoneNumber" value={user.phoneNumber} />
                 </FormGroup>
+                <FormGroup controlid="linkedInUrl">
+                    <Label for="linkedInUrl">LinkedIn address</Label>
+                    <Input onChange={props.handleChange} type="text" name="linkedInUrl" id="linkedInUrl" value={user.linkedInUrl} />
+                </FormGroup>
+                <FormGroup controlid="gitHubUrl">
+                    <Label for="gitHubUrl">Github address</Label>
+                    <Input onChange={props.handleChange} type="text" name="gitHubUrl" id="gitHubUrl" value={user.gitHubUrl} />
+                </FormGroup>
                 <FormGroup controlid="description">
                     <Label for="description">Description</Label>
                     <Input onChange={props.handleChange} type="textarea" name="description" id="description" value={user.description} />

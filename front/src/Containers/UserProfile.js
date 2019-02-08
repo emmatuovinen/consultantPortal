@@ -70,6 +70,12 @@ export default class UserProfile extends Component {
             case 'description':
                 copyOfUser.description = event.target.value;
                 break;
+            case 'linkedInUrl':
+                copyOfUser.linkedInUrl = event.target.value;
+                break;
+            case 'gitHubUrl':
+                copyOfUser.gitHubUrl = event.target.value;
+                break;
             case 'role':
                 copyOfUser.role = event.target.value;
                 this.setState({
