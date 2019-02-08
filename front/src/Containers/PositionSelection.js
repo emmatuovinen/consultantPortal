@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { GetPositionInfo } from "../serviceClients/PositionService";
+import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
 import EditPositionForm from "../Components/EditPositionForm";
+import UserCard from '../Components/UserCard';
 
-const ROLE = "AW" // test variable for creating different views depending on role. Change between AW and consultant to try it out
+//const ROLE = "AW" // test variable for creating different views depending on role. Change between AW and consultant to try it out
 
 class PositionDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userRole: ROLE,
       positionId: this.props.match.params.positionId,
       position: {
         positionDescription: "",
@@ -20,7 +21,9 @@ class PositionDetails extends Component {
         positionSkills: [],
         isActive: true
       },
-      userIsConsultant: true
+      userIsConsultant: true,
+      consultants: [],
+      topCandidates: [],
     };
   }
 
@@ -34,6 +37,14 @@ class PositionDetails extends Component {
         console.log("Error: " + response.status);
       }
     });
+    GetAllConsultants(response => {
+      if (response.status === 200) {
+        let users = response.data;
+        this.setState({ consultants: users });
+      } else {
+        console.log("Error: ", response.status);
+      }
+    });
   };
 
   handleAddFavorite = () => {
@@ -44,6 +55,49 @@ class PositionDetails extends Component {
   handleClick = () => {
     console.log("editing position");
   };
+
+  handleTopCandidates = () => {
+    let consultants = [...this.state.consultants];
+    let candidates = consultants.map(consultant => {
+      return this.handleCompare(consultant);
+    })
+      .sort((a, b) => b.hits - a.hits);
+    return candidates;
+  };
+
+  handleCompare = consultant => {
+    let userSkills = [...consultant.userSkills];
+    let positionSkills = [...this.state.position.positionSkills];
+    let hits = 0;
+
+    userSkills.map(skill => {
+      if (positionSkills.includes(skill)) { hits++ }
+      return skill;
+    });
+    return { ...consultant, hits };
+  };
+
+  renderCandidates = () => {
+    let candidates = this.handleTopCandidates();
+    console.log("Candidates: ", candidates);
+    let consultantsListed = candidates.map((consultant, index) => {
+      return (
+        <UserCard
+          userId={consultant.userId}
+          key={consultant.userId}
+          firstName={consultant.firstName}
+          lastName={consultant.lastName}
+          role={consultant.role}
+          userSkills={consultant.userSkills}
+          preferableRoles={consultant.preferableRoles}
+          description={consultant.description}
+          phoneNumber={consultant.phoneNumber}
+          email={consultant.email}
+        />
+      );
+    });
+    return consultantsListed;
+  }
 
   renderPositionInfo = () => {
     let positionSkills = [];
@@ -75,6 +129,7 @@ class PositionDetails extends Component {
   };
 
   render() {
+
     return (
       <Container>
         <h2>Position</h2>
@@ -91,10 +146,14 @@ class PositionDetails extends Component {
             </span>
           </Button>
         ) : (
-          <Button outline color="primary" onClick={this.handleClick}>
-            Edit
+            <Button outline color="primary" onClick={this.handleClick}>
+              Edit
           </Button>
-        )}
+          )}
+        <Container>
+          <h2 align="center">Top candidates</h2>
+          {this.renderCandidates()}
+        </Container>
       </Container>
     );
   }
