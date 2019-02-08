@@ -1,35 +1,50 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col
+} from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PositionCard = props => {
   const positionUrl = `position-details/${props.positionId}`;
   let activePosition = "";
-  
-  if(props.active) {
-      activePosition="✅";
-    
+
+  if (props.active) {
+    activePosition = "✅ Active";
   } else {
-      activePosition="🛑";
+    activePosition = "🛑 Inactive";
   }
 
   return (
-    <div>
-      <Link to={positionUrl}>
-        <Card>
-          <CardBody>
-            <CardImg
-              top
-              width="100%"
-              src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg"
-            />
-            <CardTitle>{props.role}</CardTitle>
-            <CardSubtitle>{props.location}</CardSubtitle>
-            <CardSubtitle>{activePosition}</CardSubtitle>
-          </CardBody>
-        </Card>
-      </Link>
-    </div>
+    <Link to={positionUrl} style={{ color: "black"}} >
+      <Row>
+        <Col>
+          <Card style={{margin: "1em"}}>
+            <CardBody >
+              <Row>
+                <Col xs="12" sm="6" lg="6">
+                  <CardImg
+                    top
+                    style={{width:"50%"}}
+                    src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg"
+                  />
+                </Col>
+                <Col xs="12" sm="6" lg="6">
+                  <CardTitle>{props.role}</CardTitle>
+                  <p>{props.location}</p>
+                  <p>{activePosition}</p>
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Link>
   );
 };
 
