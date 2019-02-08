@@ -10,7 +10,7 @@ class PositionsList extends Component {
     this.state = {
       positions: [],
       onlyActivePositions: true,
-      filtered: []
+      filteredPositions: []
     };
   }
 
@@ -18,7 +18,7 @@ class PositionsList extends Component {
     GetAllPositions(response => {
       if (response.status === 200) {
         let allPositions = response.data;
-        this.setState({ positions: allPositions, filtered: allPositions });
+        this.setState({ positions: allPositions, filteredPositions: allPositions });
       } else {
         console.log("Error, response.status: " + response.status);
       }
@@ -30,7 +30,6 @@ class PositionsList extends Component {
   };
 
   renderActivePositions = () => {
-    console.log("kakka", this.state.positions);
     let activePositions = this.state.positions.map((position, index) => {
       if (position.isActive) {
         return (
@@ -73,14 +72,12 @@ class PositionsList extends Component {
   };
 
   renderSearchBar = () => {
-    console.log("renderistä: ", this.state.positions);
     if (this.state.positions.length > 0) {
-      return <PositionSearchBar positions={this.state.positions} />;
+      return <PositionSearchBar positions={this.state.positions} filteredPositions={this.filterPositions}/>;
     }
   };
 
   render() {
-    console.log("logista: ", this.state.positions);
     let btnText = this.state.onlyActivePositions
       ? "Show all positions"
       : "Show only active positions";
