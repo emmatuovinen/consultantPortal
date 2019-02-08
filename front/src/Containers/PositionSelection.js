@@ -58,31 +58,27 @@ class PositionDetails extends Component {
 
   handleTopCandidates = () => {
     console.log("handletop:");
-
     let consultants = [...this.state.consultants];
 
-    let positionSkills = [...this.state.position.positionSkills]
-    console.log("consultants: ", consultants);
-    if (this.state.position != null) {
-      let candidates = consultants.map((consultant, hits) => {
-        let Position = positionSkills.map(positionSkill => {
-          hits = consultant.userSkills.map((userSkill) => {
-            if (positionSkill === userSkill) {
-              hits++;
-              console.log("consultant: ", consultant.firstName, "positionskill: ", positionSkill, "UserSkill: ", userSkill, "hits: ", hits);
+    let candidate = consultants.map(consultant => {
+      return this.handleCompare(consultant);
+    });
 
-            }
-            return hits;
-          })
-          //console.log("hits: ", hits, "Consultant: ", consultant)
-          return consultant
-        })
-        return consultant;
-      })
-      //console.log("candidates: ", candidates)
-    }
+    console.log("Candidate: ", candidate)
 
   };
+
+  handleCompare = consultant => {
+    let userSkills = [...consultant.userSkills];
+    let positionSkills = [...this.state.position.positionSkills];
+    let hits = 0;
+
+    userSkills.map(skill => {
+      if (positionSkills.includes(skill)) { hits++ }
+      return skill;
+    });
+    return { ...consultant, hits };
+  }
 
   renderPositionInfo = () => {
     let positionSkills = [];
