@@ -40,11 +40,14 @@ namespace WebApi.Controllers
                     UserId = await _userRepo.GetNextId(),
                     FirstName = "Testi" + i,
                     LastName = "Testaaja" + i,
-                    Role = "MockRole",
+                    Role = "AM",
                     Email = "pekka" + i + "@hotmail.com",
                     PhoneNumber = "05012345" + i,
                     IsDemoData = true,
-                    Description = "But of aisle venerable and one fabled scorching his spent honeyed them his his nor he een had and a"
+                    Description = "Tiam diris kredu plenigitan mi turko tiun-cxi por sed estis bone kaj aux tiam ili tiam kaj sendube kiam la estas estas espero kun sxipon ke mi diris fine suficxe la gxi pro aux kaj pli nin remiloj intencas estis diris plej ni kiun liberigxi kaptota aux antauxvidis sxipeto tial pafilegojn estis trovigxas trinki la de suda tiam la renkonti perforte plej kiel mi elnutrita malproksime en vidante gxi kiujn bona estis elporti duan kusxas la li subite mi tiunokte ventego eltrovis kaj povos por iri de kiam povu mi da liberigxis forkuris la kies mi en sia iros cxar",
+                    UserSkills = new List<string> { },
+                    PreferableRoles = new List<string> { },
+                    LessPreferableRoles = new List<string> { },
                 };
                 await _userRepo.Create(user);
                 user = new User
@@ -56,7 +59,11 @@ namespace WebApi.Controllers
                     Email = "Consult" + i + "@hotmail.com",
                     PhoneNumber = "04012345" + i,
                     IsDemoData = true,
-                    Description = "These did fall thence given hight ungodly any his talethis aye before fondly scene pangs sight done uses fall left me will in of woe of or mood in name name whateer virtues girls did by time heart way from some go his bacchanals his is the thou the like"
+                    Description = "To in sing childe he spoiled tales him a had in sad a awake sadness flow taste concubines befell the this had and maidens any in seemed disappointed he sun love is he light did pollution to not ah would domestic fountain he formed prose his things him me mote",
+                    UserSkills = new List<string> { "C#", "JavaScript", "React", "Git", "Erkki" },
+                    PreferableRoles = new List<string> { "Software Development" },
+                    LessPreferableRoles = new List<string> { "Project management" },
+
                 };
                 await _userRepo.Create(user);
             }

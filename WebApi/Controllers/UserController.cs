@@ -80,6 +80,16 @@ namespace WebApi.Controllers
             {
                 updatedUser.UserSkills.Add(item);
             }
+            updatedUser.PreferableRoles = new List<string>();
+            foreach (var item in user.PreferableRoles)
+            {
+                updatedUser.PreferableRoles.Add(item);
+            }
+            updatedUser.LessPreferableRoles = new List<string>();
+            foreach (var item in user.LessPreferableRoles)
+            {
+                updatedUser.LessPreferableRoles.Add(item);
+            }
 
 
             await _repo.Update(updatedUser);

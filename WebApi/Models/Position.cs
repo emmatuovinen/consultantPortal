@@ -12,11 +12,12 @@ namespace WebApi.Models
     {
         [BsonId, BsonElement("PositionId")]
         public ObjectId PositionId { get; private set; }
-        //public Company Company { get; set; }
+        public string Company { get; set; }
         public string PositionDescription { get; set; }
         public string PositionRole { get; set; }
         public string Location { get; set; }
         public bool IsActive { get; set; }
+        public string PositionStatus { get; set; }
         public List<string> PositionSkills { get; set; }
         //public List<User> InternalContact { get; set; }
         //public List<User> IsInterested { get; set; }
