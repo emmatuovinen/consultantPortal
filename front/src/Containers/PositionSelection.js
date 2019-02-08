@@ -6,7 +6,7 @@ import PositionInfo from "../Components/PositionInfo";
 import EditPositionForm from "../Components/EditPositionForm";
 import UserCard from '../Components/UserCard';
 
-//const ROLE = "AW" // test variable for creating different views depending on role. Change between AW and consultant to try it out
+const ROLE = "AM" // test variable for creating different views depending on role. Change between AW and consultant to try it out
 
 class PositionDetails extends Component {
   constructor(props) {
@@ -146,8 +146,8 @@ class PositionDetails extends Component {
             </span>
           </Button>
         ) : (
-            <Button outline color="primary" onClick={this.handleClick}>
-              Edit
+          <Button outline color="success" onClick={this.handleClick}>
+            Edit
           </Button>
           )}
         <Container>
