@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Col, Row } from 'reactstrap';
 
 import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
-const USER_ID = '1'; // hard coded userId for demo purposes
+const USER_ID = '2'; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
     state = {
@@ -17,7 +17,12 @@ export default class UserProfile extends Component {
             phoneNumber: '',
             description: '',
             role: '',
-            userSkills: []
+            userSkills: [],
+            linkedInUrl: '',
+            gitHubUrl: '',
+            pictureUrl: '',
+            preferableRoles: [],
+            lessPreferableRoles: [],
         },
         isEditing: false,
         userIsConsultant: false,
@@ -70,6 +75,15 @@ export default class UserProfile extends Component {
             case 'description':
                 copyOfUser.description = event.target.value;
                 break;
+            case 'linkedInUrl':
+                copyOfUser.linkedInUrl = event.target.value;
+                break;
+            case 'gitHubUrl':
+                copyOfUser.gitHubUrl = event.target.value;
+                break;
+            case 'userPictureUrl':
+                copyOfUser.pictureUrl = event.target.value;
+                break;
             case 'role':
                 copyOfUser.role = event.target.value;
                 this.setState({
@@ -93,7 +107,7 @@ export default class UserProfile extends Component {
 
     renderUserProfileDetails() {
         return (
-            <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant}/>
+            <UserProfileDetails user={this.state.user} userIsConsultant={this.state.userIsConsultant} />
         )
     }
 
@@ -101,9 +115,14 @@ export default class UserProfile extends Component {
         let buttonText = this.state.isEditing ? 'Save' : 'Edit';
         return (
             <Container>
-                <h2>User profile</h2>
+                <br />
                 {this.state.isEditing ? this.renderUserProfileForm() : this.renderUserProfileDetails()}
-                <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
+                <Row>
+                    <Col lg='1' /*style={{ backgroundColor: 'yellow' }}*/ ></Col>
+                    <Col lg='11'>
+                        <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
+                    </Col>
+                </Row>
             </Container>
         );
     }
