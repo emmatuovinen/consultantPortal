@@ -1,13 +1,19 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import UserProfileConsultantForm from '../Components/UserProfileConsultantForm';
 
 const UserProfileForm = (props) => {
     let user = props.user;
     return (
-        <div>
+        <Row>
+            <Col lg='1' ></Col>
+            <Col lg='10'>
             <Form>
+                <FormGroup controlid="userPictureUrl">
+                    <Label for="userPictureUrl">Image address</Label>
+                    <Input onChange={props.handleChange} type="text" name="userPictureUrl" id="userPictureUrl" value={user.pictureUrl.toString()} />
+                </FormGroup>
                 <FormGroup controlid="firstName">
                     <Label for="firstName">First name</Label>
                     <Input onChange={props.handleChange} type="text" name="firstName" id="firstName" value={user.firstName} />
@@ -54,7 +60,9 @@ const UserProfileForm = (props) => {
                 </FormGroup>
             </Form>
             {props.userIsConsultant && <UserProfileConsultantForm user={props.user} handleChange={props.handleChange} />}
-        </div>
+            </Col>
+            <Col lg='1' ></Col>
+        </Row>
     );
 }
 

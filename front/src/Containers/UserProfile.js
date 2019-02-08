@@ -5,7 +5,7 @@ import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
-const USER_ID = '1'; // hard coded userId for demo purposes
+const USER_ID = '2'; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
     state = {
@@ -17,7 +17,12 @@ export default class UserProfile extends Component {
             phoneNumber: '',
             description: '',
             role: '',
-            userSkills: []
+            userSkills: [],
+            linkedInUrl: '',
+            gitHubUrl: '',
+            pictureUrl: '',
+            preferableRoles: [],
+            lessPreferableRoles: [],
         },
         isEditing: false,
         userIsConsultant: false,
@@ -76,6 +81,9 @@ export default class UserProfile extends Component {
             case 'gitHubUrl':
                 copyOfUser.gitHubUrl = event.target.value;
                 break;
+            case 'userPictureUrl':
+                copyOfUser.pictureUrl = event.target.value;
+                break;
             case 'role':
                 copyOfUser.role = event.target.value;
                 this.setState({
@@ -107,7 +115,7 @@ export default class UserProfile extends Component {
         let buttonText = this.state.isEditing ? 'Save' : 'Edit';
         return (
             <Container>
-                {/* <h2>User profile</h2> */}
+                <br />
                 {this.state.isEditing ? this.renderUserProfileForm() : this.renderUserProfileDetails()}
                 <Row>
                     <Col lg='1' /*style={{ backgroundColor: 'yellow' }}*/ ></Col>

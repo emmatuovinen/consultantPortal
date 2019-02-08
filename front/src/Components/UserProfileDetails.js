@@ -9,7 +9,7 @@ const UserProfileDetails = (props) => {
     let user = props.user;
     let userLinkedinLink = user.linkedInUrl;
     let userGithubLink = user.gitHubUrl;
-console.log(props)
+
     return (
         <Row>
             <Col lg='1' ></Col>
@@ -19,7 +19,7 @@ console.log(props)
                 <Row>
                     <Col md='6' style={{ textAlign: 'center' }}>
                         <p>
-                            <img src={user.pictureUrl} />
+                            <img src={user.pictureUrl} alt={`${user.firstName} ${user.lastName}`} width='60%'/>
                         </p>
                     </Col>
                     <Col md='6'>
