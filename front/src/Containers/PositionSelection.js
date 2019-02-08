@@ -61,7 +61,8 @@ class PositionDetails extends Component {
     let candidates = consultants.map(consultant => {
       return this.handleCompare(consultant);
     })
-      .sort((a, b) => b.hits - a.hits);
+      .sort((a, b) => b.hits - a.hits)
+      .slice(0, 3);
     return candidates;
   };
 
