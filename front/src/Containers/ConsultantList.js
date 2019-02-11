@@ -25,18 +25,19 @@ class ConsultantList extends Component {
   render() {
     let consultantsListed = this.state.consultants.map((consultant, index) => {
       return (
-            <UserCard
-              userId={consultant.userId}
-              key={consultant.userId}
-              firstName={consultant.firstName}
-              lastName={consultant.lastName}
-              role={consultant.role}
-              userSkills={consultant.userSkills} 
-              preferableRoles={consultant.preferableRoles}
-              description={consultant.description}
-              phoneNumber={consultant.phoneNumber}
-              email={consultant.email}
-            />
+        <UserCard
+          userId={consultant.userId}
+          key={consultant.userId}
+          firstName={consultant.firstName}
+          lastName={consultant.lastName}
+          role={consultant.role}
+          userSkills={consultant.userSkills}
+          preferableRoles={consultant.preferableRoles}
+          description={consultant.description}
+          phoneNumber={consultant.phoneNumber}
+          email={consultant.email}
+          pictureUrl={consultant.pictureUrl}
+        />
       );
     });
 

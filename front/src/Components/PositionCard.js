@@ -14,6 +14,7 @@ const PositionCard = props => {
   const positionUrl = `position-details/${props.positionId}`;
   let activePosition = "";
 
+
   if (props.active) {
     activePosition = "✅ Active";
   } else {
@@ -21,21 +22,21 @@ const PositionCard = props => {
   }
 
   return (
-    <Link to={positionUrl} style={{ color: "black"}} >
+    <Link to={positionUrl} style={{ color: "black" }} >
       <Row>
         <Col>
-          <Card style={{margin: "1em"}}>
+          <Card style={{ margin: "1em" }}>
             <CardBody >
               <Row>
                 <Col xs="12" sm="6" lg="6">
                   <CardImg
                     top
-                    style={{width:"50%"}}
+                    style={{ width: "50%" }}
                     src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg"
                   />
                 </Col>
                 <Col xs="12" sm="6" lg="6">
-                  <CardTitle>{props.role}</CardTitle>
+                  <CardTitle>{props.company} : {props.role}</CardTitle>
                   <p>{props.location}</p>
                   <p>{activePosition}</p>
                 </Col>
