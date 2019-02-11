@@ -80,6 +80,7 @@ class PositionDetails extends Component {
 
   renderCandidates = () => {
     let candidates = this.handleTopCandidates();
+    let positionSkills = [...this.state.position.positionSkills]
     console.log("Candidates: ", candidates);
     let consultantsListed = candidates.map((consultant, index) => {
       return (
@@ -94,7 +95,9 @@ class PositionDetails extends Component {
           description={consultant.description}
           phoneNumber={consultant.phoneNumber}
           email={consultant.email}
-        />
+          pictureUrl={consultant.pictureUrl}
+
+        >Skills matched: {consultant.hits}/{positionSkills.length}</UserCard>
       );
     });
     return consultantsListed;
@@ -147,8 +150,8 @@ class PositionDetails extends Component {
             </span>
           </Button>
         ) : (
-          <Button outline color="success" onClick={this.handleClick}>
-            Edit
+            <Button outline color="success" onClick={this.handleClick}>
+              Edit
           </Button>
           )}
         <Container>

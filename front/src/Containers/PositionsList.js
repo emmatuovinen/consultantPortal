@@ -40,6 +40,7 @@ class PositionsList extends Component {
             role={position.positionRole}
             location={position.location}
             active={position.isActive}
+            company={position.company}
           />
         );
       } else {
@@ -73,7 +74,7 @@ class PositionsList extends Component {
 
   renderSearchBar = () => {
     if (this.state.positions.length > 0) {
-      return <PositionSearchBar positions={this.state.positions} filteredPositions={this.filterPositions}/>;
+      return <PositionSearchBar positions={this.state.positions} filteredPositions={this.filterPositions} />;
     }
   };
 
