@@ -32,7 +32,7 @@ const UserCard = (props) => {
                             <Col xs="12" sm="4" lg="4">
                                 <a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a>
                                 <CardSubtitle><h6>{props.role}</h6></CardSubtitle>
-                                <CardImg style={{ width: "100px" }} src={props.pictureUrl} alt="No image found" />
+                                <CardImg style={{ width: "100px" }} src={props.pictureUrl} alt={props.lastName} />
                             </Col>
 
                             <Col xs="12" sm="6" lg="4">
