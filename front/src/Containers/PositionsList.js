@@ -25,9 +25,6 @@ class PositionsList extends Component {
     });
   };
 
-  // updateFilteredList = (filteredData) => {
-  //   this.setState({filteredData})
-  // }
 
   renderPositionFilter = () => {
     if (this.state.positions.length > 0) {

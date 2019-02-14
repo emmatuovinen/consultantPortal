@@ -24,7 +24,7 @@ const PositionCard = props => {
     <Link to={positionUrl} style={{ color: "black" }} >
       <Row>
         <Col>
-          <Card style={{ margin: "1em" }}>
+          <Card style={{ marginBottom: "1em" }}>
             <CardBody >
               <Row>
                 <Col xs="12" sm="6" lg="6">

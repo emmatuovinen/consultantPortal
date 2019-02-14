@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 import UserCard from "../Components/UserCard";
 import { GetAllConsultants } from "../serviceClients/UserService";
 
