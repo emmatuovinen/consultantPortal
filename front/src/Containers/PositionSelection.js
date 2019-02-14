@@ -82,7 +82,7 @@ class PositionDetails extends Component {
     let candidates = this.handleTopCandidates();
     let positionSkills = [...this.state.position.positionSkills]
     console.log("Candidates: ", candidates);
-    let consultantsListed = candidates.map((consultant, index) => {
+    let consultantsListed = candidates.map((consultant) => {
       return (
         <UserCard
           userId={consultant.userId}
