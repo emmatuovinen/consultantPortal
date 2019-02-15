@@ -30,7 +30,7 @@ const PositionCard = props => {
                   <h5>{props.company}</h5>
                   <h6>{props.role}</h6>
                   <p>{props.location}</p>
-                  <p>{props.description}</p>
+                  <p>{props.description.slice(0,150)}...</p>
                   <p
                     style={{
                       fontWeight: "bold",
