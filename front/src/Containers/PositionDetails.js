@@ -3,6 +3,7 @@ import { GetPositionInfo } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
+
 const userRoles = ["consultant", "AW"]; // test array
 
 class PositionDetails extends Component {
