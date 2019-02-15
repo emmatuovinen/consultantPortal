@@ -3,7 +3,7 @@ import { GetPositionInfo } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
-import EditPositionForm from "../Components/EditPositionForm";
+import PositionForm from "../Components/PositionForm";
 import UserCard from '../Components/UserCard';
 
 const ROLE = "AM" // test variable for creating different views depending on role. Change between AW and consultant to try it out
@@ -124,9 +124,9 @@ class PositionDetails extends Component {
     );
   };
 
-  renderEditPositionForm = () => {
+  renderPositionForm = () => {
     return (
-      <EditPositionForm
+      <PositionForm
         position={this.state.position}
       />
     );
