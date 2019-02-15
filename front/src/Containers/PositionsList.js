@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
 import { Container, Button } from "reactstrap";
 import PositionCard from "../Components/PositionCard";
-import PositionSearchBar from "./PositionSearchBar";
 import PositionForm from "../Components/PositionForm";
 import {CreatePosition} from "../serviceClients/PositionService";
+import PositionFilter from "./PositionFilter";
+
 
 class PositionsList extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class PositionsList extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     GetAllPositions(response => {
       if (response.status === 200) {
         let allPositions = response.data;
@@ -38,14 +39,16 @@ class PositionsList extends Component {
     });
   };
 
-  handleClick = () => {
-    this.setState({ onlyActivePositions: !this.state.onlyActivePositions });
-  };
+
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit", e);
+    let position = {...this.state.position};
+    console.log("position", position);
+    CreatePosition((position, response) => {
+      console.log("status: ", response.status)
 
+    })
   }
 
   handleChange = e => {
@@ -60,77 +63,26 @@ class PositionsList extends Component {
     this.setState({addPosition: !this.state.addPosition})
   };
 
-  renderActivePositions = () => {
-    let activePositions = this.state.positions.map((position, index) => {
-      if (position.isActive) {
-        return (
-          <PositionCard
-            key={index}
-            positionId={position.positionId}
-            description={position.positionDescription}
-            role={position.positionRole}
-            location={position.location}
-            active={position.isActive}
-            company={position.company}
-          />
-        );
-      } else {
-        return "";
-      }
-    });
-    return activePositions.length > 0 ? (
-      <Container>{activePositions} </Container>
-    ) : (
-        <Container>
-          <p>Sorry, no active positions.</p>
-        </Container>
-      );
-  };
+ 
 
-  renderAllPositions = () => {
-    let positionsList = this.state.positions.map((position, index) => {
-      return (
-        <PositionCard
-          key={index}
-          positionId={position.positionId}
-          description={position.positionDescription}
-          role={position.positionRole}
-          location={position.location}
-          active={position.isActive}
-        />
-      );
-    });
-    return <Container>{positionsList}</Container>;
-  };
-
-  renderSearchBar = () => {
+  renderPositionFilter = () => {
     if (this.state.positions.length > 0) {
-      return <PositionSearchBar positions={this.state.positions} filteredPositions={this.filterPositions} />;
+      return <PositionFilter positions={this.state.filteredPositions}  />;
     }
   };
 
   renderPositionForm = () => {
     console.log("renderposition:")
     if(this.state.addPosition){
-      return <PositionForm position={this.state.position} handleChange={this.handleChange}/>
+      return <PositionForm position={this.state.position} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     }
     
   };
 
   render() {
-    let btnText = this.state.onlyActivePositions
-      ? "Show all positions"
-      : "Show only active positions";
     return (
-      <Container>
-        {this.renderSearchBar()}
-        <Button
-          color="success"
-          onClick={this.handleClick}
-          style={{ margin: "0.5em" }}
-        >
-          {btnText}
-        </Button>
+      
+    <Container>        
         <Button
         color="success"
         onClick={this.handleAddPosition}
@@ -138,10 +90,8 @@ class PositionsList extends Component {
         >
           Add new position
         </Button>
-        {this.renderPositionForm()}
-        {this.state.onlyActivePositions
-          ? this.renderActivePositions()
-          : this.renderAllPositions()}
+        {this.renderPositionForm()}    
+        {this.renderPositionFilter()}
       </Container>
     );
   }

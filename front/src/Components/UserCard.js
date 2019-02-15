@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Col, Row
+    CardTitle, CardSubtitle, Col, Row
 } from 'reactstrap';
 
 const UserCard = (props) => {

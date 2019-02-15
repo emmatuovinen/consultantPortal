@@ -38,7 +38,7 @@ const PositionForm = (props) => {
                     <Button
                     type="submit"
                     color="success"
-                    //onClick={this.handleSubmit}
+                    onClick={props.handleSubmit}
                     style={{ margin: "0.5em" }}
                     >
                         Submit
