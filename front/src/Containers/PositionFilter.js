@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import SearchInput, { createFilter } from "react-search-input";
-import { Container, Button } from "reactstrap";
+import { Container, CustomInput, FormGroup } from "reactstrap";
 import PositionCard from "../Components/PositionCard";
 
 import "../styles/testi.css";
 
-const KEYS_TO_FILTERS = ["positionRole", "company", "location"];
+const KEYS_TO_FILTERS = ["positionRole", "company", "location", "positionSkills", "positionDescription"];
 
 export default class PositionFilter extends Component {
   constructor(props) {
@@ -64,6 +64,7 @@ export default class PositionFilter extends Component {
           role={position.positionRole}
           location={position.location}
           active={position.isActive}
+          company={position.company}
         />
       );
     });
@@ -75,8 +76,8 @@ export default class PositionFilter extends Component {
       createFilter(this.state.searchTerm, KEYS_TO_FILTERS)
     );
     let btnText = this.state.onlyActivePositions
-      ? "Show all positions"
-      : "Show only active positions";
+      ? "Switch on for all positions"
+      : "Switch off for only active positions";
 
     return (
       <div className="testi">
@@ -86,14 +87,17 @@ export default class PositionFilter extends Component {
                 onChange={this.searchUpdated}
                 className="search-input"
               />
-            </Container>
-            <Button
-              color="success"
+            <FormGroup>
+            <CustomInput
+              type="switch"
+              name="exampleCustomSwitch"
               onClick={this.handleClick}
+              id="exampleCustomSwitch"
               style={{ margin: "1em" }}
-            >
-              {btnText}
-            </Button>
+              label={btnText}
+              />
+            </FormGroup>
+              </Container>
           <div>
             {this.state.onlyActivePositions
               ? this.renderActivePositions(filteredPositions)
