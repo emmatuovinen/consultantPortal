@@ -4,10 +4,7 @@ import SearchInput, { createFilter } from "react-search-input";
 import UserCard from "../Components/UserCard";
 import { GetAllConsultants } from "../serviceClients/UserService";
 
-<<<<<<< HEAD
-=======
 const KEYS_TO_FILTERS = ["firstName", "lastName", "userSkills", "preferableRoles"];
->>>>>>> master
 
 class ConsultantList extends Component {
   constructor(props) {

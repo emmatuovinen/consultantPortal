@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Col, Row
+    CardTitle, CardSubtitle, Col, Row, Container
 } from 'reactstrap';
 import './Styles/userCard.css';
 import {Bubbles} from './images/bubbles2.png';
