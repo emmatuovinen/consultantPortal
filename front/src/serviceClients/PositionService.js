@@ -14,11 +14,16 @@ export function GetAllPositions(callback) {
 
 export function CreatePosition(positionData, callback) {
   let newPosition = {
-    positionDescription: positionData.description,
-    positionRole: positionData.role,
-    location: positionData.location,
-    isActive: positionData.active
+    Company: positionData.companyName,
+    PositionDescription: positionData.positionDescription,
+    PositionRole: positionData.positionRole,
+    Location: positionData.location,
+    IsActive: positionData.isActive,
+    PositionStatus: positionData.status,
+    PositionSkills: positionData.skills,
+
   };
+  console.log("Axios createposition: ", newPosition, "PositionData: ", positionData)
   Axios.post(API + "positions", newPosition)
     .then(response => {
       callback(response);
@@ -29,33 +34,33 @@ export function CreatePosition(positionData, callback) {
 }
 
 export function GetActivePositions(callback) {
-    Axios.get(API + "positions/getActivePositions")
-        .then(response => {
-            callback(response);
-        })
-        .catch(error => {
-            callback(error.response);
-        });
+  Axios.get(API + "positions/getActivePositions")
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function GetPositionInfo(positionId, callback) {
-    Axios.get(API + "positions/" + positionId)
-        .then(response => {
-            callback(response);
-        })
-        .catch(error => {
-            callback(error.response);
-        })
+  Axios.get(API + "positions/" + positionId)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    })
 }
 
 export function EditPosition(positionId, position, callback) {
-    Axios.put(API + "positions" + positionId, position)
-        .then(response => {
-            callback(response);
-        })
-        .catch(error => {
-            callback(error.response);
-        });
+  Axios.put(API + "positions" + positionId, position)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
-export default function() {}
+export default function () { }

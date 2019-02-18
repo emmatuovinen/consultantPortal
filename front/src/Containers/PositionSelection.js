@@ -3,7 +3,7 @@ import { GetPositionInfo } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button, Row, Col } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
-import EditPositionForm from "../Components/EditPositionForm";
+import PositionForm from "../Components/PositionForm";
 import UserCardSmall from '../Components/UserCardSmall';
 
 const ROLE = "AM" // test variable for creating different views depending on role. Change between AW and consultant to try it out
@@ -107,7 +107,7 @@ class PositionDetails extends Component {
           {consultantsListed.slice(0, 3)}
         </Row>
         <ColoredLine color="green" />
-        <h3 align='center'> And the rest of them</h3>
+        <h3 align='center'> And more candidates</h3>
         <Row>
           {consultantsListed.slice(3)}
         </Row>
@@ -136,9 +136,9 @@ class PositionDetails extends Component {
     );
   };
 
-  renderEditPositionForm = () => {
+  renderPositionForm = () => {
     return (
-      <EditPositionForm
+      <PositionForm
         position={this.state.position}
       />
     );
