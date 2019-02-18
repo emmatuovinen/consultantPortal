@@ -12,6 +12,7 @@ import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
 import PositionSelection from './Containers/PositionSelection';
+import App from './Components/Styles/App.css';
 
 ReactDOM.render(
     <div>

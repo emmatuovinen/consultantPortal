@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import UserCard from "../Components/UserCard";
 import { GetAllConsultants } from "../serviceClients/UserService";
 
+
 class ConsultantList extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +38,7 @@ class ConsultantList extends Component {
           phoneNumber={consultant.phoneNumber}
           email={consultant.email}
           pictureUrl={consultant.pictureUrl}
+      
         />
       );
     });
