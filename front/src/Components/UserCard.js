@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Card, CardImg, CardText, CardBody,
+    Card, CardImg, CardBody,
     CardTitle, CardSubtitle, Col, Row
 } from 'reactstrap';
 
@@ -9,16 +9,16 @@ const UserCard = (props) => {
 
     let skills;
     if (props.userSkills) {
-        skills = props.userSkills.map(skill => {
-            return <li>{skill}</li>
+        skills = props.userSkills.map((skill, index) => {
+            return <li key={index}>{skill}</li>
         })
             .slice(0, 4);
     }
 
     let roles;
     if (props.preferableRoles) {
-        roles = props.preferableRoles.map(role => {
-            return <li>{role}</li>
+        roles = props.preferableRoles.map((role, index) => {
+            return <li key={index}>{role}</li>
         })
     }
 
@@ -35,18 +35,14 @@ const UserCard = (props) => {
                             </Col>
 
                             <Col xs="12" sm="6" lg="4">
-                                <CardText>
-                                    <h5>Skills</h5>
-                                    <p>{props.children} </p>
-                                    {skills}
-                                </CardText>
+                                <h5>Skills</h5>
+                                <p>{props.children} </p>
+                                {skills}
                             </Col>
 
                             <Col xs="12" sm="6" lg="4">
-                                <CardText>
-                                    <h5>Positions</h5>
-                                    {roles}
-                                </CardText>
+                                <h5>Positions</h5>
+                                {roles}
                             </Col>
                         </Row>
                     </CardBody>
