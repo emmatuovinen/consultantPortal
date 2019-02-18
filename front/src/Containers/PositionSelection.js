@@ -107,7 +107,7 @@ class PositionDetails extends Component {
           {consultantsListed.slice(0, 3)}
         </Row>
         <ColoredLine color="green" />
-        <h3 align='center'> And the rest of them</h3>
+        <h3 align='center'> And more candidates</h3>
         <Row>
           {consultantsListed.slice(3)}
         </Row>

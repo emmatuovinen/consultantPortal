@@ -1,15 +1,15 @@
 import React from 'react';
-import { Row, Col, Form, FormGroup, Label, Input, Button, ButtonGroup } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 
 
 const PositionForm = (props) => {
     let position = props.position;
-    
-        return (
-            <Row>
-                <Col lg='1'></Col>
-                <Col lg='10'>
+
+    return (
+        <Row>
+            <Col lg='1'></Col>
+            <Col lg='10'>
                 <Form>
                     <FormGroup>
                         <Label for="company">Company</Label>
@@ -36,19 +36,19 @@ const PositionForm = (props) => {
                         <Input onChange={props.handleChange} type="text" name="skills" id="skills" value={position.skills} />
                     </FormGroup>
                     <Button
-                    type="submit"
-                    color="success"
-                    onClick={props.handleSubmit}
-                    style={{ margin: "0.5em" }}
+                        type="submit"
+                        color="success"
+                        onClick={props.handleSubmit}
+                        style={{ margin: "0.5em" }}
                     >
                         Submit
                     </Button>
                 </Form>
-                </Col>
-            </Row>
-            
-        );
-    
+            </Col>
+        </Row>
+
+    );
+
 }
 
 export default PositionForm;
