@@ -1,27 +1,22 @@
 import React from 'react';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Col, Row, Container
-} from 'reactstrap';
+import { CardImg, CardTitle, CardSubtitle, Col, Row, Container } from 'reactstrap';
 import './Styles/userCard.css';
-import {Bubbles} from './images/bubbles2.png';
-
 
 const UserCard = (props) => {
     const userProfileUrl = `view-profile/${props.userId}`;
 
     let skills;
     if (props.userSkills) {
-        skills = props.userSkills.map(skill => {
-            return <li>{skill}</li>
+        skills = props.userSkills.map((skill, index) => {
+            return <li key={index}>{skill}</li>
         })
             .slice(0, 4);
     }
 
     let roles;
     if (props.preferableRoles) {
-        roles = props.preferableRoles.map(role => {
-            return <li>{role}</li>
+        roles = props.preferableRoles.map((role, index) => {
+            return <li key={index}>{role}</li>
         })
     }
 

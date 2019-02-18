@@ -3,7 +3,6 @@ import { GetPositionInfo } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Jumbotron, Container, Button, Row, Col } from "reactstrap";
 
-
 const userRoles = ["consultant", "AW"]; // test array
 
 class PositionDetails extends Component {
@@ -54,12 +53,11 @@ class PositionDetails extends Component {
   };
 
   handleClick = () => {
-    console.log("edit nappulassa");
-
+    console.log("Edit button clicked");
+    // Function missing
   }
 
   handleTopCandidates = () => {
-    console.log("handletop:");
 
     let consultants = [...this.state.consultants];
     console.log("consultants: ", consultants);
@@ -70,18 +68,13 @@ class PositionDetails extends Component {
             if (positionSkill === userSkill) {
               console.log("positionskill: ", positionSkill, "UserSkill: ", userSkill);
             }
-
           })
-
         })
         return users;
       })
       console.log("candidates: ", candidates, "hits: ", consultants.hits)
     }
-
   }
-
-
 
   render() {
     console.log("Positiondetails user: ", this.state.consultants, "Position: ", this.state.position);
@@ -99,7 +92,6 @@ class PositionDetails extends Component {
     if (this.state.position.positionSkills != null) {
       positionStatus = this.state.position.positionStatus;
     }
-
 
     return (
       <div className="buttons_group">

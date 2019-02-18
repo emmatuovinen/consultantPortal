@@ -6,8 +6,6 @@ import PositionInfo from "../Components/PositionInfo";
 import PositionForm from "../Components/PositionForm";
 import UserCardSmall from '../Components/UserCardSmall';
 
-const ROLE = "AM" // test variable for creating different views depending on role. Change between AW and consultant to try it out
-
 class PositionDetails extends Component {
   constructor(props) {
     super(props);
@@ -80,9 +78,9 @@ class PositionDetails extends Component {
   renderCandidates = () => {
     let candidates = this.handleTopCandidates();
     let positionSkills = [...this.state.position.positionSkills]
-    let consultantsListed = candidates.map((consultant) => {
+    let consultantsListed = candidates.map((consultant, index) => {
       return (
-        <Col>
+        <Col key={index}>
           <UserCardSmall
             userId={consultant.userId}
             key={consultant.userId}

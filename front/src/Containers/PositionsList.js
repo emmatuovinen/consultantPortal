@@ -45,7 +45,6 @@ class PositionsList extends Component {
     let position = { ...this.state.position }
     let tmpArr = position.skills.split(" ");
     position.skills = tmpArr;
-    console.log(this.state)
 
     CreatePosition(position, response => {
       if (response.status === 200 || response.status === 201) {
@@ -68,7 +67,6 @@ class PositionsList extends Component {
   }
 
   handleAddPosition = () => {
-    console.log("Edit nappulassa")
     this.setState({ addPosition: !this.state.addPosition })
   };
 

@@ -7,7 +7,6 @@ import {
 
 const UserCardSmall = (props) => {
     const userProfileUrl = `/view-profile/${props.userId}`;
-    console.log("props: ", props)
 
     let skillsmatched = props.positionSkills.map((positionSkill, index) => {
         return props.userSkills.find(userSkill => {
@@ -18,20 +17,19 @@ const UserCardSmall = (props) => {
                 userSkill
             );
         });
-    })
+    });
 
-    skillsmatched = skillsmatched.map(skill => {
+    skillsmatched = skillsmatched.map((skill, index) => {
         if (skill !== null) {
             return (
-                <span><Badge color="success">{skill}</Badge></span>
+                <span key={index}><Badge color="success">{skill}</Badge></span>
             )
+        } else {
+            return null;
         }
+    });
 
-    })
-
-    console.log("skillsmatch: ", skillsmatched);
     return (
-
         <Card style={{ margin: "10px", }}>
             <Link to={userProfileUrl} style={{ color: "black" }} >
                 <CardBody>
@@ -47,12 +45,10 @@ const UserCardSmall = (props) => {
                             </CardText>
                             {skillsmatched}
                         </Col>
-
                     </Row>
                 </CardBody>
             </Link>
         </Card >
-
     );
 }
 
