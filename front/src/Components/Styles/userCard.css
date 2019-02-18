@@ -1,12 +1,11 @@
 a:-webkit-any-link {
     cursor: pointer;
     color: #000000;
-   
 }
 
-.container {
+/* .container {
     margin-top: 100px;
-}
+} */
 
 .background-img {
     background-image: url('../images/bubbles2.png');
@@ -37,8 +36,10 @@ a:-webkit-any-link {
 
 .consultant-box.container {
     background-color: white;
+    margin-top: 50px;
+    margin-bottom: 20px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 50px;
     /* border: 5px double rgba(12, 228, 92, 0.271); */  /* #0ce45c45 */
     border-radius: 100px 0px 100px 0px;
     -moz-border-radius: 100px 0px 100px 0px;
@@ -80,9 +81,7 @@ a:-webkit-any-link {
         background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
         background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
         background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(209, 255, 227, 0.53) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebffd1', GradientType=1 );
-        
-        
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebffd1', GradientType=1 ); 
     }
  }
 

@@ -1,0 +1,38 @@
+.card-body {
+    text-align: center;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* border: 5px double rgba(12, 228, 92, 0.271); */  /* #0ce45c45 */
+    border-radius: 100px 0px 100px 0px;
+    -moz-border-radius: 100px 0px 100px 0px;
+    -webkit-border-radius: 100px 0px 100px 0px;
+    border: 4px double rgb(57, 221, 165); /* #39dda5; */
+
+    -webkit-box-shadow: 16px 22px 56px -28px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: 16px 22px 56px -28px rgba(0, 0, 0, 0.32);
+    box-shadow: 16px 22px 56px -28px rgba(0, 0, 0, 0.32);
+
+   /* background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(45%, rgba(255,251,250,1)), color-stop(100%, rgba(235,255,209,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(209, 255, 227, 0.53) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebffd1', GradientType=1 ); */
+}
+.card {
+    border: none;
+}
+
+img.small-card-img.card-img {
+    width: 80%;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.skills-matched.col {
+    margin-top: 10px;
+    font-size: 18px;
+}

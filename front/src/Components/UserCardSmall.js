@@ -4,6 +4,7 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Col, Row, Badge
 } from 'reactstrap';
+import './Styles/SmallCard.css';
 
 const UserCardSmall = (props) => {
     const userProfileUrl = `/view-profile/${props.userId}`;
@@ -30,22 +31,26 @@ const UserCardSmall = (props) => {
     });
 
     return (
-        <Card style={{ margin: "10px", }}>
-            <Link to={userProfileUrl} style={{ color: "black" }} >
+        <Card className= 'small-card'>
+            <Link to={userProfileUrl}>
                 <CardBody>
-                    <Row>
+                    
                         <Col>
-                            <CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle>
-                            <CardSubtitle><h6>{props.role}</h6></CardSubtitle>
-                            <CardImg style={{ width: "100px" }} src={props.pictureUrl} alt={props.lastName} />
+                        <Row>
+                        <Col className= 'name' sm='12' ><a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a></Col>
+                        </Row>
+                        <Row>
+                            <Col className= 'title' sm='12'><CardSubtitle><h6>{props.role}</h6></CardSubtitle></Col>
+                        </Row>
+                            <CardImg className= 'small-card-img' src={props.pictureUrl} alt={props.lastName} />
                         </Col>
-                        <Col>
+                        <Col className='skills-matched'>
                             <CardText>
                                 {props.children}
                             </CardText>
                             {skillsmatched}
                         </Col>
-                    </Row>
+                    
                 </CardBody>
             </Link>
         </Card >
