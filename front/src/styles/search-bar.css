@@ -1,0 +1,64 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+}
+
+.search-input {
+    padding: 4px;
+    height: 52px;
+    position: relative;  
+    width: 100%;
+    margin-right: 1em;
+    
+  }
+  
+  .search-input::before {
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAQJJREFUKBWVkr2uQUEUhf3ET6GRaC5aFRoJKrf1BKpb8SwqovYGXkCj00k0QnRKEYkILYobvpUYmeMMyVnJl7P3mjN7Zu9zwiGv2qRFyMMSRrAFp6JPN8XzBj+wgDkUYAg7WINTYdwpDECxrRLJHeq2accdkgm8bzTvNAg2EDOGeUYI1KNO1gkuzTA1g8T7ojbn4ONQWPuHPWgeHmnzCqoe15tkSNPgPEAn68oVcOmA2XMtGK9FoE/VhOTTVNExqLCGZnxCv2pYauEC6lF0oQxX6IOvb7yX9NPEQafan+aPXDdQC18LsO6Tip5BBY6gIQaSbnMCFRCBZRcIvFkbsvCr4AFGOCxQy+JdGQAAAABJRU5ErkJggg==');
+    display: block;
+    position: absolute;
+    width: 15px;
+    z-index: 3;
+    height: 15px;
+    font-size: 20px;
+    top: 11px;
+    left: 16px;
+    line-height: 32px;
+    opacity: 0.6;
+  }
+  
+  .search-input > input {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    line-height: 22px;
+    padding: 10px 10px 5px 33px;
+    height: 40px;
+    position: relative;
+    font-family: 'Noto Serif', serif;
+    /* background-color: #9af5b5; */
+
+    border-radius: 100px 0px 100px 108px;
+    -moz-border-radius: 100px 0px 100px 108px;
+    -webkit-border-radius: 100px 0px 100px 108px;
+
+    -webkit-box-shadow: 22px 18px 41px -14px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: 22px 18px 41px -14px rgba(0, 0, 0, 0.32);
+    box-shadow: 12px 18px 25px -15px rgba(0, 0, 0, 0.32);
+
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(45%, rgba(255,251,250,1)), color-stop(100%, rgba(235,255,209,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(235,255,209,1) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,251,250,1) 45%, rgba(209, 255, 227, 0.53) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebffd1', GradientType=1 );
+
+
+  }
+  
+  .search-input > input:focus {
+    outline: none;
+  }

@@ -3,7 +3,7 @@ import SearchInput, { createFilter } from "react-search-input";
 import { Container, CustomInput, FormGroup } from "reactstrap";
 import PositionCard from "../Components/PositionCard";
 
-import "../styles/testi.css";
+import "../styles/search-bar.css";
 
 const KEYS_TO_FILTERS = ["positionRole", "company", "location", "positionSkills", "positionDescription"];
 
@@ -80,7 +80,7 @@ export default class PositionFilter extends Component {
       : "Switch off for only active positions";
 
     return (
-      <div className="testi">
+      <div className="search">
         <div>
             <Container>
               <SearchInput
