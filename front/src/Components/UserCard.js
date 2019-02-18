@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
-    Card, CardDeck, Container, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Col, Row
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Col, Row
 } from 'reactstrap';
 import './Styles/userCard.css';
 import {Bubbles} from './images/bubbles2.png';
@@ -65,65 +64,3 @@ const UserCard = (props) => {
 };
 
 export default UserCard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* return (
-    <Container>
-        <Col>
-            <Card>
-                <CardBody>
-                    
-                    <Col className= 'user-profile' sm="4">
-                        <Row>
-                            <a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a>
-                        </Row>
-                        <Row>
-                            <CardSubtitle><h6>{props.role}</h6></CardSubtitle>
-                        </Row>
-
-                        <Row>
-                            <div className= 'background-img'>
-                                <CardImg src={Bubbles}
-                            
-                                src={props.pictureUrl} alt={props.lastName} />
-                            </div>
-                        </Row>
-                    </Col>
-
-                    <Col sm="2">
-                    <div className= 'skills'>
-                        <CardText>
-                            <h5>Skills</h5>
-                            {props.children}
-                            {skills}
-                        </CardText>
-                        </div>
-                    </Col>
-                    
-
-                    <Col sm="5">
-                        <CardText>
-                            <h5>Positions</h5>
-                            {roles}
-                        </CardText>
-                    </Col>
-                </CardBody> 
-            </Card>
-        </Col>     
-    </Container>
-);
-};
-
-export default UserCard; */

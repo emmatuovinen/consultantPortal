@@ -1,32 +1,23 @@
 import React from "react";
-import {
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PositionCard = props => {
   const positionUrl = `position-details/${props.positionId}`;
   let activePosition = "";
 
-
   if (props.active) {
-    activePosition = "✅ Active";
+    activePosition = "Active";
   } else {
-    activePosition = "🛑 Inactive";
+    activePosition = "Inactive";
   }
 
   return (
-    <Link to={positionUrl} style={{ color: "black" }} >
-      <Row>
-        <Col>
-          <Card style={{ margin: "1em" }}>
-            <CardBody >
+    <Row>
+      <Col>
+        <Card style={{ marginBottom: "1em" }}>
+          <Link to={positionUrl} style={{ color: "black" }}>
+            <CardBody>
               <Row>
                 <Col xs="12" sm="6" lg="6">
                   <CardImg
@@ -36,16 +27,25 @@ const PositionCard = props => {
                   />
                 </Col>
                 <Col xs="12" sm="6" lg="6">
-                  <CardTitle>{props.company} : {props.role}</CardTitle>
+                  <h5>{props.company}</h5>
+                  <h6>{props.role}</h6>
                   <p>{props.location}</p>
-                  <p>{activePosition}</p>
+                  <p>{props.description.slice(0,150)}...</p>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      color: activePosition === "Active" ? "#2CCB61" : "red"
+                    }}
+                  >
+                    {activePosition}
+                  </p>
                 </Col>
               </Row>
             </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Link>
+          </Link>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

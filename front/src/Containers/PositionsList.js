@@ -1,20 +1,33 @@
 import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
-import { Container, Button } from "reactstrap";
-import PositionCard from "../Components/PositionCard";
-import PositionSearchBar from "./PositionSearchBar";
+import { Container, Button, Row } from "reactstrap";
+import PositionForm from "../Components/PositionForm";
+import { CreatePosition } from "../serviceClients/PositionService";
+import PositionFilter from "./PositionFilter";
+
 
 class PositionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      position: {
+        companyName: '',
+        positionDescription: '',
+        positionRole: '',
+        location: '',
+        isActive: true,
+        status: '',
+        skills: [],
+      },
       positions: [],
+      positionIsActive: true,
       onlyActivePositions: true,
+      addPosition: false,
       filteredPositions: []
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     GetAllPositions(response => {
       if (response.status === 200) {
         let allPositions = response.data;
@@ -25,76 +38,70 @@ class PositionsList extends Component {
     });
   };
 
-  handleClick = () => {
-    this.setState({ onlyActivePositions: !this.state.onlyActivePositions });
-  };
 
-  renderActivePositions = () => {
-    let activePositions = this.state.positions.map((position, index) => {
-      if (position.isActive) {
-        return (
-          <PositionCard
-            key={index}
-            positionId={position.positionId}
-            description={position.positionDescription}
-            role={position.positionRole}
-            location={position.location}
-            active={position.isActive}
-            company={position.company}
-          />
-        );
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let position = { ...this.state.position }
+    let tmpArr = position.skills.split(" ");
+    position.skills = tmpArr;
+    console.log(this.state)
+
+    CreatePosition(position, response => {
+      if (response.status === 200 || response.status === 201) {
+        alert("Position saved")
       } else {
-        return "";
+        console.log("Error, response.status: ", response.status)
       }
     });
-    return activePositions.length > 0 ? (
-      <Container>{activePositions} </Container>
-    ) : (
-        <Container>
-          <p>Sorry, no active positions.</p>
-        </Container>
-      );
   };
 
-  renderAllPositions = () => {
-    let positionsList = this.state.positions.map((position, index) => {
-      return (
-        <PositionCard
-          key={index}
-          positionId={position.positionId}
-          description={position.positionDescription}
-          role={position.positionRole}
-          location={position.location}
-          active={position.isActive}
-        />
-      );
+  handleChange = e => {
+    const id = e.target.id;
+    const value = e.target.value;
+    let change = { ...this.state.position }
+    change[id] = value;
+
+    this.setState({
+      position: change,
     });
-    return <Container>{positionsList}</Container>;
+  }
+
+  handleAddPosition = () => {
+    console.log("Edit nappulassa")
+    this.setState({ addPosition: !this.state.addPosition })
   };
 
-  renderSearchBar = () => {
+
+
+  renderPositionFilter = () => {
     if (this.state.positions.length > 0) {
-      return <PositionSearchBar positions={this.state.positions} filteredPositions={this.filterPositions} />;
+      return <PositionFilter positions={this.state.filteredPositions} />;
     }
   };
 
+  renderPositionForm = () => {
+    if (this.state.addPosition) {
+      return <PositionForm position={this.state.position} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+    }
+
+  };
+
   render() {
-    let btnText = this.state.onlyActivePositions
-      ? "Show all positions"
-      : "Show only active positions";
     return (
+
       <Container>
-        {this.renderSearchBar()}
-        <Button
-          color="secondary"
-          onClick={this.handleClick}
-          style={{ margin: "0.5em" }}
-        >
-          {btnText}
+        <Row>
+          <Button
+            color="success"
+            onClick={this.handleAddPosition}
+            style={{ margin: "0.5em" }}
+          >
+            Add new position
         </Button>
-        {this.state.onlyActivePositions
-          ? this.renderActivePositions()
-          : this.renderAllPositions()}
+          {this.renderPositionForm()}
+          {this.renderPositionFilter()}
+        </Row>
       </Container>
     );
   }

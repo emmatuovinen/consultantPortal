@@ -1,14 +1,20 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
+import SearchInput, { createFilter } from "react-search-input";
 import UserCard from "../Components/UserCard";
 import { GetAllConsultants } from "../serviceClients/UserService";
 
+<<<<<<< HEAD
+=======
+const KEYS_TO_FILTERS = ["firstName", "lastName", "userSkills", "preferableRoles"];
+>>>>>>> master
 
 class ConsultantList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      consultants: []
+      consultants: [],
+      searchTerm: '',
     };
   }
 
@@ -23,8 +29,13 @@ class ConsultantList extends Component {
     });
   };
 
+  searchUpdated = (term) => {
+    this.setState({ searchTerm: term });
+  }
+
   render() {
-    let consultantsListed = this.state.consultants.map((consultant, index) => {
+    let filteredConsultants = this.state.consultants.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+    let consultantsListed = filteredConsultants.map(consultant => {
       return (
         <UserCard
           userId={consultant.userId}
@@ -45,6 +56,9 @@ class ConsultantList extends Component {
 
     return (
       <Container>
+        <SearchInput
+          onChange={this.searchUpdated}
+          className="search-input" />
         {consultantsListed}
       </Container>
     );

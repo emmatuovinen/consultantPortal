@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { GetPositionInfo } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
-import { Container, Button } from "reactstrap";
+import { Container, Button, Row, Col } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
-import EditPositionForm from "../Components/EditPositionForm";
-import UserCard from '../Components/UserCard';
+import PositionForm from "../Components/PositionForm";
+import UserCardSmall from '../Components/UserCardSmall';
 
 const ROLE = "AM" // test variable for creating different views depending on role. Change between AW and consultant to try it out
 
@@ -62,7 +62,6 @@ class PositionDetails extends Component {
       return this.handleCompare(consultant);
     })
       .sort((a, b) => b.hits - a.hits)
-      .slice(0, 3);
     return candidates;
   };
 
@@ -81,26 +80,39 @@ class PositionDetails extends Component {
   renderCandidates = () => {
     let candidates = this.handleTopCandidates();
     let positionSkills = [...this.state.position.positionSkills]
-    console.log("Candidates: ", candidates);
-    let consultantsListed = candidates.map((consultant, index) => {
+    let consultantsListed = candidates.map((consultant) => {
       return (
-        <UserCard
-          userId={consultant.userId}
-          key={consultant.userId}
-          firstName={consultant.firstName}
-          lastName={consultant.lastName}
-          role={consultant.role}
-          userSkills={consultant.userSkills}
-          preferableRoles={consultant.preferableRoles}
-          description={consultant.description}
-          phoneNumber={consultant.phoneNumber}
-          email={consultant.email}
-          pictureUrl={consultant.pictureUrl}
-
-        >Skills matched: {consultant.hits}/{positionSkills.length}</UserCard>
+        <Col>
+          <UserCardSmall
+            userId={consultant.userId}
+            key={consultant.userId}
+            firstName={consultant.firstName}
+            lastName={consultant.lastName}
+            role={consultant.role}
+            userSkills={consultant.userSkills}
+            preferableRoles={consultant.preferableRoles}
+            description={consultant.description}
+            phoneNumber={consultant.phoneNumber}
+            email={consultant.email}
+            pictureUrl={consultant.pictureUrl}
+            positionSkills={positionSkills}
+          >Skills matched: {consultant.hits}/{positionSkills.length}</UserCardSmall>
+        </Col>
       );
     });
-    return consultantsListed;
+    return (
+      <Container>
+        <h2 align="center">Top candidates</h2>
+        <Row>
+          {consultantsListed.slice(0, 3)}
+        </Row>
+        <ColoredLine color="green" />
+        <h3 align='center'> And more candidates</h3>
+        <Row>
+          {consultantsListed.slice(3)}
+        </Row>
+      </Container>
+    );
   }
 
   renderPositionInfo = () => {
@@ -124,9 +136,9 @@ class PositionDetails extends Component {
     );
   };
 
-  renderEditPositionForm = () => {
+  renderPositionForm = () => {
     return (
-      <EditPositionForm
+      <PositionForm
         position={this.state.position}
       />
     );
@@ -154,13 +166,20 @@ class PositionDetails extends Component {
               Edit
           </Button>
           )}
-        <Container>
-          <h2 align="center">Top candidates</h2>
-          {this.renderCandidates()}
-        </Container>
+        {this.renderCandidates()}
       </Container>
     );
   }
 }
+
+const ColoredLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 1
+    }}
+  />
+);
 
 export default PositionDetails;

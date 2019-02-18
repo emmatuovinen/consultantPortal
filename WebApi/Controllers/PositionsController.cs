@@ -69,10 +69,12 @@ namespace WebApi.Models
                 return new NotFoundResult();
             }
 
+            updatedPosition.Company = position.Company;
             updatedPosition.PositionRole = position.PositionRole;
             updatedPosition.Location = position.Location;
             updatedPosition.PositionDescription = position.PositionDescription;
             updatedPosition.IsActive = position.IsActive;
+            updatedPosition.PositionStatus = position.PositionStatus;
             updatedPosition.PositionSkills = new List<string>();
             foreach (var item in position.PositionSkills)
             {
