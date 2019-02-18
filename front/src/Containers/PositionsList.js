@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
 import { Container, Button, Row } from "reactstrap";
-import PositionCard from "../Components/PositionCard";
 import PositionForm from "../Components/PositionForm";
 import { CreatePosition } from "../serviceClients/PositionService";
 import PositionFilter from "./PositionFilter";
@@ -44,7 +43,6 @@ class PositionsList extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let position = { ...this.state.position }
-    console.log("submit position: ", position);
     let tmpArr = position.skills.split(" ");
     position.skills = tmpArr;
     console.log(this.state)
@@ -83,7 +81,6 @@ class PositionsList extends Component {
   };
 
   renderPositionForm = () => {
-    console.log("renderposition:")
     if (this.state.addPosition) {
       return <PositionForm position={this.state.position} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     }
@@ -91,7 +88,6 @@ class PositionsList extends Component {
   };
 
   render() {
-    console.log("Render state: ", this.state.position)
     return (
 
       <Container>
