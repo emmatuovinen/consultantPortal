@@ -46,6 +46,7 @@ class ConsultantList extends Component {
           phoneNumber={consultant.phoneNumber}
           email={consultant.email}
           pictureUrl={consultant.pictureUrl}
+      
         />
       );
     });

@@ -73,7 +73,7 @@ namespace WebApi.Controllers
             return Ok("Mock users created");
         }
 
-        [HttpPost]
+        [HttpPost, Route("CreateRealUsers")]
         public async Task<IActionResult> CreateDemoUsers()
         {
             var usersList = new List<User>()
@@ -183,20 +183,61 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPost, Route("CreateTech")]
+        [HttpPost, Route("CreateSkills")]
         public async Task<IActionResult> CreateTech()
         {
-            for (int i = 0; i < 10; i++)
+            var skills = new List<Skills>()
             {
-                var tech = new Skills
-                {
-                    Skill = "tech" + i,
-                };
+                new Skills() { Skill = "C#"},
+                new Skills() { Skill = "Java"},
+                new Skills() { Skill = "JavaScript"},
+                new Skills() { Skill = "ASP.NET"},
+                new Skills() { Skill = "React"},
+                new Skills() { Skill = "React Native"},
+                new Skills() { Skill = "Node.js"},
+                new Skills() { Skill = "Flutter"},
+                new Skills() { Skill = "CSS"},
+                new Skills() { Skill = "HTML"},
+                new Skills() { Skill = "GIT"},
+                new Skills() { Skill = "MongoDb"},
+                new Skills() { Skill = "SQL"},
+                new Skills() { Skill = "Scrum"},
+                new Skills() { Skill = "Azure"},
+                new Skills() { Skill = "REST API"},
+                new Skills() { Skill = "MVC"},
+                new Skills() { Skill = "MVVM"},
+                new Skills() { Skill = "Spring Boot"},
+                new Skills() { Skill = "CosmosDb"},
+                new Skills() { Skill = "Python"},
+                new Skills() { Skill = "Unity"},
+                new Skills() { Skill = "Spring MVC"},
+                new Skills() { Skill = "Angular"},
+                new Skills() { Skill = "Vue.js"},
+                new Skills() { Skill = "ASP.NET Core"},
+                new Skills() { Skill = "ADO.NET"},
+                new Skills() { Skill = "Entity Framework"},
+                new Skills() { Skill = ".NET"},
+                new Skills() { Skill = "UX"},
+                new Skills() { Skill = "C"},
+                new Skills() { Skill = "C++"},
+                new Skills() { Skill = "AWS"},
+                new Skills() { Skill = "DynamoDb"},
+                new Skills() { Skill = "Swift"},
+                new Skills() { Skill = "Go"},
+                new Skills() { Skill = "Ruby"},
+                new Skills() { Skill = "Ruby on rails"},
+                new Skills() { Skill = "TypeScript"},
+                new Skills() { Skill = "PHP"},
+                new Skills() { Skill = "Clojure"},
+                new Skills() { Skill = "Objective-C"},
+            };
 
-                await _techRepo.Create(tech);
+            foreach (var item in skills)
+            {
+                await _techRepo.Create(item);
             }
 
-            return Ok("Mock tech's created");
+            return Ok("Skills created");
         }
     }
 }

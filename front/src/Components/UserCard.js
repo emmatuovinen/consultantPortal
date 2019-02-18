@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-    Card, CardImg, CardBody,
-    CardTitle, CardSubtitle, Col, Row
-} from 'reactstrap';
+import { CardImg, CardTitle, CardSubtitle, Col, Row, Container } from 'reactstrap';
+import './Styles/userCard.css';
 
 const UserCard = (props) => {
     const userProfileUrl = `view-profile/${props.userId}`;
@@ -23,32 +21,40 @@ const UserCard = (props) => {
     }
 
     return (
-        <Row>
+        <Container className= 'consultant-box'>
             <Col>
-                <Card style={{ margin: "10px" }}>
-                    <CardBody>
-                        <Row>
-                            <Col xs="12" sm="4" lg="4">
-                                <a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a>
-                                <CardSubtitle><h6>{props.role}</h6></CardSubtitle>
-                                <CardImg style={{ width: "100px" }} src={props.pictureUrl} alt={props.lastName} />
-                            </Col>
+                <Row>
+                    <Col className= 'name' sm={{ size: 6, order: 2, offset: 1 }}><a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a></Col>
+                </Row>
+                
+                <Row>
+                    <Col className= 'title' sm={{ size: 6, order: 2, title: 1 }}><CardSubtitle><h6>{props.role}</h6></CardSubtitle></Col>
+                </Row>
 
-                            <Col xs="12" sm="6" lg="4">
-                                <h5>Skills</h5>
-                                <p>{props.children} </p>
-                                {skills}
-                            </Col>
+                <Row>
+                    <Col xs="12" sm="12" md="4">
+                        <div className= 'background-img'>
+                            <CardImg src={props.pictureUrl} alt={props.lastName}/>
+                        </div>
+                    </Col>
 
-                            <Col xs="12" sm="6" lg="4">
-                                <h5>Positions</h5>
-                                {roles}
-                            </Col>
-                        </Row>
-                    </CardBody>
-                </Card>
-            </Col>
-        </Row>
+                    <Col xs="12" sm="6" md="3">
+                        <div className= 'skills'>
+                            <h5>Skills</h5>
+                            {props.children}
+                            {skills}
+                        </div>
+                    </Col>
+
+                    <Col xs="12" sm="6" md="4">
+                        <div className= 'positions'>
+                            <h5>Positions</h5>
+                            {roles}
+                        </div>
+                    </Col>       
+                </Row> 
+            </Col>   
+        </Container>     
     );
 };
 
