@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import './Styles/PositionCard.css';
 
 const PositionCard = props => {
   const positionUrl = `position-details/${props.positionId}`;
@@ -15,31 +16,35 @@ const PositionCard = props => {
   return (
     <Row>
       <Col>
-        <Card style={{ marginBottom: "1em" }}>
-          <Link to={positionUrl} style={{ color: "black" }}>
+        <Card>
+          <Link to={positionUrl}>
             <CardBody>
               <Row>
-                <Col xs="12" sm="6" lg="6">
-                  <CardImg
-                    top
-                    style={{ width: "50%" }}
-                    src="https://aw-publicwebstorage-cdn-endpoint-prod-001.azureedge.net/aw-content/logo_main_green.svg"
-                  />
-                </Col>
-                <Col xs="12" sm="6" lg="6">
-                  <h5>{props.company}</h5>
-                  <h6>{props.role}</h6>
-                  <p>{props.location}</p>
-                  <p>{props.description.slice(0,150)}...</p>
-                  <p
+                
+                <Col className= 'two-logos' xs="12" sm="4" lg="4" >
+                <div><b> place for AW-logo + company-logo </b></div>
+                  </Col>
+                  
+                  <Col xs="12" sm="4" lg="4">
+                    <div className='company-role-location'>
+                      <h3>{props.company}</h3>
+                      <h4>{props.role}</h4>
+                      <p>{props.location}</p>
+                    </div>
+                  </Col>
+
+                  <Col xs="12" sm="4" lg="4">
+                    <p>{props.description.slice(0,150)}...</p>
+                    <p
                     style={{
                       fontWeight: "bold",
-                      color: activePosition === "Active" ? "#2CCB61" : "red"
+                      color: activePosition === "Active" ? "#047364" : "red"
                     }}
                   >
                     {activePosition}
                   </p>
                 </Col>
+
               </Row>
             </CardBody>
           </Link>
@@ -50,3 +55,42 @@ const PositionCard = props => {
 };
 
 export default PositionCard;
+
+
+
+
+/* return (
+  <Row>
+    <Col>
+      <Card>
+        <Link to={positionUrl}
+          <CardBody>
+            <Row>
+              <Col className= 'two-logos' xs="12" sm="12" lg="6" >
+              </Col>
+                
+              <Col xs="12" sm="6" lg="6">
+                <h5>{props.company}</h5>
+                <h6>{props.role}</h6>
+                <p>{props.location}</p>
+                <p>{props.description.slice(0,150)}...</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                    color: activePosition === "Active" ? "#2CCB61" : "red"
+                  }}
+                >
+                  {activePosition}
+                </p>
+              </Col>
+            </Row>
+          </CardBody>
+        </Link>
+      </Card>
+    </Col>
+  </Row>
+);
+};
+
+export default PositionCard; */
+
