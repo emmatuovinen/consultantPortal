@@ -36,6 +36,12 @@ For new changes to backend, you have to re-build the backend with the following 
 
 `docker-compose up`
 
+Swagger
+
+Runs in http://localhost:5000/
+-Open through link above
+-You are able to test the create, remove, update and delete methods of the application in Swagger.
+-Some mock data has been created in swagger. This data can be used to see what the application looks like in real life. The mock data     can be retrieved by using the second POST-method under the MockData section in swagger.
 
 
 
