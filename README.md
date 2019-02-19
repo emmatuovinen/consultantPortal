@@ -36,6 +36,12 @@ For new changes to backend, you have to re-build the backend with the following 
 
 `docker-compose up`
 
+### Mongo Express
+-http://localhost:8081/
+-Open through the link above
+-Control the databases of the application
+
+
 ### Swagger
 
 Runs in http://localhost:5000/
