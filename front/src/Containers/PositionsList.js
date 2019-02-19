@@ -70,8 +70,6 @@ class PositionsList extends Component {
     this.setState({ addPosition: !this.state.addPosition })
   };
 
-
-
   renderPositionFilter = () => {
     if (this.state.positions.length > 0) {
       return <PositionFilter positions={this.state.filteredPositions} />;
@@ -82,7 +80,6 @@ class PositionsList extends Component {
     if (this.state.addPosition) {
       return <PositionForm position={this.state.position} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     }
-
   };
 
   render() {
@@ -90,10 +87,10 @@ class PositionsList extends Component {
 
       <Container>
         <Row>
-          <Button
-            color="success"
+          <Button className='add-button'
+           /*  color="success" */
             onClick={this.handleAddPosition}
-            style={{ margin: "0.5em" }}
+           /*  style={{ margin: "0.5em" }}  add margin-top*/
           >
             Add new position
         </Button>
