@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Container, Col, Row } from 'reactstrap';
 
-import { GetConsultantInfo, EditProfile } from '../serviceClients/UserService'
+import { GetConsultantInfo, EditProfile, DeleteUser } from '../serviceClients/UserService'
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
-const USER_ID = '2'; // hard coded userId for demo purposes
+const USER_ID = '5'; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
     state = {
@@ -40,6 +40,11 @@ export default class UserProfile extends Component {
                 // some kind of redirect to an error page?
             }
         });
+    }
+
+    handleDeleteUser = () => {
+        // now we can only delete our hard coded user, update this in the future
+        DeleteUser(USER_ID);
     }
 
     editMode = (btn) => {
@@ -121,6 +126,7 @@ export default class UserProfile extends Component {
                     <Col lg='1' /*style={{ backgroundColor: 'yellow' }}*/ ></Col>
                     <Col lg='11'>
                         <Button onClick={this.editMode} value={buttonText}>{buttonText}</Button>
+                        <Button onClick={() => {if(window.confirm("Are you sure you want to delete your profile?"))this.handleDeleteUser()}} color="success">Delete Profile</Button>
                     </Col>
                 </Row>
             </Container>

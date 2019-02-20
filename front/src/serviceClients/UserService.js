@@ -50,8 +50,12 @@ export function GetConsultantInfo(userId, callback) {
 }
 
 export function DeleteUser(userId, callback) {
-  Axios.delete(API + "Users/" + userId).then(response => {
-    callback(response);
+  Axios.delete(API + "Users/" + userId)
+    .then(response => {
+      callback(response);
+  })
+  .catch(error => {
+    callback(error.response);
   });
 }
 

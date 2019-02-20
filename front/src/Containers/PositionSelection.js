@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { GetPositionInfo } from "../serviceClients/PositionService";
+import { GetPositionInfo, EditPosition } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button, Row, Col } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
@@ -22,6 +22,8 @@ class PositionDetails extends Component {
       userIsConsultant: true,
       consultants: [],
       topCandidates: [],
+      isEditing: false,
+      hideEditButton: false
     };
   }
 
@@ -50,9 +52,28 @@ class PositionDetails extends Component {
     //Here we need to add logic to add the position to current user's favorites
   };
 
-  handleClick = () => {
-    console.log("editing position");
+  saveEditedPosition = () => {
+    
+    EditPosition(this.state.positionId, this.state.position, response => {
+        if (response.status === 200) {
+          console.log(response.status)
+        } else {
+          console.log("error", response.status);
+        }
+      });
+    
   };
+
+  handleChange = e => {
+    const id = e.target.id;
+    const value = e.target.value;
+    let change = { ...this.state.position }
+    change[id] = value;
+
+    this.setState({
+      position: change,
+    });
+  }
 
   handleTopCandidates = () => {
     let consultants = [...this.state.consultants];
@@ -138,16 +159,24 @@ class PositionDetails extends Component {
     return (
       <PositionForm
         position={this.state.position}
+        isEditing={this.state.isEditing}
+        handleChange={this.handleChange}
+        onButtonClick={this.saveEditedPosition.bind(this)}
       />
     );
   };
 
   render() {
+    
+    const hideButton = this.state.hideEditButton? {display: "none"} : {};
 
     return (
       <Container>
         <h2>Position</h2>
-        {this.renderPositionInfo()}
+        {this.state.isEditing ? (
+          this.renderPositionForm()
+        ) : (
+        this.renderPositionInfo() )}
         {this.state.userIsConsultant ? (
           <Button outline color="danger">
             <span
@@ -160,11 +189,11 @@ class PositionDetails extends Component {
             </span>
           </Button>
         ) : (
-            <Button outline color="success" onClick={this.handleClick}>
+            <Button outline color="success" onClick={() => this.setState({isEditing: !this.state.isEditing, hideEditButton: !this.state.isHidden})} style={hideButton}>
               Edit
           </Button>
           )}
-        {this.renderCandidates()}
+        {this.renderCandidates()} 
       </Container>
     );
   }
