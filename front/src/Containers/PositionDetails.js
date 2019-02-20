@@ -52,7 +52,7 @@ class PositionDetails extends Component {
     //Here we need to add logic to add the position to current user's favorites
   };
 
-  handleClick = () => {
+  handleEditPosition = () => {
     console.log("Edit button clicked");
     // Function missing
   }
@@ -121,7 +121,7 @@ class PositionDetails extends Component {
                 ❤️ Add to favorites
               </span>
             </Button>
-            <Button outline color="primary" onClick={this.handleClick}>Edit</Button>
+            <Button outline color="primary" onClick={this.handleEditPosition}>Edit</Button>
           </Container>
           <Container>
             <h2 align="center">Top candidates</h2>

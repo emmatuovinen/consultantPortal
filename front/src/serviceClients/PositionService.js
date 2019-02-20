@@ -54,7 +54,7 @@ export function GetPositionInfo(positionId, callback) {
 }
 
 export function EditPosition(positionId, position, callback) {
-  Axios.put(API + "positions" + positionId, position)
+  Axios.put(API + "positions/" + positionId, position)
     .then(response => {
       callback(response);
     })
@@ -62,5 +62,7 @@ export function EditPosition(positionId, position, callback) {
       callback(error.response);
     });
 }
+
+
 
 export default function () { }
