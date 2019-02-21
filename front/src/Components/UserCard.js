@@ -24,21 +24,20 @@ const UserCard = (props) => {
         <Container className= 'consultant-box'>
             <Col>
                 <Row>
-                    <Col className= 'name' sm={{ size: 6, order: 2, offset: 1 }}><a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a></Col>
-                </Row>
-                
-                <Row>
-                    <Col className= 'title' sm={{ size: 6, order: 2, title: 1 }}><CardSubtitle><h6>{props.role}</h6></CardSubtitle></Col>
-                </Row>
-
-                <Row>
-                    <Col xs="12" sm="12" md="4">
+                    <Col xs="12" sm="6" md="3">
                         <div className= 'background-img'>
                             <CardImg src={props.pictureUrl} alt={props.lastName}/>
                         </div>
                     </Col>
 
                     <Col xs="12" sm="6" md="3">
+                        <div className= 'name-title'>
+                            <a href={userProfileUrl}><CardTitle><h4>{props.firstName} {props.lastName}</h4></CardTitle></a>
+                            <CardSubtitle><h6>{props.role}</h6></CardSubtitle>
+                        </div>
+                    </Col>
+
+                    <Col xs="12" sm="5" md="3">
                         <div className= 'skills'>
                             <h5>Skills</h5>
                             {props.children}
@@ -46,7 +45,7 @@ const UserCard = (props) => {
                         </div>
                     </Col>
 
-                    <Col xs="12" sm="6" md="4">
+                    <Col xs="12" sm="7" md="3">
                         <div className= 'positions'>
                             <h5>Positions</h5>
                             {roles}
