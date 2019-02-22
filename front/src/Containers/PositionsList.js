@@ -11,13 +11,13 @@ class PositionsList extends Component {
     super(props);
     this.state = {
       position: {
-        companyName: '',
+        company: '',
         positionDescription: '',
         positionRole: '',
         location: '',
         isActive: true,
-        status: '',
-        skills: [],
+        positionStatus: '',
+        positionSkills: [],
       },
       positions: [],
       positionIsActive: true,
@@ -43,7 +43,7 @@ class PositionsList extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let position = { ...this.state.position }
-    let tmpArr = position.skills.split(" ");
+    let tmpArr = position.positionSkills.toString().split(",");
     position.skills = tmpArr;
 
     CreatePosition(position, response => {

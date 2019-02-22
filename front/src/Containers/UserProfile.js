@@ -5,7 +5,7 @@ import { GetConsultantInfo, EditProfile, DeleteUser } from '../serviceClients/Us
 import UserProfileForm from '../Components/UserProfileForm';
 import UserProfileDetails from '../Components/UserProfileDetails';
 
-const USER_ID = '5'; // hard coded userId for demo purposes
+const USER_ID = '2'; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
     state = {

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import SearchInput, { createFilter } from "react-search-input";
-import { Container, CustomInput, FormGroup } from "reactstrap";
+import { Container, CustomInput, FormGroup, Col, Row } from "reactstrap";
 import PositionCard from "../Components/PositionCard";
+
 
 import "../styles/search-bar.css";
 
@@ -81,30 +82,34 @@ export default class PositionFilter extends Component {
 
     return (
       <div className="search">
-        <div>
-            <Container>
-              <SearchInput
-                onChange={this.searchUpdated}
-                className="search-input"
-              />
-            <FormGroup>
-            <CustomInput
-              type="switch"
-              name="exampleCustomSwitch"
-              onClick={this.handleClick}
-              id="exampleCustomSwitch"
-              style={{ margin: "1em" }}
-              label={btnText}
-              />
-            </FormGroup>
+          <div>
+              <Container>
+                  <Row>
+                      <Col sm="12" md={{ size: 6, offset: 3 }}>
+                          <SearchInput
+                            onChange={this.searchUpdated}
+                            className="search-input"
+                          />
+                          <FormGroup>
+                          <CustomInput
+                              type="switch"
+                              name="exampleCustomSwitch"
+                              onClick={this.handleClick}
+                              id="exampleCustomSwitch"
+                              style={{ margin: "1em" }}
+                              label={btnText}
+                          />
+                          </FormGroup>
+                      </Col>
+                  </Row>
               </Container>
           <div>
-            {this.state.onlyActivePositions
-              ? this.renderActivePositions(filteredPositions)
-              : this.renderAllPositions(filteredPositions)}
+              {this.state.onlyActivePositions
+                ? this.renderActivePositions(filteredPositions)
+                : this.renderAllPositions(filteredPositions)}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
