@@ -6,10 +6,13 @@ import PositionInfo from "../Components/PositionInfo";
 import PositionForm from "../Components/PositionForm";
 import UserCardSmall from '../Components/UserCardSmall';
 
-class PositionDetails extends Component {
+const userRole = ["consultant", "AW"]; // test array
+
+class PositionSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userRole: userRole[0],
       positionId: this.props.match.params.positionId,
       position: {
         positionDescription: "",
@@ -216,4 +219,4 @@ const ColoredLine = ({ color }) => (
   />
 );
 
-export default PositionDetails;
+export default PositionSelection;
