@@ -21,7 +21,6 @@ const PositionForm = props => {
       <Button
         outline
         color="success"
-        // onClick={() => alert("save buttonissa")}
         onClick={props.onButtonClick}
         style={{ margin: "0.5em" }}
         value="save"
