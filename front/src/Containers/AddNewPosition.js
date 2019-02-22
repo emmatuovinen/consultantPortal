@@ -20,8 +20,6 @@ class AddNewPosition extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let position = { ...this.state.position }
-        let tmpArr = position.positionSkills.toString().split(",");
-        position.skills = tmpArr;
 
         CreatePosition(position, response => {
             if (response.status === 200 || response.status === 201) {
