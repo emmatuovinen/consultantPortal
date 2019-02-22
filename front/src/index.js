@@ -13,6 +13,7 @@ import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
 import PositionSelection from './Containers/PositionSelection';
 import PositionForm from './Components/PositionForm';
+import AddNewPosition from './Containers/AddNewPosition';
 
 ReactDOM.render(
     <div>
@@ -24,7 +25,7 @@ ReactDOM.render(
                 <Route path='/position-details/:positionId' component={PositionSelection} name='position-details' />
                 <Route exact path='/positions' component={PositionsList} />
                 <Route path='/auto-suggest' component={ConsultantSkillsAutoSuggestions} />
-                <Route path='/positions/add' component={PositionForm} />
+                <Route path='/positions/add' component={AddNewPosition} />
                 <Route exact path='/' component={Home} />
             </Switch>
         </Router>

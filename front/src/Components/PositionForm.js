@@ -2,10 +2,8 @@ import React from "react";
 import { Row, Col, Form, FormGroup, Label, Input, Button, Badge } from "reactstrap";
 import ConsultantSkillsAutoSuggestions from '../Containers/ConsultantSkillsAutoSuggestions';
 
-const emptyPosition = { companyName: '', positionDescription: '', positionRole: '', location: '', isActive: true, status: '', skills: [] }
-
 const PositionForm = props => {
-  let position = props.position || emptyPosition;
+  let position = props.position;
   let button = "";
   if (!props.isEditing) {
     button = (
