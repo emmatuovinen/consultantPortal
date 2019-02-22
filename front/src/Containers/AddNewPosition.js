@@ -32,9 +32,17 @@ class AddNewPosition extends Component {
     };
 
     handleChange = e => {
+
         const field = e.target.id;
         const value = e.target.value;
         let copyOfPosition = { ...this.state.position }
+
+        // when adding skills from the autosuggest bar you cannot get the value
+        // so using innerHTML
+        if (e.target.value === undefined) {
+            copyOfPosition.positionSkills.push(e.target.innerHTML);
+        }
+
         copyOfPosition[field] = value;
 
         this.setState({

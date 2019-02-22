@@ -86,20 +86,10 @@ const PositionForm = props => {
               value={position.positionStatus}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup controlid="positionSkills">
             <Label for="positionSkills">Skills</Label>
-            <Input
-              onChange={props.handleChange}
-              type="text"
-              name="positionSkills"
-              id="positionSkills"
-              value={position.positionSkills}
-            />
-          </FormGroup>
-          <FormGroup controlid="userSkills">
-            <Label for="userSkills">Competence highlights</Label>
             <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
-            {/* {props.user.userSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })} */}
+            {props.position.positionSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })}
           </FormGroup>
           {button}
         </Form>

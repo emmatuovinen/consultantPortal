@@ -67,6 +67,14 @@ class PositionDetails extends Component {
     const id = e.target.id;
     const value = e.target.value;
     let change = { ...this.state.position }
+
+    // when adding skills from the autosuggest bar you cannot get the value
+        // so using innerHTML
+        if (value === undefined) {
+          change.positionSkills.push(e.target.innerHTML);
+      }
+
+
     change[id] = value;
 
     this.setState({
