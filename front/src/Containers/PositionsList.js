@@ -84,19 +84,9 @@ class PositionsList extends Component {
 
   render() {
     return (
-
       <Container>
-        <Row>
-          <Button className='add-button'
-           /*  color="success" */
-            onClick={this.handleAddPosition}
-           /*  style={{ margin: "0.5em" }}  add margin-top*/
-          >
-            Add new position
-        </Button>
           {this.renderPositionForm()}
           {this.renderPositionFilter()}
-        </Row>
       </Container>
     );
   }

@@ -1,8 +1,11 @@
 import React from "react";
-import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Input, Button, Badge } from "reactstrap";
+import ConsultantSkillsAutoSuggestions from '../Containers/ConsultantSkillsAutoSuggestions';
+
+const emptyPosition = { companyName: '', positionDescription: '', positionRole: '', location: '', isActive: true, status: '', skills: [] }
 
 const PositionForm = props => {
-  let position = props.position;
+  let position = props.position || emptyPosition;
   let button = "";
   if (!props.isEditing) {
     button = (
@@ -95,6 +98,11 @@ const PositionForm = props => {
               id="positionSkills"
               value={position.positionSkills}
             />
+          </FormGroup>
+          <FormGroup controlid="userSkills">
+            <Label for="userSkills">Competence highlights</Label>
+            <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
+            {/* {props.user.userSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })} */}
           </FormGroup>
           {button}
         </Form>
