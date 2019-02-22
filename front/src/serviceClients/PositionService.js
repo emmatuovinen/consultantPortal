@@ -14,17 +14,17 @@ export function GetAllPositions(callback) {
 
 export function CreatePosition(positionData, callback) {
   let newPosition = {
-    Company: positionData.companyName,
+    Company: positionData.company,
     PositionDescription: positionData.positionDescription,
     PositionRole: positionData.positionRole,
     Location: positionData.location,
     IsActive: positionData.isActive,
-    PositionStatus: positionData.status,
+    PositionStatus: positionData.positionStatus,
     PositionSkills: positionData.skills,
 
   };
   console.log("Axios createposition: ", newPosition, "PositionData: ", positionData)
-  Axios.post(API + "positions", newPosition)
+  Axios.post(API + "positions/", newPosition)
     .then(response => {
       callback(response);
     })

@@ -53,7 +53,6 @@ class PositionDetails extends Component {
   };
 
   saveEditedPosition = () => {
-    
     EditPosition(this.state.positionId, this.state.position, response => {
         if (response.status === 200) {
           console.log(response.status)
