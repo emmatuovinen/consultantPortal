@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
 import { Container, Button, Row } from "reactstrap";
-import PositionForm from "../Components/PositionForm";
 import { CreatePosition } from "../serviceClients/PositionService";
 import PositionFilter from "./PositionFilter";
 
@@ -76,16 +75,9 @@ class PositionsList extends Component {
     }
   };
 
-  renderPositionForm = () => {
-    if (this.state.addPosition) {
-      return <PositionForm position={this.state.position} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-    }
-  };
-
   render() {
     return (
       <Container>
-          {this.renderPositionForm()}
           {this.renderPositionFilter()}
       </Container>
     );
