@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PositionForm from '../Components/PositionForm';
 import { CreatePosition } from '../serviceClients/PositionService';
+import { Container } from 'reactstrap';
 
 class AddNewPosition extends Component {
 
@@ -52,12 +53,14 @@ class AddNewPosition extends Component {
 
     render() {
         return (
-            <PositionForm
-                position={this.state.position}
-                handleChange={this.handleChange}
-                onButtonClick={this.handleSubmit}
-                isEditing={true}
-            />
+            <Container>
+                <PositionForm
+                    position={this.state.position}
+                    handleChange={this.handleChange}
+                    onButtonClick={this.handleSubmit}
+                    isEditing={true}
+                />
+            </Container>
         );
     }
 }
