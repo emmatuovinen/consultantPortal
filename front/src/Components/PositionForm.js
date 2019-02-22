@@ -1,5 +1,6 @@
 import React from "react";
-import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Input, Button, Badge } from "reactstrap";
+import ConsultantSkillsAutoSuggestions from '../Containers/ConsultantSkillsAutoSuggestions';
 
 const PositionForm = props => {
   let position = props.position;
@@ -85,15 +86,10 @@ const PositionForm = props => {
               value={position.positionStatus}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup controlid="positionSkills">
             <Label for="positionSkills">Skills</Label>
-            <Input
-              onChange={props.handleChange}
-              type="text"
-              name="positionSkills"
-              id="positionSkills"
-              value={position.positionSkills}
-            />
+            <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
+            {props.position.positionSkills.map((skill, index) => { return <Badge key={index}>{skill}</Badge> })}
           </FormGroup>
           {button}
         </Form>
