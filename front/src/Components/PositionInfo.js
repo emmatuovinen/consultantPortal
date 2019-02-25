@@ -21,9 +21,12 @@ const PositionDetailsForConsultant = (props) => {
               <p>Location: {position.location}</p>
               <p>Description: {position.positionDescription}</p>
               <p>Position status: {props.positionStatus}</p>
-              <p>Skills:</p>
-              <ul>{props.positionSkills}</ul>          
+                       
           </Col>
+          <Col>
+          <p>Skills:</p>
+              <ul>{props.positionSkills}</ul>
+              </Col>
         </Row>
       </Container>
     </div>
