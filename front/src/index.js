@@ -13,6 +13,7 @@ import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
 import PositionSelection from './Containers/PositionSelection';
 import PositionForm from './Components/PositionForm';
+import AddNewPosition from './Containers/AddNewPosition';
 
 ReactDOM.render(
     <div>
@@ -22,9 +23,9 @@ ReactDOM.render(
                 <Route path='/profile' component={ProfileView} />
                 <Route path='/view-profile/:id' component={ViewNonEditableProfile} name='view-profile' />
                 <Route path='/position-details/:positionId' component={PositionSelection} name='position-details' />
-                <Route path='/positions' component={PositionsList} />
+                <Route exact path='/positions' component={PositionsList} />
                 <Route path='/auto-suggest' component={ConsultantSkillsAutoSuggestions} />
-                <Route path='/positions/add' componen={PositionForm} />
+                <Route path='/positions/add' component={AddNewPosition} />
                 <Route exact path='/' component={Home} />
             </Switch>
         </Router>

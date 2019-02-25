@@ -33,6 +33,9 @@ export default class NavigationBar extends Component {
               <NavLink href="/positions">Positions</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/positions/add">Add position</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/profile">Profile</NavLink>
             </NavItem>
             <NavItem>
