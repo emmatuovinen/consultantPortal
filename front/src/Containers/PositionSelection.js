@@ -123,12 +123,14 @@ class PositionSelection extends Component {
     });
     return (
       <Container>
-        <h2 align="center">Top candidates</h2>
         <Row>
-          {consultantsListed.slice(0, 3)}
+            <h2>Top candidates</h2>
         </Row>
-        <ColoredLine color="green" />
-        <h3 align='center'> And more candidates</h3>
+        <Row>
+            {consultantsListed.slice(0, 3)}
+        </Row>
+        <ColoredLine color="#7ab4ac" />
+            <h3 align='center'> And more candidates</h3>
         <Row>
           {consultantsListed.slice(3)}
         </Row>
@@ -174,29 +176,43 @@ class PositionSelection extends Component {
 
     return (
       <Container>
-        <h2>Position</h2>
-        {this.state.isEditing ? (
-          this.renderPositionForm()
-        ) : (
-        this.renderPositionInfo() )}
-        {this.state.userIsConsultant ? (
-          <Button outline color="danger">
-            <span
-              role="img"
-              aria-label="favorite"
-              title="Add to favorites"
-              onClick={this.handleAddFavorite}
-            >
-              ❤️ Add to favorites
-            </span>
-          </Button>
-        ) : (
-            <Button outline color="success" onClick={() => this.setState({isEditing: !this.state.isEditing, hideEditButton: !this.state.isHidden})} style={hideButton}>
-              Edit
-          </Button>
-          )}
-        {this.renderCandidates()} 
+        
+          <Row>
+            <h2>Position</h2>
+            {this.state.isEditing ? (
+              this.renderPositionForm()
+            ) : (
+            this.renderPositionInfo() )}
+          
+           
+          </Row>
+          <Row>
+          <Col xs={12} md={8}></Col>
+          <Col xs={6} md={4} >
+          {this.state.userIsConsultant ? (
+              <Button outline color="danger">
+                <span
+                  role="img"
+                  aria-label="favorite"
+                  title="Add to favorites"
+                  onClick={this.handleAddFavorite}
+                >
+                  ❤️ Add to favorites
+                </span>
+              </Button>
+            ) : (
+                <Button outline color="success" onClick={() => this.setState({isEditing: !this.state.isEditing, hideEditButton: !this.state.isHidden})} style={hideButton}>
+                  Edit
+              </Button>
+              )}
+            
+              </Col>
+          </Row>
+        <Row>
+        {this.renderCandidates()}
+        </Row>
       </Container>
+      
     );
   }
 }
