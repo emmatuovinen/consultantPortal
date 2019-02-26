@@ -1,11 +1,12 @@
 import React from "react";
 import { Row, ButtonGroup, Button, Badge, Container, Col} from "reactstrap";
+import '../Components/Styles/App.css';
 
 const PositionDetailsForConsultant = (props) => {
   let position = props.position;
 
   return (
-    <div>
+    <div className='position-info'>
       <Container>
         <Row>
         <Col xs="12" sm="4" md="4">
@@ -15,7 +16,7 @@ const PositionDetailsForConsultant = (props) => {
               height="100px"
               width="200px"
             />
-             <p>Skills:</p>
+             <h4 className='h4-green-uppercase'>Skills:</h4>
             {/* <ButtonGroup> */}
               {/* <Badge> */}{props.positionSkills}{/* </Badge> */}
               {/* <Badge>{props.positionSkills}</Badge> */}

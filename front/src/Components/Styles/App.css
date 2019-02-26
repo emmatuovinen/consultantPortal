@@ -15,3 +15,32 @@ li {
     font-family: 'Noto Serif', serif;
     font-size: 18px;
 }
+
+.h4-green-uppercase {
+    color: #02a781;
+    text-transform: uppercase;
+  /*   font-size: 20px; */
+    margin-left: 8px;
+}
+
+.h3-green-uppercase {
+    color: #02a781;
+    text-transform: uppercase;
+    margin-left: 8px;
+    /* letter-spacing: 0.1em; */
+    text-align: center;
+    /* margin-top: 40px; */
+    margin-bottom: 40px;
+}
+
+.candidates {
+    margin-top: 30px;
+}
+
+hr.line {
+    border-top: 1px solid #28a745;
+}
+
+.position-info {
+    margin-top: 10px;
+}

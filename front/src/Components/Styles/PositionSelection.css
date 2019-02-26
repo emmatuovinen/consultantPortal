@@ -7,3 +7,19 @@
 .add-to.col-6.col-md-4 {
     margin-bottom: 15px;
 }
+
+.position-logo {
+    margin-bottom: 30px;
+}
+
+span.skill-badge.badge.badge-secondary {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #000000;
+    border: 1px solid #05d48e;
+    font-family: 'Noto Sans', sans-serif;
+    margin: 6px;
+    padding: 6px;
+    letter-spacing: 0.14em;
+  
+}

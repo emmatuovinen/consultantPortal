@@ -131,10 +131,13 @@ class PositionSelection extends Component {
       );
     });
     return (
-      <div>
+      <div className="candidates">
       <Container>
           <Row>
-              <h3>Top candidates</h3>      
+              <Col>
+                  <hr className='line'></hr>
+                  <h3 className="h3-green-uppercase">Top candidates</h3>
+              </Col>        
           </Row>
 
           <Row>
@@ -142,18 +145,17 @@ class PositionSelection extends Component {
           </Row>
 
           <Row>
-              <ColoredLine color="#7ab4ac" />
-         
-            
-              <h3> And more candidates</h3>
-          
-        </Row>
+                          {/* <ColoredLine color="#7ab4ac" /> */}
+              <Col>
+                  <hr className='line'></hr>
+                  <h3 className="h3-green-uppercase"> And more candidates</h3>
+              </Col>
+          </Row>
         
         
-        <Row>
-          {consultantsListed.slice(3)}
-        </Row>
-
+          <Row>
+                {consultantsListed.slice(3)}
+          </Row>
       </Container>
       </div>
     );
@@ -163,7 +165,7 @@ class PositionSelection extends Component {
     let positionSkills = [];
     if (this.state.position.positionSkills != null) {
       positionSkills = this.state.position.positionSkills.map((skill, i) => {
-        return <Badge key={i}>{skill}</Badge>;
+        return <Badge className="skill-badge" key={i}>{skill}</Badge>;
       });
     }
 
