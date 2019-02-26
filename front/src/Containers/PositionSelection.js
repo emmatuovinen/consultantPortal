@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { GetPositionInfo, EditPosition } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
-import { Container, Button, Row, Col } from "reactstrap";
+import { Container, Button,Badge, Row, Col } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
 import PositionForm from "../Components/PositionForm";
 import UserCardSmall from '../Components/UserCardSmall';
+import '../Components/Styles/PositionSelection.css';
 
 const userRole = ["consultant", "AW"]; // test array
 
@@ -130,19 +131,31 @@ class PositionSelection extends Component {
       );
     });
     return (
+      <div>
       <Container>
-        <Row>
-            <h2>Top candidates</h2>
+          <Row>
+              <h3>Top candidates</h3>      
+          </Row>
+
+          <Row>
+              {consultantsListed.slice(0, 3)}
+          </Row>
+
+          <Row>
+              <ColoredLine color="#7ab4ac" />
+         
+            
+              <h3> And more candidates</h3>
+          
         </Row>
-        <Row>
-            {consultantsListed.slice(0, 3)}
-        </Row>
-        <ColoredLine color="#7ab4ac" />
-            <h3 align='center'> And more candidates</h3>
+        
+        
         <Row>
           {consultantsListed.slice(3)}
         </Row>
+
       </Container>
+      </div>
     );
   }
 
@@ -150,7 +163,7 @@ class PositionSelection extends Component {
     let positionSkills = [];
     if (this.state.position.positionSkills != null) {
       positionSkills = this.state.position.positionSkills.map((skill, i) => {
-        return <li key={i}>{skill}</li>;
+        return <Badge key={i}>{skill}</Badge>;
       });
     }
 
@@ -183,10 +196,12 @@ class PositionSelection extends Component {
     const hideButton = this.state.hideEditButton? {display: "none"} : {};
 
     return (
-      <Container>
+      <Container className='Position-form'>
         
-          <Row>
-            <h2>Position</h2>
+          {/* <Row>
+          <Col align='center'><h2 className='h2-heading'>Position</h2></Col>
+            </Row> */}
+            <Row>
             {this.state.isEditing ? (
               this.renderPositionForm()
             ) : (
@@ -195,8 +210,9 @@ class PositionSelection extends Component {
            
           </Row>
           <Row>
+            
           <Col xs={12} md={8}></Col>
-          <Col xs={6} md={4} >
+          <Col xs={6} md={4} className='add-to'>
           {this.state.userIsConsultant ? (
               <Button outline color="danger">
                 <span
