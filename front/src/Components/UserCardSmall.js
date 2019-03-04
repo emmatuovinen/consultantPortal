@@ -5,6 +5,7 @@ import {
     CardTitle, CardSubtitle, Col, Row, Badge
 } from 'reactstrap';
 import './Styles/SmallCard.css';
+import './Styles/App.css';
 
 const UserCardSmall = (props) => {
     const userProfileUrl = `/view-profile/${props.userId}`;
@@ -23,7 +24,7 @@ const UserCardSmall = (props) => {
     skillsmatched = skillsmatched.map((skill, index) => {
         if (skill !== null) {
             return (
-                <span key={index}><Badge color="success">{skill}</Badge></span>
+                <span key={index}><Badge className="small-card-skill-badge">{skill}</Badge></span>
             )
         } else {
             return null;

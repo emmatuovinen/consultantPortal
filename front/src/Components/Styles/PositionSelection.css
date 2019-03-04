@@ -12,7 +12,7 @@
     margin-bottom: 30px;
 }
 
-span.skill-badge.badge.badge-secondary {
+/* span.skill-badge.badge.badge-secondary {
     color: #000000;
     background-color: #ffffff;
     border-color: #000000;
@@ -21,5 +21,15 @@ span.skill-badge.badge.badge-secondary {
     margin: 6px;
     padding: 6px;
     letter-spacing: 0.14em;
-  
-}
+} */
+
+/* span.small-card-skill-badge.badge.badge-secondary {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #000000;
+    border: 1px solid #05d48e;
+    font-family: 'Noto Sans', sans-serif;
+    margin: 3px;
+    padding: 4px;
+    letter-spacing: 0.14em;
+} */
