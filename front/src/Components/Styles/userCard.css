@@ -20,6 +20,11 @@ a:-webkit-any-link {
     width: 150px;
 }
 
+.skills {
+    margin-right: 20px;
+    text-align: center;
+}
+
 .col-margin {
     margin: 10px;
 }
@@ -112,11 +117,11 @@ a:-webkit-any-link {
     }
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .positions {
         margin-left: -50px;
     }
-}
+} */
 
 
 @media (max-width: 991px) {
@@ -143,9 +148,19 @@ a:-webkit-any-link {
     }
 }
 
+@media (max-width: 415px) {
+    .skills {
+        padding-left: 20px;
+        text-align: left;
+    }
+}
+
 @media (max-width: 575px) {
     .skills {
-        padding-left: 30px;
+       
+        margin-right: 5px;
+        text-align: left;
+        padding-left: 25px;
     }
 }
 

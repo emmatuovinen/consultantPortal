@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardImg, CardTitle, CardSubtitle, Col, Row, Container } from 'reactstrap';
+import { CardImg, Badge, CardTitle, CardSubtitle, Col, Row, Container } from 'reactstrap';
 import './Styles/userCard.css';
 
 const UserCard = (props) => {
@@ -8,9 +8,9 @@ const UserCard = (props) => {
     let skills;
     if (props.userSkills) {
         skills = props.userSkills.map((skill, index) => {
-            return <li key={index}>{skill}</li>
+            return <Badge className="skill-badge" key={index}>{skill}</Badge>
         })
-            .slice(0, 4);
+            .slice(0, 5);
     }
 
     let roles;
