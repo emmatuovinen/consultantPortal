@@ -33,6 +33,16 @@ li {
     margin-bottom: 40px;
 }
 
+.h3-green-uppercase-top {
+    color: #02a781;
+    text-transform: uppercase;
+    margin-left: 8px;
+    /* letter-spacing: 0.1em; */
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .candidates {
     margin-top: 30px;
 }
@@ -60,9 +70,13 @@ span.small-card-skill-badge.badge.badge-secondary {
     color: #000000;
     background-color: #ffffff;
     border-color: #000000;
-    border: 1px solid #05d48e;
+    border: 1px solid #05d48e; 
     font-family: 'Noto Sans', sans-serif;
     margin: 3px;
     padding: 4px;
     letter-spacing: 0.14em;
+}
+
+.save-button {
+    text-align: center;
 }
