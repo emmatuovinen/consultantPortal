@@ -83,7 +83,7 @@ const theme = {
         fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
         fontSize: 16,
-        border: '1px solid #ced4da',
+        border: '1px solid #02a781', /* rgb(57, 221, 165) */
         borderTopLeftRadius: 4,
         borderTopRightRadius: 4,
         borderBottomLeftRadius: 4,
