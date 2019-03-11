@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, ButtonGroup, Button, Badge, Container, Col} from "reactstrap";
+import { Row, Container, Col} from "reactstrap";
 import '../Components/Styles/App.css';
 
 const PositionDetailsForConsultant = (props) => {
