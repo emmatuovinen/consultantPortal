@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardBody, Row, Col } from "reactstrap";
+import { Card, CardBody, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import './Styles/PositionCard.css';
 

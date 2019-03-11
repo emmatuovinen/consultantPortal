@@ -12,7 +12,6 @@ import ViewNonEditableProfile from './Containers/ViewNonEditableProfile';
 import NavigationBar from './Containers/NavigationBar';
 import PositionsList from './Containers/PositionsList';
 import PositionSelection from './Containers/PositionSelection';
-import PositionForm from './Components/PositionForm';
 import AddNewPosition from './Containers/AddNewPosition';
 
 ReactDOM.render(
