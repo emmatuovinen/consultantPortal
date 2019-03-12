@@ -47,6 +47,12 @@ nav.navbar {
     padding: 0 1.5rem;
 }
 
+@media (max-width: 870px) {
+    li.nav-item {
+        padding: 0 0.5rem;
+    }
+}
+
   a.nav-link {
     text-transform: uppercase;
     color: #047364;
@@ -54,4 +60,13 @@ nav.navbar {
 
   .navbar-toggler {
     padding: .25rem .75rem;
+}
+
+@media (max-width: 870px) {
+    .collapse.show.navbar-collapse {
+        width: 100%;
+        background-image: linear-gradient(to bottom, rgb(255, 255, 255) 13%, rgb(234, 255, 238) 51%, rgb(255, 255, 255) 84%, rgb(255, 255, 255, 0) 120%);
+        padding-bottom: 3em;
+        line-height: 1.5em;
+    }
 }
