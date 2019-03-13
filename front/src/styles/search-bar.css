@@ -19,13 +19,14 @@
     display: block;
     position: absolute;
     width: 15px;
-   /*  z-index: 3; */
+    z-index: 3;
     height: 15px;
     font-size: 20px;
     top: 11px;
     left: 16px;
     line-height: 32px;
     opacity: 0.6;
+    /* margin-top: 20px; */
   }
   
   .search-input > input {
@@ -38,6 +39,8 @@
     position: relative;
     font-family: 'Noto Serif', serif;
   
+    border: 1px solid rgb(57, 221, 165);
+
     border-radius: 15px 0px 15px 0px;
     -moz-border-radius: 15px 0px 15px 0px;
     -webkit-border-radius: 15px 0px 15px 0px;
@@ -45,8 +48,8 @@
     -webkit-box-shadow: 22px 18px 41px -14px rgba(0, 0, 0, 0.32);
     -moz-box-shadow: 22px 18px 41px -14px rgba(0, 0, 0, 0.32);
     box-shadow: 12px 18px 25px -15px rgba(0, 0, 0, 0.32);
-
-    background-color: rgba(235, 254, 242);
+  /*   margin-top: 23px; */
+  
   }
   
   .search-input > input:focus {

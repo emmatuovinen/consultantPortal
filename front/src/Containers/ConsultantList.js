@@ -57,7 +57,7 @@ class ConsultantList extends Component {
           onChange={this.searchUpdated}
           className="search-input" />
         {consultantsListed}
-      </Container>
+      </Container> /* tämän Containerin pitäisi kietoa koko paska sisäänsä. Ei sisäkkäisiä containereita! */
     );
   }
 }
