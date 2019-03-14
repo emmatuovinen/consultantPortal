@@ -36,7 +36,6 @@ class PositionsList extends Component {
     return (
       <div>
         {" "}
-        {/* Container */}
         {this.renderPositionFilter()}
       </div>
     );

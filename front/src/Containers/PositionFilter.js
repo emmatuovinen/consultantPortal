@@ -75,7 +75,7 @@ export default class PositionFilter extends Component {
         />
       );
     });
-    return <div>{positionsList}</div>; /* Container */
+    return <Row>{positionsList}</Row>;
   };
 
   render() {
@@ -88,7 +88,7 @@ export default class PositionFilter extends Component {
 
     return (
       <div className="search">
-        <div>
+      
           <Container>
             <Row>
               <Col sm="12" md={{ size: 6, offset: 3 }}>
@@ -115,7 +115,7 @@ export default class PositionFilter extends Component {
               : this.renderAllPositions(filteredPositions)}
           </div>
         </div>
-      </div>
+      
     );
   }
 }
