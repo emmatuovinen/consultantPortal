@@ -11,12 +11,13 @@ export function CreateUser(userData, callback) {
     phoneNumber: userData.phoneNumber,
     description: userData.description
   };
-  Axios.post(API + "Users/", newUser).then(response => {
-    callback(response);
-  })
-  .catch(error => {
-    callback(error.response);
-  });
+  Axios.post(API + "Users/", newUser)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function GetAllConsultants(callback) {
@@ -53,20 +54,20 @@ export function DeleteUser(userId, callback) {
   Axios.delete(API + "Users/" + userId)
     .then(response => {
       callback(response);
-  })
-  .catch(error => {
-    callback(error.response);
-  });
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
 export function EditProfile(userId, user, callback) {
   Axios.put(API + "Users/" + userId, user)
-  .then(response => {
-    callback(response);
-  })
-  .catch(error => {
-    callback(error.response);
-  });
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
 }
 
-export default function () { }
+export default function() {}
