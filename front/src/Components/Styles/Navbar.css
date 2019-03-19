@@ -1,72 +1,78 @@
 nav.navbar {
-	position: fixed;
-	z-index: 999; /* stays in place 'till Erkki sets z-index 1k */
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: rgba(255, 255, 255);
-    height: 70px;
-    /* margin-bottom: 50px; */ /* does nothing */
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
+  position: fixed;
+  z-index: 999; /* stays in place 'till Erkki sets z-index  to 1k or over */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255);
+  height: 70px;
+  /* margin-bottom: 50px; */ /* does nothing */
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
 }
 
 .navbar-logo {
-	margin-left: 1rem;	
+  margin-left: 1rem;
 }
 
 .navbar-logo a {
-	color: rgb(255, 255, 255);
-	text-decoration: none;
-	font-size: 2rem;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 2rem;
 }
 
 .navbar-logo {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-logo .img {
-	padding: 7px 14px;
+  padding: 7px 14px;
 }
 
 .spacer {
-	flex-grow: 50;
+  flex-grow: 50;
 }
 
 .NavItem {
-    display: flex;
-	height: 100%;
-	align-items: center;
-    cursor: pointer;
-    justify-content: space-between;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
 }
 
+li.nav-item {
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 870px) {
   li.nav-item {
-    padding: 0 1.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
+a.nav-link {
+  text-transform: uppercase;
+  color: #047364;
+}
+
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
 }
 
 @media (max-width: 870px) {
-    li.nav-item {
-        padding: 0 0.5rem;
-    }
-}
-
-  a.nav-link {
-    text-transform: uppercase;
-    color: #047364;
-}
-
-  .navbar-toggler {
-    padding: .25rem .75rem;
-}
-
-@media (max-width: 870px) {
-    .collapse.show.navbar-collapse {
-        width: 100%;
-        background-image: linear-gradient(to bottom, rgb(255, 255, 255) 13%, rgb(234, 255, 238) 51%, rgb(255, 255, 255) 84%, rgb(255, 255, 255, 0) 120%);
-        padding-bottom: 3em;
-        line-height: 1.5em;
-    }
+  .collapse.show.navbar-collapse {
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(255, 255, 255) 13%,
+      rgb(234, 255, 238) 51%,
+      rgb(255, 255, 255) 84%,
+      rgb(255, 255, 255, 0) 120%
+    );
+    padding-bottom: 3em;
+    line-height: 1.5em;
+  }
 }

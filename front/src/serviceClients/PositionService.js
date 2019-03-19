@@ -20,10 +20,14 @@ export function CreatePosition(positionData, callback) {
     Location: positionData.location,
     IsActive: positionData.isActive,
     PositionStatus: positionData.positionStatus,
-    PositionSkills: positionData.skills,
-
+    PositionSkills: positionData.skills
   };
-  console.log("Axios createposition: ", newPosition, "PositionData: ", positionData)
+  console.log(
+    "Axios createposition: ",
+    newPosition,
+    "PositionData: ",
+    positionData
+  );
   Axios.post(API + "positions/", newPosition)
     .then(response => {
       callback(response);
@@ -50,7 +54,7 @@ export function GetPositionInfo(positionId, callback) {
     })
     .catch(error => {
       callback(error.response);
-    })
+    });
 }
 
 export function EditPosition(positionId, position, callback) {
@@ -63,6 +67,4 @@ export function EditPosition(positionId, position, callback) {
     });
 }
 
-
-
-export default function () { }
+export default function() {}
