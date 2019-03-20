@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { GetPositionInfo, EditPosition } from "../serviceClients/PositionService";
+import {
+  GetPositionInfo,
+  EditPosition
+} from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
-import { Container, Button,Badge, Row, Col } from "reactstrap";
+import { Container, Button, Badge, Row, Col } from "reactstrap";
 import PositionInfo from "../Components/PositionInfo";
 import PositionForm from "../Components/PositionForm";
-import UserCardSmall from '../Components/UserCardSmall';
-import '../Components/Styles/PositionSelection.css';
-import '../Components/Styles/App.css';
+import UserCardSmall from "../Components/UserCardSmall";
+import "../Components/Styles/PositionSelection.css";
+import "../Components/Styles/App.css";
 
 const userRole = ["consultant", "AW"]; // test array
 
@@ -36,7 +39,7 @@ class PositionSelection extends Component {
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
         let position = response.data;
-        let userIsConsultant = (this.state.userRole === "consultant");
+        let userIsConsultant = this.state.userRole === "consultant";
         this.setState({ position, userIsConsultant });
       } else {
         console.log("Error: " + response.status);
@@ -59,40 +62,39 @@ class PositionSelection extends Component {
 
   saveEditedPosition = () => {
     EditPosition(this.state.positionId, this.state.position, response => {
-        if (response.status === 200) {
-          console.log(response.status)
-        } else {
-          console.log("error", response.status);
-        }
-      });
-    
+      if (response.status === 200) {
+        console.log(response.status);
+      } else {
+        console.log("error", response.status);
+      }
+    });
   };
 
   handleChange = e => {
     const id = e.target.id;
     const value = e.target.value;
-    let change = { ...this.state.position }
+    let change = { ...this.state.position };
 
     // when adding skills from the autosuggest bar you cannot get the value
-        // so using innerHTML
-        if (value === undefined) {
-          change.positionSkills.push(e.target.innerHTML);
-      }
-
+    // so using innerHTML
+    if (value === undefined) {
+      change.positionSkills.push(e.target.innerHTML);
+    }
 
     change[id] = value;
 
     this.setState({
-      position: change,
+      position: change
     });
-  }
+  };
 
   handleTopCandidates = () => {
     let consultants = [...this.state.consultants];
-    let candidates = consultants.map(consultant => {
-      return this.handleCompare(consultant);
-    })
-      .sort((a, b) => b.hits - a.hits)
+    let candidates = consultants
+      .map(consultant => {
+        return this.handleCompare(consultant);
+      })
+      .sort((a, b) => b.hits - a.hits);
     return candidates;
   };
 
@@ -102,7 +104,9 @@ class PositionSelection extends Component {
     let hits = 0;
 
     userSkills.map(skill => {
-      if (positionSkills.includes(skill)) { hits++ }
+      if (positionSkills.includes(skill)) {
+        hits++;
+      }
       return skill;
     });
     return { ...consultant, hits };
@@ -110,7 +114,7 @@ class PositionSelection extends Component {
 
   renderCandidates = () => {
     let candidates = this.handleTopCandidates();
-    let positionSkills = [...this.state.position.positionSkills]
+    let positionSkills = [...this.state.position.positionSkills];
     let consultantsListed = candidates.map((consultant, index) => {
       return (
         <Col key={index}>
@@ -127,46 +131,47 @@ class PositionSelection extends Component {
             email={consultant.email}
             pictureUrl={consultant.pictureUrl}
             positionSkills={positionSkills}
-          >Skills matched: {consultant.hits}/{positionSkills.length}</UserCardSmall>
+          >
+            Skills matched: {consultant.hits}/{positionSkills.length}
+          </UserCardSmall>
         </Col>
       );
     });
     return (
       <div className="candidates">
-      <Container>
+        <Container>
           <Row>
-              <Col>
-                  <hr className='line'></hr>
-                  <h3 className="h3-green-uppercase">Top candidates</h3>
-              </Col>        
+            <Col>
+              <hr className="line" />
+              <h3 className="h3-green-uppercase">Top candidates</h3>
+            </Col>
           </Row>
 
-          <Row>
-              {consultantsListed.slice(0, 3)}
-          </Row>
+          <Row>{consultantsListed.slice(0, 3)}</Row>
 
           <Row>
-                          {/* <ColoredLine color="#7ab4ac" /> */}
-              <Col>
-                  <hr className='line'></hr>
-                  <h3 className="h3-green-uppercase"> And more candidates</h3>
-              </Col>
+            {/* <ColoredLine color="#7ab4ac" /> */}
+            <Col>
+              <hr className="line" />
+              <h3 className="h3-green-uppercase"> And more candidates</h3>
+            </Col>
           </Row>
-        
-        
-          <Row>
-                {consultantsListed.slice(3)}
-          </Row>
-      </Container>
+
+          <Row>{consultantsListed.slice(3)}</Row>
+        </Container>
       </div>
     );
-  }
+  };
 
   renderPositionInfo = () => {
     let positionSkills = [];
     if (this.state.position.positionSkills != null) {
       positionSkills = this.state.position.positionSkills.map((skill, i) => {
-        return <Badge className="skill-badge" key={i}>{skill}</Badge>;
+        return (
+          <Badge className="skill-badge" key={i}>
+            {skill}
+          </Badge>
+        );
       });
     }
 
@@ -195,44 +200,48 @@ class PositionSelection extends Component {
   };
 
   render() {
-    
-    const hideButton = this.state.hideEditButton? {display: "none"} : {};
+    const hideButton = this.state.hideEditButton ? { display: "none" } : {};
 
     return (
-        <Container className='Position-form'>
-            <Row>
-                {this.state.isEditing ? (
-                  this.renderPositionForm()
-                ) : (
-                this.renderPositionInfo() )} 
-            </Row>
-            <Row> 
-                <Col xs={12} md={8}></Col>
-                <Col xs={6} md={4} className='add-to'>
-                    {this.state.userIsConsultant ? (
-                    <Button outline color="danger">
-                        <span
-                            role="img"
-                            aria-label="favorite"
-                            title="Add to favorites"
-                            onClick={this.handleAddFavorite}
-                          >
-                            ❤️ Add to favorites
-                        </span>
-                    </Button>
-            ) : (
-                <Button outline color="success" onClick={() => this.setState({isEditing: !this.state.isEditing, hideEditButton: !this.state.isHidden})} style={hideButton}>
-                  Edit
-              </Button>
-              )}
-            
-              </Col>
-          </Row>
+      <Container className="Position-form">
         <Row>
-        {this.renderCandidates()}
+          {this.state.isEditing
+            ? this.renderPositionForm()
+            : this.renderPositionInfo()}
         </Row>
+        <Row>
+          <Col xs={12} md={8} />
+          <Col xs={6} md={4} className="add-to">
+            {this.state.userIsConsultant ? (
+              <Button outline color="danger">
+                <span
+                  role="img"
+                  aria-label="favorite"
+                  title="Add to favorites"
+                  onClick={this.handleAddFavorite}
+                >
+                  ❤️ Add to favorites
+                </span>
+              </Button>
+            ) : (
+              <Button
+                outline
+                color="success"
+                onClick={() =>
+                  this.setState({
+                    isEditing: !this.state.isEditing,
+                    hideEditButton: !this.state.isHidden
+                  })
+                }
+                style={hideButton}
+              >
+                Edit
+              </Button>
+            )}
+          </Col>
+        </Row>
+        <Row>{this.renderCandidates()}</Row>
       </Container>
-      
     );
   }
 }
