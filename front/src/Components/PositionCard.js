@@ -20,9 +20,9 @@ const PositionCard = props => {
           <Link to={positionUrl}>
             <CardBody>
               <Row>
-                <Col className="two-logos" xs="12" sm="4" lg="4">
+                <Col className="logo-area" xs="12" sm="4" lg="4">
                   <div>
-                    <b> place for AW-logo + company-logo </b>
+                    <b> logo area </b>
                   </div>
                 </Col>
 
