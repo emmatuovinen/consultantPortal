@@ -74,7 +74,7 @@ export default class PositionFilter extends Component {
         />
       );
     });
-    return <Row>{positionsList}</Row>;
+    return <Container>{positionsList}</Container>;
   };
 
   render() {
