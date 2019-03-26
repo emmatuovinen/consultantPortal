@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { GetAllPositions } from "../serviceClients/PositionService";
-import { Container } from "reactstrap";
 import PositionFilter from "./PositionFilter";
 
 class PositionsList extends Component {

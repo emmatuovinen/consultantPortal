@@ -26,7 +26,7 @@ export default class NavigationBar extends Component {
 
   render() {
     return (
-      <nav class="navbar navbar-expand-md">
+      <nav className="navbar navbar-expand-md">
         <Navbar>
           <div className="navbar-logo">
             <a href="/">
