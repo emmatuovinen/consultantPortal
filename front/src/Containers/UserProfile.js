@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
+import "../Components/Styles/App.css";
 
 import {
   GetConsultantInfo,
@@ -137,8 +138,8 @@ export default class UserProfile extends Component {
           ? this.renderUserProfileForm()
           : this.renderUserProfileDetails()}
         <Row>
-          <Col lg="1" /*style={{ backgroundColor: 'yellow' }}*/ />
-          <Col lg="11">
+          <Col lg="5" /*style={{ backgroundColor: 'yellow' }}*/ />
+          <Col lg="7">
             <Button onClick={this.editMode} value={buttonText}>
               {buttonText}
             </Button>
