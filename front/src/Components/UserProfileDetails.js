@@ -26,12 +26,12 @@ const UserProfileDetails = props => {
 
   return (
     <Row>
-      <Col lg="1" />
-      <Col lg="10">
+      <Col lg="2" />
         <h3>
           {user.firstName} {user.lastName}
         </h3>
-        <p>{user.role}</p>
+        {/* <p>{user.role}</p> */}
+        <Col lg="9">
         <Row>
           <Col md="6" style={{ textAlign: "center" }}>
             <p>

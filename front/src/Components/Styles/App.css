@@ -87,3 +87,12 @@ span.small-card-skill-badge.badge.badge-secondary {
 .save-button {
   text-align: center;
 }
+
+button.btn.btn-secondary {
+  background-color: #72c151;
+}
+
+button.back-button.btn.btn-secondary {
+  background-color: #047364;
+}
+

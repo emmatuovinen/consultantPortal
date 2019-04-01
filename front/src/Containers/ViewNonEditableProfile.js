@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Button, Container } from "reactstrap";
+import { Button, Col, Row, Container } from "reactstrap";
 
 import { GetConsultantInfo } from "../serviceClients/UserService";
 import UserProfileDetails from "../Components/UserProfileDetails";
+import "../Components/Styles/App.css";
 
 class ViewNonEditableProfile extends Component {
   state = {
@@ -38,12 +39,20 @@ class ViewNonEditableProfile extends Component {
   render() {
     return (
       <Container>
+        <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+      
         <h2>Consultant profile</h2>
+        </Col>
+        </Row>
         <UserProfileDetails
           user={this.state.user}
           userIsConsultant={this.state.userIsConsultant}
         />
-        <Button onClick={this.returnToFrontPage}>Back</Button>
+      <Row>
+          {/* <Col sm="12" md={{ size: 6, offset: 3 }}> */}<Button className="back-button" onClick={this.returnToFrontPage}>Back</Button>{/* </Col> */}
+        </Row>
+     
       </Container>
     );
   }
