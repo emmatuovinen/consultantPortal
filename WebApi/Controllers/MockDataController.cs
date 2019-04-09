@@ -39,7 +39,7 @@ namespace WebApi.Controllers
                 {
                     UserId = await _userRepo.GetNextId(),
                     FirstName = "Myyjä" + i,
-                    LastName = "Myyntiretku" + i,
+                    LastName = "Mallikas" + i,
                     Role = "AM",
                     Email = "pekka" + i + "@hotmail.com",
                     PhoneNumber = "05012345" + i,
