@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+
+
 const API = "http://localhost:5000/api/";
 
 export function CreateUser(userData, callback) {
@@ -19,6 +21,7 @@ export function CreateUser(userData, callback) {
       callback(error.response);
     });
 }
+
 
 export function GetAllConsultants(callback) {
   Axios.get(API + "Users/Consultants")
@@ -49,6 +52,19 @@ export function GetConsultantInfo(userId, callback) {
       callback(error.response);
     });
 }
+
+//Get consultant by email
+export function GetConsultantInfobyEmail(userEmail, callback) {
+  Axios.get(API + "Users/" + userEmail)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
+}
+
+
 
 export function DeleteUser(userId, callback) {
   Axios.delete(API + "Users/" + userId)

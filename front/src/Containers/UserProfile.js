@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
 import "../Components/Styles/App.css";
+import {authContext} from '../adalconfig'
 
 import {
   GetConsultantInfo,
   EditProfile,
-  DeleteUser
+  DeleteUser,
+  GetConsultantInfobyEmail
 } from "../serviceClients/UserService";
 import UserProfileForm from "../Components/UserProfileForm";
 import UserProfileDetails from "../Components/UserProfileDetails";
 
-const USER_ID = "2"; // hard coded userId for demo purposes
+//const USER_ID = "2"; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
   state = {
-    userId: USER_ID,
+    //userId: this.state.user.email,
+    userEmail: authContext._user.userName,
     user: {
       firstName: "",
       lastName: "",
@@ -34,7 +37,18 @@ export default class UserProfile extends Component {
   };
 
   componentDidMount() {
-    GetConsultantInfo(this.state.userId, response => {
+    // GetConsultantInfo(this.state.userId, response => {
+    //   if (response.status === 200) {
+    //     let user = response.data;
+    //     let userIsConsultant = user.role === "Consultant";
+    //     user.userSkills = user.userSkills || [];
+    //     this.setState({ user, userIsConsultant });
+    //   } else {
+    //     console.log("error", response.status);
+    //     // some kind of redirect to an error page?
+    //   }
+    // });
+    GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
@@ -45,11 +59,18 @@ export default class UserProfile extends Component {
         // some kind of redirect to an error page?
       }
     });
+    
   }
 
+  // handleDeleteUser = () => {
+  //   // now we can only delete our hard coded user, update this in the future
+  //   DeleteUser(USER_ID);
+  // };
+
+  
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future
-    DeleteUser(USER_ID);
+    DeleteUser(this.state.userId);
   };
 
   editMode = btn => {
@@ -128,8 +149,15 @@ export default class UserProfile extends Component {
       />
     );
   }
-
+  logout () {
+    authContext.logOut()
+  }
+  
   render() {
+    console.log(authContext)
+
+    //console.log(getToken(authContext._user.userName))
+    console.log(authContext._user.userName)
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>
@@ -156,6 +184,8 @@ export default class UserProfile extends Component {
             >
               Delete Profile
             </Button>
+            <Button onClick={this.logout}>Log out</Button>
+            
           </Col>
         </Row>
       </Container>

@@ -55,6 +55,7 @@ export default class NavigationBar extends Component {
               <NavItem>
                 <NavLink href="/">Front page</NavLink>
               </NavItem>
+              
             </Nav>
           </Collapse>
         </Navbar>

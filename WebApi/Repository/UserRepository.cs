@@ -36,6 +36,16 @@ namespace WebApi.Repository
                 .Find(filter)
                 .FirstOrDefaultAsync();
         }
+        //Get user by email
+        public Task<User> GetUserbyEmail(string email)
+        {
+            FilterDefinition<User> filter =
+                Builders<User>.Filter.Eq(u => u.Email, email);
+            return _context
+                .Users
+                .Find(filter)
+                .FirstOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<User>> GetAllConsultants()
         {
