@@ -50,6 +50,18 @@ export function GetConsultantInfo(userId, callback) {
     });
 }
 
+//Get consultant by email
+export function GetConsultantInfobyEmail(userEmail, callback) {
+  Axios.get(API + "Users/" + userEmail)
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
+}
+
+
 export function DeleteUser(userId, callback) {
   Axios.delete(API + "Users/" + userId)
     .then(response => {

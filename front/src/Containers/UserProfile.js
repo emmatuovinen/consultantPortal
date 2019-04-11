@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
 import "../Components/Styles/App.css";
-import {authContext} from '../adalconfig'
+import {authContext, getToken} from '../adalconfig'
 
 import {
   GetConsultantInfo,
@@ -134,6 +134,7 @@ export default class UserProfile extends Component {
   }
 
   render() {
+    console.log(getToken(authContext._user.userName))
     console.log(authContext._user.userName)
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (

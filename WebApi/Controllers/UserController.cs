@@ -40,6 +40,21 @@ namespace WebApi.Controllers
 
             return new ObjectResult(user);
         }
+
+        // GET api/users/{email}
+        [HttpGet("{email}", Name = "GetUserbyEmail")]
+        public async Task<ActionResult<User>> GetUserbyEmail(string email)
+        {
+            var user = await _repo.GetUserbyEmail(email);
+
+            if (user == null)
+            {
+                return new NotFoundResult();
+            }
+
+            return new ObjectResult(user);
+        }
+
         // GET api/users/consultants
         [HttpGet, Route("consultants")]
         public async Task<ActionResult<IEnumerable<User>>> GetAllConsultants()
