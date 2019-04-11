@@ -6,16 +6,18 @@ import {authContext, getToken} from '../adalconfig'
 import {
   GetConsultantInfo,
   EditProfile,
-  DeleteUser
+  DeleteUser,
+  GetConsultantInfobyEmail
 } from "../serviceClients/UserService";
 import UserProfileForm from "../Components/UserProfileForm";
 import UserProfileDetails from "../Components/UserProfileDetails";
 
-const USER_ID = "2"; // hard coded userId for demo purposes
+//const USER_ID = "2"; // hard coded userId for demo purposes
 
 export default class UserProfile extends Component {
   state = {
-    userId: USER_ID,
+    //userId: this.state.user.email,
+    userEmail: authContext._user.userName,
     user: {
       firstName: "",
       lastName: "",
@@ -35,7 +37,18 @@ export default class UserProfile extends Component {
   };
 
   componentDidMount() {
-    GetConsultantInfo(this.state.userId, response => {
+    // GetConsultantInfo(this.state.userId, response => {
+    //   if (response.status === 200) {
+    //     let user = response.data;
+    //     let userIsConsultant = user.role === "Consultant";
+    //     user.userSkills = user.userSkills || [];
+    //     this.setState({ user, userIsConsultant });
+    //   } else {
+    //     console.log("error", response.status);
+    //     // some kind of redirect to an error page?
+    //   }
+    // });
+    GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
@@ -48,9 +61,15 @@ export default class UserProfile extends Component {
     });
   }
 
+  // handleDeleteUser = () => {
+  //   // now we can only delete our hard coded user, update this in the future
+  //   DeleteUser(USER_ID);
+  // };
+
+  
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future
-    DeleteUser(USER_ID);
+    DeleteUser(this.state.userId);
   };
 
   editMode = btn => {
