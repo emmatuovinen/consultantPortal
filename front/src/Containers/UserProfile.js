@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
 import "../Components/Styles/App.css";
+import {authContext} from '../adalconfig'
 
 import {
   GetConsultantInfo,
@@ -128,8 +129,12 @@ export default class UserProfile extends Component {
       />
     );
   }
+  logout () {
+    authContext.logOut()
+  }
 
   render() {
+    console.log(authContext._user.userName)
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>
@@ -156,6 +161,8 @@ export default class UserProfile extends Component {
             >
               Delete Profile
             </Button>
+            <Button onClick={this.logout}>Log out</Button>
+            
           </Col>
         </Row>
       </Container>
