@@ -4,8 +4,8 @@ import { Form, FormGroup, Label, Input, Badge } from "reactstrap";
 import ConsultantSkillsAutoSuggestions from "../Containers/ConsultantSkillsAutoSuggestions";
 
 // HARD CODED FOR DEMO PURPOSES
-const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
-const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
+// const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
+// const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileForm = props => {
   return (
@@ -24,7 +24,7 @@ const UserProfileForm = props => {
           type="text"
           name="roleInterests"
           id="roleInterests"
-          value={ROLE_INTERESTS}
+          value={props.user.preferableRoles}
         />
       </FormGroup>
       <FormGroup controlid="lessPreferableRoles">
@@ -34,7 +34,7 @@ const UserProfileForm = props => {
           type="text"
           name="lessPreferableRoles"
           id="lessPreferableRoles"
-          value={LESS_PREFERABLE_ROLES}
+          value={props.user.lessPreferableRoles}
         />
       </FormGroup>
     </Form>

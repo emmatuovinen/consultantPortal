@@ -21,13 +21,5 @@ export const getToken = () => {
   return authContext.getCachedToken(authContext.config.clientId);
  };
 
- export function  getGroupsOfUser(getToken, callback) {
-  Axios.get(URL, { headers: { Authorization: 'Bearer' + getToken } }).then(response => {
-    // If request is good...
-    console.log(response.data);
-  })
-  .catch((error) => {
-    console.log('error 3 ' + error);
-  });
- }
+ 
  

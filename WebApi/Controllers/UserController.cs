@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         // GET api/users/{id}
         [HttpGet("{id}", Name = "GetUser")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        public async Task<ActionResult<User>> Get(long id)
         {
             var user = await _repo.GetUser(id);
 
