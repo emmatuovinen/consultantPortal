@@ -18,11 +18,8 @@ class Home extends Component {
         // pretty-printed JSON-stringified object.
         response.json()
           .then((responseJson) => {
-            console.log(responseJson)
-            console.log(responseJson.value)
             this.setState({ apiResponse: responseJson.value })
-            console.log(this.state.apiResponse)
-            console.log(this.state.apiResponse[0].displayName)
+            console.log("Home.js: ", this.state.apiResponse[0].displayName)
           });
       })
       .catch((error) => {
