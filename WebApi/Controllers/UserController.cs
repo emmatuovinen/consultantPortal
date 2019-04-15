@@ -30,10 +30,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{id}", Name = "GetUser")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        [HttpGet("{_id}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(long _id)
         {
-            var user = await _repo.GetUser(id);
+            var user = await _repo.GetUser(_id);
 
             if (user == null)
             {
