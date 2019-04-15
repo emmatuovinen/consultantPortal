@@ -1,5 +1,5 @@
 import { AuthenticationContext, adalFetch, withAdalLogin } from 'react-adal';
-import Axios from "axios";
+
 
 export const adalConfig = {
   tenant: 'fa115574-a2e3-4c35-9b98-e8741745b477',
