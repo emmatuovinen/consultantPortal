@@ -47,7 +47,7 @@ export default class NavigationBar extends Component {
               <NavItem>
                 <NavLink href="/positions">Positions</NavLink>
               </NavItem>
-              {this.props.userRole == "Sales"
+              {this.props.userRole === "Sales"
                 ? <Fragment>
                     <NavItem>
                       <NavLink href="/positions/add">Add position</NavLink>

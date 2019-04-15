@@ -65,7 +65,6 @@ export function GetConsultantInfobyEmail(userEmail, callback) {
 }
 
 
-
 export function DeleteUser(userId, callback) {
   Axios.delete(API + "Users/" + userId)
     .then(response => {
