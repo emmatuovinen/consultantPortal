@@ -10,7 +10,7 @@ using WebApi.Repository;
 
 namespace WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class UsersController : ControllerBase
