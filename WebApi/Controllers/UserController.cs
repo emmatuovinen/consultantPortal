@@ -10,7 +10,7 @@ using WebApi.Repository;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class UsersController : ControllerBase
@@ -31,7 +31,7 @@ namespace WebApi.Controllers
 
         // GET api/users/{id}
         [HttpGet("{id}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(long id)
+        public async Task<ActionResult<User>> GetUser(long id)
         {
             var user = await _repo.GetUser(id);
 
