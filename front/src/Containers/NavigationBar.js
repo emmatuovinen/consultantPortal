@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   Navbar,
   NavbarToggler,
@@ -25,6 +25,7 @@ export default class NavigationBar extends Component {
   }
 
   render() {
+    console.log("Navi: ", this.props.userRole);
     return (
       <nav className="navbar navbar-expand-md">
         <Navbar>
@@ -46,16 +47,26 @@ export default class NavigationBar extends Component {
               <NavItem>
                 <NavLink href="/positions">Positions</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/positions/add">Add position</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/profile">Profile</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">Front page</NavLink>
-              </NavItem>
-              
+              {this.props.userRole == "Sales"
+                ? <Fragment>
+                    <NavItem>
+                      <NavLink href="/positions/add">Add position</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/profile">Profile</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/">Front page</NavLink>
+                    </NavItem>
+                </Fragment>
+                : <Fragment>
+                    <NavItem>
+                      <NavLink href="/profile">Profile</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/">Front page</NavLink>
+                    </NavItem>
+                </Fragment>}
             </Nav>
           </Collapse>
         </Navbar>
