@@ -17,7 +17,7 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 export default class UserProfile extends Component {
   state = {
     //userId: this.state.user.email,
-    userEmail: authContext._user.userName,
+    userEmail: "mikko@malli.fi", //authContext._user.userName,
     user: {
       firstName: "",
       lastName: "",
@@ -158,7 +158,7 @@ export default class UserProfile extends Component {
     console.log(authContext)
 
     //console.log(getToken(authContext._user.userName))
-    console.log(authContext._user.userName)
+    //console.log(authContext._user.userName)
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>

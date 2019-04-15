@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from "react";
 import {
+  Container,
   Navbar,
   NavbarToggler,
   Collapse,
   Nav,
   NavItem,
-  NavLink
-  /*  NavbarBrand */
+  NavLink,
+  NavbarBrand
 } from "reactstrap";
+import { Link } from 'react-router-dom';
 import "../Components/Styles/Navbar.css";
 import logo from "../Components/images/aw-logo.svg";
 
@@ -48,25 +50,16 @@ export default class NavigationBar extends Component {
                 <NavLink href="/positions">Positions</NavLink>
               </NavItem>
               {this.props.userRole == "Sales"
-                ? <Fragment>
-                    <NavItem>
+                ?   <NavItem>
                       <NavLink href="/positions/add">Add position</NavLink>
                     </NavItem>
-                    <NavItem>
-                      <NavLink href="/profile">Profile</NavLink>
+                : <div />}
+                <NavItem>
+                      <NavLink href="/profile">My Profile</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink href="/">Front page</NavLink>
+                      <NavLink href="/">Login</NavLink>
                     </NavItem>
-                </Fragment>
-                : <Fragment>
-                    <NavItem>
-                      <NavLink href="/profile">Profile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/">Front page</NavLink>
-                    </NavItem>
-                </Fragment>}
             </Nav>
           </Collapse>
         </Navbar>
