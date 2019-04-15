@@ -16,9 +16,9 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
-    //userId: this.state.user.email,
-    userEmail: authContext._user.userName,
+    userEmail: authContext._user.userName, //authContext._user.userName
     user: {
+      userId: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -37,17 +37,7 @@ export default class UserProfile extends Component {
   };
 
   componentDidMount() {
-    // GetConsultantInfo(this.state.userId, response => {
-    //   if (response.status === 200) {
-    //     let user = response.data;
-    //     let userIsConsultant = user.role === "Consultant";
-    //     user.userSkills = user.userSkills || [];
-    //     this.setState({ user, userIsConsultant });
-    //   } else {
-    //     console.log("error", response.status);
-    //     // some kind of redirect to an error page?
-    //   }
-    // });
+
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
@@ -60,22 +50,19 @@ export default class UserProfile extends Component {
       }
     });
     
+  
   }
-
-  // handleDeleteUser = () => {
-  //   // now we can only delete our hard coded user, update this in the future
-  //   DeleteUser(USER_ID);
-  // };
 
   
   handleDeleteUser = () => {
-    // now we can only delete our hard coded user, update this in the future
-    DeleteUser(this.state.userId);
+    // now we can only delete our hard coded user, update this in the future -->
+    // Now deletes "real user" from test database
+    DeleteUser(this.state.user.userId);
   };
 
   editMode = btn => {
     if (btn.target.value === "Save") {
-      EditProfile(this.state.userId, this.state.user, response => {
+      EditProfile(this.state.user.userId, this.state.user, response => {
         if (response.status === 200) {
           console.log("success", response.status);
           // some kind of 'save successfull' message for the user?
@@ -155,10 +142,10 @@ export default class UserProfile extends Component {
   }
   
   render() {
-    console.log(authContext)
+    //console.log(authContext)
 
     //console.log(getToken(authContext._user.userName))
-    console.log(authContext._user.userName)
+    //console.log(authContext._user.userName)
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>

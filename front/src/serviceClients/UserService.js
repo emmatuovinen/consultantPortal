@@ -1,8 +1,10 @@
 import Axios from "axios";
+import { getToken } from "../adalconfig";
 
 
 
 const API = "http://localhost:5000/api/";
+const AuthStr = 'Bearer ' + getToken();
 
 export function CreateUser(userData, callback) {
   let newUser = {
@@ -13,7 +15,7 @@ export function CreateUser(userData, callback) {
     phoneNumber: userData.phoneNumber,
     description: userData.description
   };
-  Axios.post(API + "Users/", newUser)
+  Axios.post(API + "Users/", newUser, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -24,7 +26,7 @@ export function CreateUser(userData, callback) {
 
 
 export function GetAllConsultants(callback) {
-  Axios.get(API + "Users/Consultants")
+  Axios.get(API + "Users/Consultants", { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -34,7 +36,7 @@ export function GetAllConsultants(callback) {
 }
 
 export function GetAllUsers(callback) {
-  Axios.get(API + "Users/")
+  Axios.get(API + "Users/",  { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response.data);
     })
@@ -44,7 +46,7 @@ export function GetAllUsers(callback) {
 }
 
 export function GetConsultantInfo(userId, callback) {
-  Axios.get(API + "Users/" + userId)
+  Axios.get(API + "Users/" + userId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -55,7 +57,7 @@ export function GetConsultantInfo(userId, callback) {
 
 //Get consultant by email
 export function GetConsultantInfobyEmail(userEmail, callback) {
-  Axios.get(API + "Users/" + userEmail)
+  Axios.get(API + "Users/" + userEmail, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -66,7 +68,7 @@ export function GetConsultantInfobyEmail(userEmail, callback) {
 
 
 export function DeleteUser(userId, callback) {
-  Axios.delete(API + "Users/" + userId)
+  Axios.delete(API + "Users/" + userId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -76,7 +78,7 @@ export function DeleteUser(userId, callback) {
 }
 
 export function EditProfile(userId, user, callback) {
-  Axios.put(API + "Users/" + userId, user)
+  Axios.put(API + "Users/" + userId, user, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })

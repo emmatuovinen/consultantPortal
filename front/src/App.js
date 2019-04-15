@@ -11,7 +11,7 @@ import PositionsList from "./Containers/PositionsList";
 import PositionSelection from "./Containers/PositionSelection";
 import AddNewPosition from "./Containers/AddNewPosition";
 
-import { adalApiFetch } from './adalconfig'
+import { adalApiFetch, getToken } from './adalconfig'
 
 
 class App extends Component {
@@ -21,11 +21,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    
     adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
       .then((response) => {
         response.json()
           .then((responseJson) => {
+            console.log(responseJson)
             this.setState({ apiRes: responseJson.value[0].displayName });
           });
       })
