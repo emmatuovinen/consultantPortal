@@ -1,7 +1,7 @@
 import { runWithAdal } from 'react-adal';
 import { authContext } from './adalconfig';
 
-const DO_NOT_LOGIN = false;
+const DO_NOT_LOGIN = true;
 
 runWithAdal(authContext, () => {
 
@@ -9,3 +9,6 @@ runWithAdal(authContext, () => {
   require('./indexApp.js');
 
 },DO_NOT_LOGIN);
+
+
+

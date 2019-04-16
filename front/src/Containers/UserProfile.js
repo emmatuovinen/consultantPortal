@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
 import "../Components/Styles/App.css";
-import {authContext} from '../adalconfig'
+import { authContext } from '../adalconfig'
 
 import {
   GetConsultantInfo,
@@ -16,7 +16,7 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
-    userEmail: authContext._user.userName, //authContext._user.userName
+    userEmail: "", //authContext._user.userName
     user: {
       userId: "",
       firstName: "",
@@ -40,6 +40,7 @@ export default class UserProfile extends Component {
 
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
+        
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
         user.userSkills = user.userSkills || [];
@@ -49,11 +50,11 @@ export default class UserProfile extends Component {
         // some kind of redirect to an error page?
       }
     });
-    
-  
+
+
   }
 
-  
+
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future -->
     // Now deletes "real user" from test database
@@ -137,15 +138,13 @@ export default class UserProfile extends Component {
       />
     );
   }
-  logout () {
+  logout() {
     authContext.logOut()
   }
   
-  render() {
-    //console.log(authContext)
 
-    //console.log(getToken(authContext._user.userName))
-    //console.log(authContext._user.userName)
+  render() {
+
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>
@@ -173,7 +172,7 @@ export default class UserProfile extends Component {
               Delete Profile
             </Button>
             <Button onClick={this.logout}>Log out</Button>
-            
+
           </Col>
         </Row>
       </Container>
