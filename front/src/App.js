@@ -41,7 +41,6 @@ class App extends Component {
       .then((response) => {
         response.json()
           .then((responseJson) => {
-            console.log(responseJson)
             this.setState({ userRole: responseJson.value[0].displayName });
           });
       })
@@ -65,8 +64,6 @@ class App extends Component {
     authContext.logOut()
   }
   render() {
-    console.log("auth", this.state.hasAuthenticated);
-    console.log("user", this.state.userRole);
 
     const childProps = {
       isAuthenticated: this.state.hasAuthenticated,

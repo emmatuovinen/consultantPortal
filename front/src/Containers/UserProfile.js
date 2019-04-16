@@ -130,7 +130,7 @@ export default class UserProfile extends Component {
   }
 
   renderUserProfileDetails() {
-    console.log(this.state.user)
+
     return (
       <UserProfileDetails
         user={this.state.user}

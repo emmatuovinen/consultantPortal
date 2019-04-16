@@ -24,7 +24,6 @@ export default class NavigationBar extends Component {
   }
 
   render() {
-    console.log("Navi: ", this.props.childProps);
     return (
       <div>
       {this.props.childProps.isAuthenticated === false
