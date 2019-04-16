@@ -1,15 +1,12 @@
-import React, { Component, Fragment } from "react";
+import React, { Component} from "react";
 import {
-  Container,
   Navbar,
   NavbarToggler,
   Collapse,
   Nav,
   NavItem,
   NavLink,
-  NavbarBrand
 } from "reactstrap";
-import { Link } from 'react-router-dom';
 import "../Components/Styles/Navbar.css";
 import logo from "../Components/images/aw-logo.svg";
 
@@ -39,7 +36,7 @@ export default class NavigationBar extends Component {
                   <img
                     src={logo}
                     style={{ width: 150, height: 35, marginTop: 1 }}
-                  />
+                  alt="logo"/>
                 </a>
               </div>
               <div className="spacer" />
@@ -61,7 +58,7 @@ export default class NavigationBar extends Component {
                   <img
                     src={logo}
                     style={{ width: 150, height: 35, marginTop: 1 }}
-                  />
+                    alt="logo"/>
                 </a>
               </div>
               <div className="spacer" />

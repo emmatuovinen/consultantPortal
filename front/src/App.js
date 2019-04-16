@@ -25,7 +25,7 @@ import "./Components/Styles/Navbar.css";
 import NavigationBar from './Containers/NavigationBar';
 
 import "./Components/Styles/Navbar.css";
-import logo from "./Components/images/aw-logo.svg";
+
 
 class App extends Component {
 
@@ -55,9 +55,7 @@ class App extends Component {
   login = () => {
     const DO_NOT_LOGIN = false;
     
-    
-    runWithAdal(authContext, () => {
-      
+    runWithAdal(authContext, () => {     
       // eslint-disable-next-line
       require('./App.js');
       
