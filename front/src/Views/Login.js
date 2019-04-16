@@ -4,7 +4,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <h4>Welcome to consultant app, log in to use the page</h4>
+                <h4>Welcome to the consultant app, log in to use the app</h4>
             </div>
         );
     }

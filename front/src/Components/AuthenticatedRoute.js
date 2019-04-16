@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route, Redirect } from "react-router-dom";
 
-export default ({ component: C, props: cProps, ...rest }) =>
+
+export default ({ component: C, childProps: cProps, ...rest }) =>
 <Route
     {...rest}
     render={props =>

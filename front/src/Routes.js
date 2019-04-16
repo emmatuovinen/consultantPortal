@@ -3,7 +3,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import history from "./history";
 import AuthenticatedRoute from "./Components/AuthenticatedRoute";
-
+import UnauthenticatedRoute from "./Components/UnauthenticatedRoute";
 import Login from "./Views/Login";
 import Home from "./Views/Home";
 import ProfileView from "./Views/ProfileView";
