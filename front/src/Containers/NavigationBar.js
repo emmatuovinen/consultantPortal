@@ -25,52 +25,67 @@ export default class NavigationBar extends Component {
   }
 
   render() {
-    console.log("Navi: ", this.props.userRole);
+    console.log("Navi: ", this.props.childProps);
     return (
-      <nav className="navbar navbar-expand-md">
-        <Navbar>
-          <div className="navbar-logo">
-            <a href="/">
-              <img
-                src={logo}
-                style={{ width: 150, height: 35, marginTop: 1 }}
-              />
-            </a>
-          </div>
-
-          <div className="spacer" />
-
-          <NavbarToggler onClick={this.toggle} />
-
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="navbar-nav-items" navbar>
-              <NavItem>
-                <NavLink href="/positions">Positions</NavLink>
-              </NavItem>
-              {this.props.userRole === "Sales"
-                ? <Fragment>
-                    <NavItem>
+      <div>
+      {this.props.childProps.isAuthenticated === false
+          ?
+          <nav className="navbar navbar-expand-md">
+            <Navbar>
+              <div className="navbar-logo">
+                <a href="/">
+                  <img
+                    src={logo}
+                    style={{ width: 150, height: 35, marginTop: 1 }}
+                  />
+                </a>
+              </div>
+              <div className="spacer" />
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="navbar-nav-items" navbar>
+                  <NavItem>
+                    <NavLink onClick={this.props.childProps.login}>Login</NavLink>
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </Navbar>
+          </nav>
+          :
+          <nav className="navbar navbar-expand-md">
+            <Navbar>
+              <div className="navbar-logo">
+                <a href="/">
+                  <img
+                    src={logo}
+                    style={{ width: 150, height: 35, marginTop: 1 }}
+                  />
+                </a>
+              </div>
+              <div className="spacer" />
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="navbar-nav-items" navbar>
+                  <NavItem>
+                    <NavLink href="/positions">Positions</NavLink>
+                  </NavItem>
+                  {this.props.childProps.role === "Sales"
+                    ? <NavItem>
                       <NavLink href="/positions/add">Add position</NavLink>
                     </NavItem>
-                    <NavItem>
-                      <NavLink href="/profile">Profile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/">Front page</NavLink>
-                    </NavItem>
-                </Fragment>
-                : <Fragment>
-                    <NavItem>
-                      <NavLink href="/profile">Profile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/">Front page</NavLink>
-                    </NavItem>
-                </Fragment>}
+                    : <div />}
+                  <NavItem>
+                    <NavLink href="/profile">My Profile</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink onClick={this.props.childProps.logout}>Logout</NavLink>
+                  </NavItem>
             </Nav>
-          </Collapse>
-        </Navbar>
-      </nav>
+              </Collapse>
+            </Navbar>
+          </nav>
+      }
+      </div>
     );
   }
 }

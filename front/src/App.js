@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { Router, Switch, Route } from "react-router-dom";
+// import { Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./Views/Home";
-import history from "./history";
-import ProfileView from "./Views/ProfileView";
-import ConsultantSkillsAutoSuggestions from "./Containers/ConsultantSkillsAutoSuggestions";
-import ViewNonEditableProfile from "./Containers/ViewNonEditableProfile";
-import NavigationBar from "./Containers/NavigationBar";
-import PositionsList from "./Containers/PositionsList";
-import PositionSelection from "./Containers/PositionSelection";
-import AddNewPosition from "./Containers/AddNewPosition";
+// import Home from "./Views/Home";
+// import history from "./history";
+// import ProfileView from "./Views/ProfileView";
+// import ConsultantSkillsAutoSuggestions from "./Containers/ConsultantSkillsAutoSuggestions";
+// import ViewNonEditableProfile from "./Containers/ViewNonEditableProfile";
+// import NavigationBar from "./Containers/NavigationBar";
+// import PositionsList from "./Containers/PositionsList";
+// import PositionSelection from "./Containers/PositionSelection";
+// import AddNewPosition from "./Containers/AddNewPosition";
 import { runWithAdal } from 'react-adal';
 import { authContext } from './adalconfig';
-import { Button} from "reactstrap";
+// import {Navbar,
+//   NavbarToggler,
+//   Collapse,
+//   Nav,
+//   NavItem,
+//   NavLink, Button} from "reactstrap";
 import { adalApiFetch, getToken } from './adalconfig'
+import Routes from "./Routes";
+import "./Components/Styles/Navbar.css";
+// import logo from "./Components/images/aw-logo.svg";
+import NavigationBar from './Containers/NavigationBar';
 
 
 class App extends Component {
@@ -52,45 +61,26 @@ class App extends Component {
       
     }, DO_NOT_LOGIN);
   }
-  logout() {
+  logout = () => {
     authContext.logOut()
   }
   render() {
     console.log("auth", this.state.hasAuthenticated);
     console.log("user", this.state.userRole);
+
+    const childProps = {
+      isAuthenticated: this.state.hasAuthenticated,
+      role: this.state.userRole,
+      login: this.login,
+      logout: this.logout
+    }
+
     return (
       <div>
-            
-
-        {/* <NavigationBar userRole={this.state.userRole} /> */}
-        {this.state.hasAuthenticated 
-        ? <Button onClick={this.logout}>Log out</Button>
-        : <Button onClick={this.login}>Kirjaudu</Button> }
         
-      
-        {/* <Router history={history}>
-          <Switch>
-            <Route path="/profile" component={ProfileView} />
-            <Route
-              path="/view-profile/:id"
-              component={ViewNonEditableProfile}
-              name="view-profile"
-            />
-            <Route
-              path="/position-details/:positionId"
-              component={PositionSelection}
-              name="position-details"
-            />
-            <Route exact path="/positions" component={PositionsList} />
-            <Route
-              path="/auto-suggest"
-              component={ConsultantSkillsAutoSuggestions}
-            />
-            <Route path="/positions/add" component={AddNewPosition} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </Router> */}
+        <NavigationBar childProps={childProps} />
 
+       <Routes isAuthenticated={this.state.hasAuthenticated} role={this.state.userRole} />
       </div>
       
     );
