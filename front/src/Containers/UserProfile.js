@@ -138,9 +138,6 @@ export default class UserProfile extends Component {
       />
     );
   }
-  logout() {
-    authContext.logOut()
-  }
   
 
   render() {
@@ -171,7 +168,6 @@ export default class UserProfile extends Component {
             >
               Delete Profile
             </Button>
-            <Button onClick={this.logout}>Log out</Button>
 
           </Col>
         </Row>
