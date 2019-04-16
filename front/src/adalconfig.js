@@ -7,7 +7,7 @@ export const adalConfig = {
   endpoints: {
     api: 'https://graph.microsoft.com',
   },
-  cacheLocation: 'localStorage',
+  cacheLocation: 'sessionStorage',
 };
 
 export const authContext = new AuthenticationContext(adalConfig);

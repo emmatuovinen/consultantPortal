@@ -19,8 +19,6 @@ import Routes from "./Routes";
 import "./Components/Styles/Navbar.css";
 import logo from "./Components/images/aw-logo.svg";
 
-const DO_NOT_LOGIN = false;
-
 class App extends Component {
 
   state = {
@@ -31,7 +29,7 @@ class App extends Component {
   componentDidMount() {
     let userToken = getToken();
     console.log("Token: ", userToken);
-    if (userToken == '') {
+    if (!userToken == '') {
       this.userHasAuthenticated(true);
     }
 
