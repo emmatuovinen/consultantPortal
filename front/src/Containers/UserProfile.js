@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, Col, Row } from "reactstrap";
 import "../Components/Styles/App.css";
-import {authContext} from '../adalconfig'
+import { authContext } from '../adalconfig'
 
 import {
   GetConsultantInfo,
@@ -16,9 +16,14 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
+<<<<<<< HEAD
     //userId: this.state.user.email,
     userEmail: "mikko@malli.fi", //authContext._user.userName,
+=======
+    userEmail: "", //authContext._user.userName
+>>>>>>> 7930ca7c932664a45f70143367ec5930e4d72d9f
     user: {
+      userId: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -37,19 +42,10 @@ export default class UserProfile extends Component {
   };
 
   componentDidMount() {
-    // GetConsultantInfo(this.state.userId, response => {
-    //   if (response.status === 200) {
-    //     let user = response.data;
-    //     let userIsConsultant = user.role === "Consultant";
-    //     user.userSkills = user.userSkills || [];
-    //     this.setState({ user, userIsConsultant });
-    //   } else {
-    //     console.log("error", response.status);
-    //     // some kind of redirect to an error page?
-    //   }
-    // });
+
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
+        
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
         user.userSkills = user.userSkills || [];
@@ -59,23 +55,20 @@ export default class UserProfile extends Component {
         // some kind of redirect to an error page?
       }
     });
-    
+
+
   }
 
-  // handleDeleteUser = () => {
-  //   // now we can only delete our hard coded user, update this in the future
-  //   DeleteUser(USER_ID);
-  // };
 
-  
   handleDeleteUser = () => {
-    // now we can only delete our hard coded user, update this in the future
-    DeleteUser(this.state.userId);
+    // now we can only delete our hard coded user, update this in the future -->
+    // Now deletes "real user" from test database
+    DeleteUser(this.state.user.userId);
   };
 
   editMode = btn => {
     if (btn.target.value === "Save") {
-      EditProfile(this.state.userId, this.state.user, response => {
+      EditProfile(this.state.user.userId, this.state.user, response => {
         if (response.status === 200) {
           console.log("success", response.status);
           // some kind of 'save successfull' message for the user?
@@ -150,15 +143,13 @@ export default class UserProfile extends Component {
       />
     );
   }
-  logout () {
+  logout() {
     authContext.logOut()
   }
   
-  render() {
-    console.log(authContext)
 
-    //console.log(getToken(authContext._user.userName))
-    //console.log(authContext._user.userName)
+  render() {
+
     let buttonText = this.state.isEditing ? "Save" : "Edit";
     return (
       <Container>
@@ -186,7 +177,7 @@ export default class UserProfile extends Component {
               Delete Profile
             </Button>
             <Button onClick={this.logout}>Log out</Button>
-            
+
           </Col>
         </Row>
       </Container>
