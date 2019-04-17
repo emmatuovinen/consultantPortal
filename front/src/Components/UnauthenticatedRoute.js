@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { getToken } from "../adalconfig";
 
-class UnauthenticatedRoute extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        );
-    }
-}
+export default ({ path: P, component: C, props: cProps, ...rest }) => {
+    
+    let isLoggedIn = getToken();
 
-export default UnauthenticatedRoute;
+    return (
+
+        !isLoggedIn
+            ? <Route path={P} component={C} />
+            : <Redirect to="/profile" />
+    );
+};
