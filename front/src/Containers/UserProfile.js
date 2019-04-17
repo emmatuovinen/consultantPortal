@@ -15,7 +15,6 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
- 
     userEmail: authContext._user.userName, //authContext._user.userName,
     user: {
       userId: "",

@@ -26,7 +26,7 @@ export default class Routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                <Route exact path="/login" render={(props) => (<Login {...props} />)} />
+                    <Route exact path="/login" render={(props) => (<Login {...props} />)} />
                     <AuthenticatedRoute
                         exact path="/"
                         component={Home}
