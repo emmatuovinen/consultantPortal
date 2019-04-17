@@ -4,12 +4,12 @@ import { getToken, authContext } from '../adalconfig'
 import { GetConsultantInfobyEmail } from '../serviceClients/UserService';
 
 /*
-    -Component for the login route in the Routes
-    -First this will check if the session token can be found
-    -If yes, it will redirect to "home" route and let the user in
-    -If not, it will render the LoginPage component
-    which is the front page of the application
-    and includes the LOGIN button
+    -Component for the login route in the Routes.js
+    -First this will check if the session token can be found in the session storage
+        -If yes, it will check if the GetConsultantInfoByEmail returns Error 404 Not Found
+            -If yes, it will redirect to the profile page for filling in the user information
+            -If not (i.e. user found in the dabase), it will redirect to ./home
+        -If not, it will render the LoginPage component for user to log in
 */
 
 class Login extends Component {
