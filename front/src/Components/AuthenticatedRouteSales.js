@@ -2,13 +2,14 @@ import React from 'react'
 import { Route, Redirect } from "react-router-dom";
 import {getToken} from '../adalconfig';
 
-  export function AuthenticatedRoute ({ component: Component, props: P, ...rest }) {
+  export  function  AuthenticatedRouteSales ({ component: Component, props: P, ...rest }) {
     let props =  {...rest};
     let isLoggedIn = getToken();
-    console.log("p on p", P)
+    console.log("p on j", P)
     
     return (
-        isLoggedIn ?
+        isLoggedIn 
+        ?
         <Route path={props.path} component={Component} />
         :
         <Redirect to={{pathname : "/login", state: {from: props.location} }} />

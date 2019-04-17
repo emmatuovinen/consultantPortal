@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import history from "./history";
-import AuthenticatedRoute from "./Components/AuthenticatedRoute";
+import { AuthenticatedRoute } from "./Components/AuthenticatedRoute";
+import { AuthenticatedRouteSales } from "./Components/AuthenticatedRouteSales";
 
-import Login from "./Views/Login";
 import Home from "./Views/Home";
 import ProfileView from "./Views/ProfileView";
 import ConsultantSkillsAutoSuggestions from "./Containers/ConsultantSkillsAutoSuggestions";
@@ -12,11 +12,9 @@ import ViewNonEditableProfile from "./Containers/ViewNonEditableProfile";
 import PositionsList from "./Containers/PositionsList";
 import PositionSelection from "./Containers/PositionSelection";
 import AddNewPosition from "./Containers/AddNewPosition";
+import Login from './Views/Login';
 
 export default class Routes extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
 
@@ -24,49 +22,51 @@ export default class Routes extends Component {
             isAuthenticated: this.props.isAuthenticated,
             role: this.props.role
         }
-
+        
         return (
             <Router history={history}>
                 <Switch>
-                    {/* <Route exact path="/" component={Home} /> */}
-                    <UnauthenticatedRoute
+                <Route exact path="/login" render={(props) => (<Login {...props} />)} />
+                    <AuthenticatedRoute
                         exact path="/"
-                        component={Login}
-                        props={childProps}
+                        component={Home}
+                        props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute
                         exact path="/positions"
                         component={PositionsList}
-                        props={childProps}
+                        props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute
                         path="/position-details/:positionId"
-                        component={PositionSelection}
+                        exact component={PositionSelection}
                         name="position-details"
-                        props={childProps}
+                        props={this.props.isAuthenticated}
                     />
-                    <AuthenticatedRoute
-                        path="/positions/add"
+                    <AuthenticatedRouteSales
+                       exact path="/positions/add"
                         component={AddNewPosition}
-                        props={childProps}    
+                        props={this.props.role}
                     />
                     <AuthenticatedRoute
                         path="/auto-suggest"
-                        component={ConsultantSkillsAutoSuggestions}
-                        props={childProps}
+                        exact component={ConsultantSkillsAutoSuggestions}
+                        props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute
                         path="/profile"
-                        component={ProfileView}
-                        props={childProps}
+                        exact component={ProfileView}
+                        props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute
                         path="/view-profile/:id"
-                        component={ViewNonEditableProfile}
+                        exact component={ViewNonEditableProfile}
                         name="view-profile"
-                        props={childProps}
+                        props={this.props.isAuthenticated}
                     />
+                    
                 </Switch>
+
             </Router>
         )
     }

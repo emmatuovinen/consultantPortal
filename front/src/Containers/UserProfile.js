@@ -4,7 +4,6 @@ import "../Components/Styles/App.css";
 import { authContext } from '../adalconfig'
 
 import {
-  GetConsultantInfo,
   EditProfile,
   DeleteUser,
   GetConsultantInfobyEmail
@@ -16,12 +15,8 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
-<<<<<<< HEAD
-    //userId: this.state.user.email,
-    userEmail: "mikko@malli.fi", //authContext._user.userName,
-=======
-    userEmail: "", //authContext._user.userName
->>>>>>> 7930ca7c932664a45f70143367ec5930e4d72d9f
+ 
+    userEmail: authContext._user.userName, //authContext._user.userName,
     user: {
       userId: "",
       firstName: "",
@@ -135,16 +130,13 @@ export default class UserProfile extends Component {
   }
 
   renderUserProfileDetails() {
-    console.log(this.state.user)
+
     return (
       <UserProfileDetails
         user={this.state.user}
         userIsConsultant={this.state.userIsConsultant}
       />
     );
-  }
-  logout() {
-    authContext.logOut()
   }
   
 
@@ -176,7 +168,6 @@ export default class UserProfile extends Component {
             >
               Delete Profile
             </Button>
-            <Button onClick={this.logout}>Log out</Button>
 
           </Col>
         </Row>

@@ -25,7 +25,7 @@ import "./Components/Styles/Navbar.css";
 import NavigationBar from './Containers/NavigationBar';
 
 import "./Components/Styles/Navbar.css";
-import logo from "./Components/images/aw-logo.svg";
+
 
 class App extends Component {
 
@@ -41,7 +41,6 @@ class App extends Component {
       .then((response) => {
         response.json()
           .then((responseJson) => {
-            console.log(responseJson)
             this.setState({ userRole: responseJson.value[0].displayName });
           });
       })
@@ -55,9 +54,7 @@ class App extends Component {
   login = () => {
     const DO_NOT_LOGIN = false;
     
-    
-    runWithAdal(authContext, () => {
-      
+    runWithAdal(authContext, () => {     
       // eslint-disable-next-line
       require('./App.js');
       
@@ -67,8 +64,6 @@ class App extends Component {
     authContext.logOut()
   }
   render() {
-    console.log("auth", this.state.hasAuthenticated);
-    console.log("user", this.state.userRole);
 
     const childProps = {
       isAuthenticated: this.state.hasAuthenticated,
