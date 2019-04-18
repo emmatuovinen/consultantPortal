@@ -46,7 +46,7 @@ export default class Routes extends Component {
                     <AuthenticatedRouteSales
                        exact path="/positions/add"
                         component={AddNewPosition}
-                        props={this.props.role}
+                        props={childProps}
                     />
                     <AuthenticatedRoute
                         path="/auto-suggest"

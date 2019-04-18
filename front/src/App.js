@@ -47,10 +47,9 @@ class App extends Component {
       .catch((error) => {
         console.error(error);
       })
-
-    }
-       
+    }      
   }
+  
   login = () => {
     const DO_NOT_LOGIN = false;
     
