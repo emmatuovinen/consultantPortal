@@ -15,8 +15,7 @@ import UserProfileDetails from "../Components/UserProfileDetails";
 
 export default class UserProfile extends Component {
   state = {
- 
-    userEmail: authContext._user.userName, //authContext._user.userName,
+    userEmail: authContext._user.userName,
     user: {
       userId: "",
       firstName: "",
@@ -45,9 +44,13 @@ export default class UserProfile extends Component {
         let userIsConsultant = user.role === "Consultant";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
+        console.log("Mitä ihmettä: ", this.state.user, this.state.userIsConsultant);
       } else {
-        console.log("error", response.status);
-        // some kind of redirect to an error page?
+        let copyOfUser = { ...this.state.user };
+        copyOfUser.email = authContext._user.userName;
+        copyOfUser.firstName = authContext._user.profile.given_name;
+        copyOfUser.lastName = authContext._user.profile.family_name;
+        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing });
       }
     });
 
