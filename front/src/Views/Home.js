@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ConsultantList from "../Containers/ConsultantList";
+import PositionsList from "../Containers/PositionsList";
 
 
 class Home extends Component {
@@ -8,7 +8,7 @@ class Home extends Component {
   
     return (
       <div>  
-        <ConsultantList />
+        <PositionsList />
       </div>
     );
   }

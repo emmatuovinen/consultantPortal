@@ -5,7 +5,7 @@ import { GetConsultantInfobyEmail } from '../serviceClients/UserService';
 
 /*
     -Component for the login route in the Routes.js
-    -First this will check if the session token can be found in the session storage
+    -First this will check "getToken()" if the session token can be found in the session storage
         -If yes, it will check if the GetConsultantInfoByEmail returns Error 404 Not Found
             -If yes, it will redirect to the profile page for filling in the user information
             -If not (i.e. user found in the dabase), it will redirect to ./home
@@ -16,15 +16,16 @@ class Login extends Component {
     componentDidMount() {
 
         if (getToken()) {
-            let konsultti = authContext._user.userName;
-            GetConsultantInfobyEmail(konsultti, response => {
+            let userLoginEmail = authContext._user.userName;
+            console.log("email: ", userLoginEmail);
+            GetConsultantInfobyEmail(userLoginEmail, response => {
                 console.log("DB response @Login.js: ", response.status);
                 if (response.status === 404) {
-                    console.log("history.push ./profile");
+                    console.log("email false, history.push ./profile");
                     this.props.history.push('./profile')
                 }
             });
-            console.log("Token true, email false: history.push ./");
+            console.log("Token true, email true: history.push ./");
             this.props.history.push('./')
         };
     };
