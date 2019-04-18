@@ -37,9 +37,16 @@ export default class UserProfile extends Component {
 
   componentDidMount() {
 
+/*
+    - GetConsultantInfobyEmail from the database
+      - If the email is found, the user exists and the profile view is rendered
+      - If the email is not found, the user is login for the first time and
+        the UserProfileForm is rendered for the user to fill the data in.
+        Email, firstname and lastname are prefilled in.
+*/
+
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
-        
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
         user.userSkills = user.userSkills || [];
