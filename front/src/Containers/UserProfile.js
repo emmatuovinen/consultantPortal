@@ -4,6 +4,7 @@ import "../Components/Styles/App.css";
 import { authContext } from '../adalconfig'
 
 import {
+  CreateUser,
   EditProfile,
   DeleteUser,
   GetConsultantInfobyEmail
@@ -32,7 +33,8 @@ export default class UserProfile extends Component {
       lessPreferableRoles: []
     },
     isEditing: false,
-    userIsConsultant: false
+    userIsConsultant: false,
+    firstTimeLogin: false
   };
 
   componentDidMount() {
@@ -52,16 +54,17 @@ export default class UserProfile extends Component {
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
         console.log("Mitä ihmettä: ", this.state.user, this.state.userIsConsultant);
-      } else {
+      } else if (response.status === 404) {
+        console.log(authContext);
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
-        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing });
+        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true });
+      } else {
+        console.log("Error in retrieving user information from the database: ", response.status);
       }
     });
-
-
   }
 
 
@@ -85,6 +88,21 @@ export default class UserProfile extends Component {
     }
     this.setState({ isEditing: !this.state.isEditing });
   };
+
+  createMode = () => {
+    console.log("User data: ", this.state.user);
+    CreateUser(this.state.user, response => {
+      console.log("Response: ", response);
+      if (response.status === 200) {
+        console.log("User profile created: ", response.status);
+        this.props.history.push('./')
+        this.setState({ isEditing: !this.state.isEditing, firstTimeLogin: false });
+      } else {
+        console.log("User profile not created, erro: ", response.status);
+      }
+    })
+
+  }
 
   handleChange = event => {
     let copyOfUser = { ...this.state.user };
@@ -125,6 +143,7 @@ export default class UserProfile extends Component {
       default:
         break;
     }
+    console.log("copyOfUser: ", copyOfUser);
     this.setState({ user: copyOfUser });
   };
 
@@ -152,7 +171,9 @@ export default class UserProfile extends Component {
 
   render() {
 
-    let buttonText = this.state.isEditing ? "Save" : "Edit";
+    let buttonTextSave = this.state.isEditing ? "Save" : "Edit";
+    let buttonTextCancel = this.state.firstTimeLogin ? "Cancel" : "Delete Profile";
+
     return (
       <Container>
         <br />
@@ -162,8 +183,8 @@ export default class UserProfile extends Component {
         <Row>
           <Col lg="5" /*style={{ backgroundColor: 'yellow' }}*/ />
           <Col lg="7">
-            <Button onClick={this.editMode} value={buttonText}>
-              {buttonText}
+            <Button onClick={this.state.firstTimeLogin ? this.createMode : this.editMode} value={buttonTextSave}>
+              {buttonTextSave}
             </Button>
             <Button
               onClick={() => {
@@ -176,7 +197,7 @@ export default class UserProfile extends Component {
               }}
               color="success"
             >
-              Delete Profile
+              {buttonTextCancel}
             </Button>
 
           </Col>
