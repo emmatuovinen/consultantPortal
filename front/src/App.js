@@ -42,7 +42,8 @@ class App extends Component {
     }, DO_NOT_LOGIN);
   }
   logout = () => {
-    authContext.logOut()
+    authContext.logOut();
+    sessionStorage.clear();
   }
   render() {
 
