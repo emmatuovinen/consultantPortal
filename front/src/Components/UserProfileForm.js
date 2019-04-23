@@ -101,6 +101,7 @@ const UserProfileForm = props => {
                     name="role"
                     value="AM"
                     checked={!props.userIsConsultant}
+                    disabled
                   />{" "}
                   AM
                 </Label>
@@ -114,6 +115,7 @@ const UserProfileForm = props => {
                     name="role"
                     value="Consultant"
                     checked={props.userIsConsultant}
+                    disabled
                   />{" "}
                   Consultant
                 </Label>

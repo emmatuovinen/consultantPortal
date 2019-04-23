@@ -64,7 +64,7 @@ class App extends Component {
     authContext.logOut()
   }
   render() {
-
+    console.log("App.js, role: ", this.state.userRole);
     const childProps = {
       isAuthenticated: this.state.hasAuthenticated,
       role: this.state.userRole,
