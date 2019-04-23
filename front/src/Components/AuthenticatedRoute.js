@@ -7,12 +7,22 @@ import {getToken} from '../adalconfig';
     let isLoggedIn = getToken();
     //let isLoggedIn = P.isAuthenticated;
 
-    console.log("AuthenticatedRoute.js, P: ", P.role);
+    console.log("AuthenticatedRoute.js, P: ", P.isAuthenticated);
     
     return (
-        isLoggedIn ?
-        <Route path={props.path} component={Component} role={P.role} />
-        :
-        <Redirect to={{pathname : "/login", state: {from: props.location} }} />
-    )
+      <Route
+        {...rest}
+        render={props =>
+          isLoggedIn
+          ? <Component {...props} {...P} />
+          : <Redirect to={{pathname : "/login", state: {from: props.location} }} />
+        }
+      />)
     }
+
+      // isLoggedIn ?
+      // <Route path={props.path} component={Component} role={P.role} />
+      // :
+      // <Redirect to={{pathname : "/login", state: {from: props.location} }} />
+    // )
+    // }

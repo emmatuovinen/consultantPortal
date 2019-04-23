@@ -24,7 +24,7 @@ export default class UserProfile extends Component {
       email: "",
       phoneNumber: "",
       description: "",
-      role: this.props.role,
+      role: "",
       userSkills: [],
       linkedInUrl: "",
       gitHubUrl: "",
