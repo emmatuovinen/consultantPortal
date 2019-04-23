@@ -13,6 +13,7 @@ import PositionsList from "./Containers/PositionsList";
 import PositionSelection from "./Containers/PositionSelection";
 import AddNewPosition from "./Containers/AddNewPosition";
 import Login from './Views/Login';
+import ConsultantList from './Containers/ConsultantList';
 
 export default class Routes extends Component {
     render() {
@@ -33,6 +34,11 @@ export default class Routes extends Component {
                     <AuthenticatedRoute
                         exact path="/positions"
                         component={PositionsList}
+                        props={this.props.isAuthenticated}
+                    />
+                    <AuthenticatedRoute
+                        exact path="/consultants"
+                        component={ConsultantList}
                         props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute

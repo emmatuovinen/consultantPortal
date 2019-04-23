@@ -16,10 +16,10 @@ class App extends Component {
     hasAuthenticated: false
   }
 
-  componentDidMount = () => {
+async componentDidMount ()  {
     if (getToken()) {
       this.setState({hasAuthenticated: true});
-      adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
+       await adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
       .then((response) => {
         response.json()
           .then((responseJson) => {
@@ -60,7 +60,7 @@ class App extends Component {
         
         <NavigationBar childProps={childProps} />
 
-       <Routes isAuthenticated={this.state.hasAuthenticated} role={this.state.userRole} />
+       <Routes isAuthenticated={this.state.hasAuthenticated} role={this.state.userRole} childProps={childProps} />
       </div>
       
     );

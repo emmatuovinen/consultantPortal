@@ -4,7 +4,7 @@ import UserProfile from "../Containers/UserProfile";
 class ProfileView extends Component {
 
   render() {
-    return <UserProfile role={this.props.role} />;
+    return <UserProfile role={this.props.props} props={this.props.roles}/>;
   }
 }
 

@@ -181,6 +181,8 @@ export default class UserProfile extends Component {
 
   render() {
     console.log("Userprofile.js", this.props.role )
+    console.log("Userprofile.js", this.props.props )
+
     let buttonTextSave = this.state.isEditing ? "Save" : "Edit";
     let buttonTextCancel = this.state.firstTimeLogin ? "Cancel" : "Delete Profile";
 
