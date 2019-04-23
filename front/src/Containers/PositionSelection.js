@@ -36,6 +36,8 @@ class PositionSelection extends Component {
   }
 
   componentDidMount = () => {
+
+    console.log(this.props.match.params.positionId)
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
         let position = response.data;
