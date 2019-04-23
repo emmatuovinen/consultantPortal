@@ -15,10 +15,7 @@ import AddNewPosition from "./Containers/AddNewPosition";
 import Login from './Views/Login';
 
 export default class Routes extends Component {
-
     render() {
-        console.log("Routes.js role: ", this.props.role);
-
         const childProps = {
             isAuthenticated: this.props.isAuthenticated,
             role: this.props.role

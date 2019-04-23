@@ -5,8 +5,6 @@ import {getToken} from '../adalconfig';
   export function  AuthenticatedRouteSales ({ component: Component, props: P, ...rest }) {
     let props =  {...rest};
     let isLoggedIn = getToken();
-  
-    console.log("p on j", P)
     
     return (
         isLoggedIn 

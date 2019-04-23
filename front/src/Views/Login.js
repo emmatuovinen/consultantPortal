@@ -14,23 +14,17 @@ import { GetConsultantInfobyEmail } from '../serviceClients/UserService';
 
 class Login extends Component {
     componentDidMount() {
-
         if (getToken()) {
             let userLoginEmail = authContext._user.userName;
-            console.log("email: ", userLoginEmail);
             GetConsultantInfobyEmail(userLoginEmail, response => {
-                console.log("DB response @Login.js: ", response.status);
                 if (response.status === 404) {
-                    console.log("email false, history.push ./profile");
                     this.props.history.push('./profile')
                 }
             });
-            console.log("Token true, email true: history.push ./");
             this.props.history.push('./')
         };
     };
     render() {
-        console.log("olet login sivulla")
         return (
             <div>
                 <LoginPage/>

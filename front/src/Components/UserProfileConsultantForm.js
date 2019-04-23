@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, FormGroup, Label, Input, Badge } from "reactstrap";
-
 import ConsultantSkillsAutoSuggestions from "../Containers/ConsultantSkillsAutoSuggestions";
 
 // HARD CODED FOR DEMO PURPOSES
@@ -27,7 +26,8 @@ const UserProfileForm = props => {
           value={props.user.preferableRoles}
         />
       </FormGroup>
-      <FormGroup controlid="lessPreferableRoles">
+      {/* Commented out the less preferableRoles */}
+      {/* <FormGroup controlid="lessPreferableRoles">
         <Label for="lessPreferableRoles">Less preferable roles</Label>
         <Input
           onChange={props.handleChange}
@@ -36,7 +36,7 @@ const UserProfileForm = props => {
           id="lessPreferableRoles"
           value={props.user.lessPreferableRoles}
         />
-      </FormGroup>
+      </FormGroup> */}
     </Form>
   );
 };

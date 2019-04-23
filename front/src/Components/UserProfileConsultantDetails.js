@@ -35,7 +35,8 @@ const UserProfileConsultantDetails = props => {
             </Label>
           </td>
         </tr>
-        <tr>
+        {/* Commented out the less preferableRoles */}
+        {/* <tr>
           <th scope="row">
             <Label>Less preferable roles: </Label>
           </th>
@@ -46,7 +47,7 @@ const UserProfileConsultantDetails = props => {
               })}
             </Label>
           </td>
-        </tr>
+        </tr> */}
       </tbody>
     </Table>
   );

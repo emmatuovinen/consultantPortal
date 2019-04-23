@@ -1,29 +1,11 @@
 import React, { Component } from 'react';
-// import { Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Home from "./Views/Home";
-// import history from "./history";
-// import ProfileView from "./Views/ProfileView";
-// import ConsultantSkillsAutoSuggestions from "./Containers/ConsultantSkillsAutoSuggestions";
-// import ViewNonEditableProfile from "./Containers/ViewNonEditableProfile";
-// import NavigationBar from "./Containers/NavigationBar";
-// import PositionsList from "./Containers/PositionsList";
-// import PositionSelection from "./Containers/PositionSelection";
-// import AddNewPosition from "./Containers/AddNewPosition";
 import { runWithAdal } from 'react-adal';
 import { authContext } from './adalconfig';
-// import {Navbar,
-//   NavbarToggler,
-//   Collapse,
-//   Nav,
-//   NavItem,
-//   NavLink, Button} from "reactstrap";
 import { adalApiFetch, getToken } from './adalconfig'
 import Routes from "./Routes";
 import "./Components/Styles/Navbar.css";
-// import logo from "./Components/images/aw-logo.svg";
 import NavigationBar from './Containers/NavigationBar';
-
 import "./Components/Styles/Navbar.css";
 
 
@@ -34,7 +16,7 @@ class App extends Component {
     hasAuthenticated: false
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     if (getToken()) {
       this.setState({hasAuthenticated: true});
       adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
@@ -63,7 +45,7 @@ class App extends Component {
     authContext.logOut()
   }
   render() {
-    console.log("App.js, role: ", this.state.userRole);
+
     const childProps = {
       isAuthenticated: this.state.hasAuthenticated,
       role: this.state.userRole,
