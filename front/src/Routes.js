@@ -17,6 +17,7 @@ import Login from './Views/Login';
 export default class Routes extends Component {
 
     render() {
+        console.log("Routes.js role: ", this.props.role);
 
         const childProps = {
             isAuthenticated: this.props.isAuthenticated,
@@ -56,7 +57,7 @@ export default class Routes extends Component {
                     <AuthenticatedRoute
                         path="/profile"
                         exact component={ProfileView}
-                        props={this.props.isAuthenticated}
+                        props={childProps}
                     />
                     <AuthenticatedRoute
                         path="/view-profile/:id"

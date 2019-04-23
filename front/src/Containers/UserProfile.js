@@ -4,6 +4,7 @@ import "../Components/Styles/App.css";
 import { authContext } from '../adalconfig'
 
 import {
+  CreateUser,
   EditProfile,
   DeleteUser,
   GetConsultantInfobyEmail
@@ -23,7 +24,7 @@ export default class UserProfile extends Component {
       email: "",
       phoneNumber: "",
       description: "",
-      role: "",
+      role: this.props.role,
       userSkills: [],
       linkedInUrl: "",
       gitHubUrl: "",
@@ -32,29 +33,44 @@ export default class UserProfile extends Component {
       lessPreferableRoles: []
     },
     isEditing: false,
-    userIsConsultant: false
+    userIsConsultant: false,
+    firstTimeLogin: false
   };
 
   componentDidMount() {
 
+/*
+    - GetConsultantInfobyEmail from the database
+      - If the email is found, the user exists and the profile view is rendered
+      - If the email is not found, the user is login for the first time and
+        the UserProfileForm is rendered for the user to fill the data in.
+        Email, firstname and lastname are prefilled in.
+*/
+    console.log("UserProfile, email: ", this.state.userEmail);
+    console.log("this.props.role: ", this.props.role);
     GetConsultantInfobyEmail(this.state.userEmail, response => {
+      //console.log("Status: ", response);
       if (response.status === 200) {
-        
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
         console.log("Mitä ihmettä: ", this.state.user, this.state.userIsConsultant);
-      } else {
+      } else if (response.status === 404) {
+        //console.log(authContext);
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
-        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing });
+        copyOfUser.role = this.props.role;
+        console.log("UserProfile.js, rooli: ", this.props.role);
+        let userIsConsultant = copyOfUser.role === "Consultants";
+        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
+        console.log("Kun status 404: ", this.state.userIsConsultant, this.state.user);
+      } else {
+        console.log("Error in retrieving user information from the database: ", response.status);
       }
     });
-
-
   }
 
 
@@ -63,6 +79,10 @@ export default class UserProfile extends Component {
     // Now deletes "real user" from test database
     DeleteUser(this.state.user.userId);
   };
+
+  handleCancel = () => {
+    this.setState({ isEditing: !this.state.isEditing, firstTimeLogin: false });
+  }
 
   editMode = btn => {
     if (btn.target.value === "Save") {
@@ -78,6 +98,21 @@ export default class UserProfile extends Component {
     }
     this.setState({ isEditing: !this.state.isEditing });
   };
+
+  createMode = () => {
+    console.log("User data: ", this.state.user);
+    CreateUser(this.state.user, response => {
+      console.log("Response: ", response);
+      if (response.status === 200) {
+        console.log("User profile created: ", response.status);
+        this.setState({ isEditing: !this.state.isEditing, firstTimeLogin: false });
+      } else {
+        console.log("User profile not created, error: ", response);
+        this.setState({ isEditing: this.state.isEditing, firstTimeLogin: this.state.firstTimeLogin });
+      }
+    })
+
+  }
 
   handleChange = event => {
     let copyOfUser = { ...this.state.user };
@@ -118,6 +153,7 @@ export default class UserProfile extends Component {
       default:
         break;
     }
+    console.log("copyOfUser: ", copyOfUser);
     this.setState({ user: copyOfUser });
   };
 
@@ -145,7 +181,9 @@ export default class UserProfile extends Component {
 
   render() {
 
-    let buttonText = this.state.isEditing ? "Save" : "Edit";
+    let buttonTextSave = this.state.isEditing ? "Save" : "Edit";
+    let buttonTextCancel = this.state.firstTimeLogin ? "Cancel" : "Delete Profile";
+
     return (
       <Container>
         <br />
@@ -155,10 +193,22 @@ export default class UserProfile extends Component {
         <Row>
           <Col lg="5" /*style={{ backgroundColor: 'yellow' }}*/ />
           <Col lg="7">
-            <Button onClick={this.editMode} value={buttonText}>
-              {buttonText}
+            <Button onClick={this.state.firstTimeLogin ? this.createMode : this.editMode} value={buttonTextSave}>
+              {buttonTextSave}
             </Button>
             <Button
+              onClick={this.state.firstTimeLogin
+                ? this.handleCancel
+                : function() {
+                  if (window.confirm("Are you sure you want to delete your profile?"))
+                    this.handleDeleteUser();
+                  }}
+                  color="success"
+            >
+              {buttonTextCancel}
+            </Button>
+
+            {/* <Button
               onClick={() => {
                 if (
                   window.confirm(
@@ -169,9 +219,8 @@ export default class UserProfile extends Component {
               }}
               color="success"
             >
-              Delete Profile
-            </Button>
-
+              {buttonTextCancel}
+            </Button> */}
           </Col>
         </Row>
       </Container>
