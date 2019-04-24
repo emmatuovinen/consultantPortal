@@ -71,8 +71,12 @@ export default class UserProfile extends Component {
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future -->
     // Now deletes "real user" from test database
-    console.log(this.state.user.userId)
-    DeleteUser(this.state.user.userId);
+    if (window.confirm("Are you sure you want to delete your profile?")) {
+      console.log(this.state.user.userId)
+      DeleteUser(this.state.user.userId, response => {
+        console.log("delete: ", response);
+      });
+    }
   };
 
   /*
@@ -204,13 +208,8 @@ export default class UserProfile extends Component {
               {buttonTextSave}
             </Button>
             <Button
-              onClick={this.state.firstTimeLogin
-                ? this.handleCancel
-                : function() {
-                  if (window.confirm("Are you sure you want to delete your profile?"))
-                    this.handleDeleteUser();
-                  }}
-                  color="success"
+              onClick={this.state.firstTimeLogin ? this.handleCancel : this.handleDeleteUser}
+              color="success"
             >
               {buttonTextCancel}
             </Button>
