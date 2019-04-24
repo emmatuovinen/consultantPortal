@@ -63,7 +63,7 @@ export default class UserProfile extends Component {
         copyOfUser.lastName = authContext._user.profile.family_name;
         copyOfUser.role = this.props.role;
         console.log("UserProfile.js, rooli: ", this.props.role);
-        let userIsConsultant = copyOfUser.role === "Consultants";
+        let userIsConsultant = copyOfUser.role === "Consultant";
         this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
         console.log("Kun status 404: ", this.state.userIsConsultant, this.state.user);
       } else {
