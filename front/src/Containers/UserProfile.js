@@ -68,8 +68,6 @@ export default class UserProfile extends Component {
   }
 
   handleDeleteUser = () => {
-    // now we can only delete our hard coded user, update this in the future -->
-    // Now deletes "real user" from test database
     if (window.confirm("Are you sure you want to delete your profile?")) {
       console.log(this.state.user.userId)
       DeleteUser(this.state.user.userId, response => {
