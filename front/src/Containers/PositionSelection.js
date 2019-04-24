@@ -36,8 +36,12 @@ class PositionSelection extends Component {
   }
 
   componentDidMount = () => {
+
+    console.log(this.props.match.params.positionId)
+    console.log("state posid", this.state.positionId)
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
+        console.log(response.data)
         let position = response.data;
         let userIsConsultant = this.state.userRole === "consultant";
         this.setState({ position, userIsConsultant });

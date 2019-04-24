@@ -64,6 +64,9 @@ export default class NavigationBar extends Component {
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="navbar-nav-items" navbar>
+                <NavItem>
+                    <NavLink href="/consultants">Consultants</NavLink>
+                  </NavItem>
                   <NavItem>
                     <NavLink href="/positions">Positions</NavLink>
                   </NavItem>

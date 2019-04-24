@@ -28,7 +28,7 @@ export default class UserProfile extends Component {
       gitHubUrl: "",
       pictureUrl: "",
       preferableRoles: [],
-      lessPreferableRoles: []
+      //lessPreferableRoles: []
     },
     isEditing: false,
     userIsConsultant: false,
@@ -48,14 +48,13 @@ export default class UserProfile extends Component {
     let userRole = sessionStorage.getItem('aw-role');
     console.log("userRole from sessionStorage: ", userRole);
     GetConsultantInfobyEmail(this.state.userEmail, response => {
-      //console.log("Status: ", response);
       if (response.status === 200) {
         let user = response.data;
         let userIsConsultant = userRole === "Consultants";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
       } else if (response.status === 404) {
-        //console.log(authContext);
+        
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
         copyOfUser.firstName = authContext._user.profile.given_name;
@@ -73,6 +72,7 @@ export default class UserProfile extends Component {
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future -->
     // Now deletes "real user" from test database
+    console.log(this.state.user.userId)
     DeleteUser(this.state.user.userId);
   };
 
@@ -176,6 +176,8 @@ export default class UserProfile extends Component {
   
 
   render() {
+    console.log("Userprofile.js", this.props.role )
+    console.log("Userprofile.js", this.props.props )
 
     let buttonTextSave = this.state.isEditing ? "Save" : "Edit";
     let buttonTextCancel = this.state.firstTimeLogin ? "Cancel" : "Delete Profile";
@@ -203,7 +205,7 @@ export default class UserProfile extends Component {
             >
               {buttonTextCancel}
             </Button>
-
+                  {/* Above delete button doesn't work, button commented below works */}
             {/* <Button
               onClick={() => {
                 if (

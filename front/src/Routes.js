@@ -13,11 +13,10 @@ import PositionsList from "./Containers/PositionsList";
 import PositionSelection from "./Containers/PositionSelection";
 import AddNewPosition from "./Containers/AddNewPosition";
 import Login from './Views/Login';
+import ConsultantList from './Containers/ConsultantList';
 
 export default class Routes extends Component {
-
     render() {
-
         const childProps = {
             isAuthenticated: this.props.isAuthenticated,
             role: this.props.role
@@ -38,6 +37,11 @@ export default class Routes extends Component {
                         props={this.props.isAuthenticated}
                     />
                     <AuthenticatedRoute
+                        exact path="/consultants"
+                        component={ConsultantList}
+                        props={this.props.isAuthenticated}
+                    />
+                    <AuthenticatedRoute
                         path="/position-details/:positionId"
                         exact component={PositionSelection}
                         name="position-details"
@@ -46,7 +50,7 @@ export default class Routes extends Component {
                     <AuthenticatedRouteSales
                        exact path="/positions/add"
                         component={AddNewPosition}
-                        props={this.props.role}
+                        props={childProps}
                     />
                     <AuthenticatedRoute
                         path="/auto-suggest"
