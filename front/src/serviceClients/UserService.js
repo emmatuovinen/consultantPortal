@@ -69,6 +69,7 @@ export function GetConsultantInfobyEmail(userEmail, callback) {
     })
     .catch(error => {
       callback(error.response);
+      console.log(error.response)
     });
 }
 

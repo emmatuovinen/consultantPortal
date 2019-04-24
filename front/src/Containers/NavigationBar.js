@@ -39,7 +39,7 @@ export default class NavigationBar extends Component {
                 </a>
               </div>
               <div className="spacer" />
-              <NavbarToggler onClick={this.toggle} />
+              <NavbarToggler onClick={this.toggle}/>
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="navbar-nav-items" navbar>
                   <NavItem>
