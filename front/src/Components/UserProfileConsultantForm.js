@@ -10,7 +10,7 @@ const UserProfileForm = props => {
   return (
     <Form>
       <FormGroup controlid="userSkills">
-        <Label for="userSkills">Competence highlights</Label>
+        <Label for="userSkills">Skills</Label>
         <ConsultantSkillsAutoSuggestions handleChange={props.handleChange} />
         {props.user.userSkills.map((skill, index) => {
           return <Badge key={index}>{skill}</Badge>;

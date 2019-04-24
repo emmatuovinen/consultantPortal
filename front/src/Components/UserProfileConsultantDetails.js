@@ -11,7 +11,7 @@ const UserProfileConsultantDetails = props => {
       <tbody>
         <tr>
           <th scope="row">
-            <Label>Competence highlights: </Label>
+            <Label>Skills: </Label>
           </th>
           <td>
             {props.user.userSkills.map((tag, index) => {

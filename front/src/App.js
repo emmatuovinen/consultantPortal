@@ -17,6 +17,14 @@ class App extends Component {
   }
 
 async componentDidMount ()  {
+/*
+  -getToken retrieves the token from the session storage
+    -if retrieved successfully then user has authenticated
+    -if not retrieved then used has not authenticated yet
+    => this impacts to the rendering of the Navigation bar and routing
+  -adalApiFetch retrieves the user information (username, first & last name, group) from the Azure AD.
+    -Role is stored into the session storage for other components e.g. UserProfile
+*/
     if (getToken()) {
       this.setState({hasAuthenticated: true});
        await adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
@@ -32,7 +40,8 @@ async componentDidMount ()  {
       })
     }      
   }
-  
+
+// -Login function which activates the Azure AD login when DO_NOT_LOGIN is set to false  
   login = () => {
     const DO_NOT_LOGIN = false;
     
@@ -42,6 +51,8 @@ async componentDidMount ()  {
       
     }, DO_NOT_LOGIN);
   }
+
+// -Logout function
   logout = () => {
     authContext.logOut();
     sessionStorage.clear();

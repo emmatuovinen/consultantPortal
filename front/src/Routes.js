@@ -16,6 +16,8 @@ import Login from './Views/Login';
 import ConsultantList from './Containers/ConsultantList';
 
 export default class Routes extends Component {
+
+    // Two props combined into one object for delivering those to different routes
     render() {
         const childProps = {
             isAuthenticated: this.props.isAuthenticated,
@@ -31,11 +33,13 @@ export default class Routes extends Component {
                         component={Home}
                         props={this.props.isAuthenticated}
                     />
+                    {/* This route renders a list of all positions */}
                     <AuthenticatedRoute
                         exact path="/positions"
                         component={PositionsList}
                         props={this.props.isAuthenticated}
                     />
+                    {/* This route renders a list of all consultants */}
                     <AuthenticatedRoute
                         exact path="/consultants"
                         component={ConsultantList}
@@ -47,6 +51,7 @@ export default class Routes extends Component {
                         name="position-details"
                         props={this.props.isAuthenticated}
                     />
+                    {/* This route renders a form for adding a new position, accessible only by Sales/AMs */}
                     <AuthenticatedRouteSales
                        exact path="/positions/add"
                         component={AddNewPosition}
@@ -68,9 +73,7 @@ export default class Routes extends Component {
                         name="view-profile"
                         props={this.props.isAuthenticated}
                     />
-                    
                 </Switch>
-
             </Router>
         )
     }
