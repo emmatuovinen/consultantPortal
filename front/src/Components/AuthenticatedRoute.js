@@ -6,9 +6,7 @@ import {getToken} from '../adalconfig';
     let props =  {...rest};
     let isLoggedIn = getToken();
     //let isLoggedIn = P.isAuthenticated;
-
-    console.log("AuthenticatedRoute.js, P: ", P.isAuthenticated);
-    
+ 
     return (
       <Route
         {...rest}

@@ -12,8 +12,6 @@ import {
 import UserProfileForm from "../Components/UserProfileForm";
 import UserProfileDetails from "../Components/UserProfileDetails";
 
-//const USER_ID = "2"; // hard coded userId for demo purposes
-
 export default class UserProfile extends Component {
   state = {
     userEmail: authContext._user.userName,
@@ -46,27 +44,25 @@ export default class UserProfile extends Component {
         the UserProfileForm is rendered for the user to fill the data in.
         Email, firstname and lastname are prefilled in.
 */
-    console.log("UserProfile, email: ", this.state.userEmail);
-    console.log("this.props.role: ", this.props.role);
+
+    let userRole = sessionStorage.getItem('aw-role');
+    console.log("userRole from sessionStorage: ", userRole);
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       //console.log("Status: ", response);
       if (response.status === 200) {
         let user = response.data;
-        let userIsConsultant = user.role === "Consultant";
+        let userIsConsultant = userRole === "Consultants";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
-        console.log("Mitä ihmettä: ", this.state.user, this.state.userIsConsultant);
       } else if (response.status === 404) {
         //console.log(authContext);
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
-        copyOfUser.role = this.props.role;
-        console.log("UserProfile.js, rooli: ", this.props.role);
-        let userIsConsultant = copyOfUser.role === "Consultants";
+        copyOfUser.role = userRole;
+        let userIsConsultant = userRole === "Consultants";
         this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
-        console.log("Kun status 404: ", this.state.userIsConsultant, this.state.user);
       } else {
         console.log("Error in retrieving user information from the database: ", response.status);
       }

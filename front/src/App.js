@@ -34,13 +34,14 @@ class App extends Component {
     hasAuthenticated: false
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     if (getToken()) {
       this.setState({hasAuthenticated: true});
-      await adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
+      adalApiFetch(fetch, 'https://graph.microsoft.com/v1.0/me/memberOf', {})
       .then((response) => {
         response.json()
           .then((responseJson) => {
+            sessionStorage.setItem('aw-role', responseJson.value[0].displayName);
             this.setState({ userRole: responseJson.value[0].displayName });
           });
       })
@@ -64,7 +65,7 @@ class App extends Component {
     authContext.logOut()
   }
   render() {
-    console.log("App.js, role: ", this.state.userRole);
+
     const childProps = {
       isAuthenticated: this.state.hasAuthenticated,
       role: this.state.userRole,
