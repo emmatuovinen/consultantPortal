@@ -49,7 +49,7 @@ export default class UserProfile extends Component {
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
-        let userIsConsultant = userRole === "Consultants";
+        let userIsConsultant = userRole === "Consultant";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
       } else if (response.status === 404) {
@@ -59,7 +59,7 @@ export default class UserProfile extends Component {
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
         copyOfUser.role = userRole;
-        let userIsConsultant = userRole === "Consultants";
+        let userIsConsultant = userRole === "Consultant";
         this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
       } else {
         console.log("Error in retrieving user information from the database: ", response.status);
@@ -72,7 +72,15 @@ export default class UserProfile extends Component {
     // now we can only delete our hard coded user, update this in the future -->
     // Now deletes "real user" from test database
     console.log(this.state.user.userId)
-    DeleteUser(this.state.user.userId);
+    DeleteUser(this.state.user.userId, response => {
+      if (response.status === 200) {
+        console.log("editMode success", response.status);
+        // some kind of 'save successfull' message for the user?
+      } else {
+        console.log("editMode error:", response.status);
+        // some kind of redirect to an error page?
+      }
+    });
   };
 
   /*
@@ -203,7 +211,7 @@ export default class UserProfile extends Component {
             <Button onClick={this.state.firstTimeLogin ? this.createMode : this.editMode} value={buttonTextSave}>
               {buttonTextSave}
             </Button>
-            <Button
+            {/* <Button
               onClick={this.state.firstTimeLogin
                 ? this.handleCancel
                 : function() {
@@ -213,9 +221,9 @@ export default class UserProfile extends Component {
                   color="success"
             >
               {buttonTextCancel}
-            </Button>
-                  {/* Above delete button doesn't work, button commented below works */}
-            {/* <Button
+            </Button> */}
+                  {/* Above commented delete button doesn't work, button  below works */}
+             <Button
               onClick={() => {
                 if (
                   window.confirm(
@@ -227,7 +235,7 @@ export default class UserProfile extends Component {
               color="success"
             >
               {buttonTextCancel}
-            </Button> */}
+            </Button> 
           </Col>
         </Row>
       </Container>
