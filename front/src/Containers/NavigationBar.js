@@ -70,7 +70,7 @@ export default class NavigationBar extends Component {
                   <NavItem>
                     <NavLink href="/positions">Positions</NavLink>
                   </NavItem>
-                  {this.props.childProps.role === "Sales"
+                  {this.props.childProps.role === "AW"
                     ? <NavItem>
                       <NavLink href="/positions/add">Add position</NavLink>
                     </NavItem>

@@ -49,7 +49,7 @@ export default class UserProfile extends Component {
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
-        let userIsConsultant = userRole === "Consultants";
+        let userIsConsultant = userRole === "Consultant";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
       } else if (response.status === 404) {
@@ -59,7 +59,7 @@ export default class UserProfile extends Component {
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
         copyOfUser.role = userRole;
-        let userIsConsultant = userRole === "Consultants";
+        let userIsConsultant = userRole === "Consultant";
         this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
       } else {
         console.log("Error in retrieving user information from the database: ", response.status);
@@ -67,15 +67,18 @@ export default class UserProfile extends Component {
     });
   }
 
-
   handleDeleteUser = () => {
     // now we can only delete our hard coded user, update this in the future -->
     // Now deletes "real user" from test database
     if (window.confirm("Are you sure you want to delete your profile?")) {
       console.log(this.state.user.userId)
       DeleteUser(this.state.user.userId, response => {
-        console.log("delete: ", response);
-      });
+        if (response.status === 200) {
+          console.log("Profile deleted, status: ", response.status);
+        } else {
+        console.log("delete: ", response.status);
+        }
+      })
     }
   };
 
@@ -180,7 +183,6 @@ export default class UserProfile extends Component {
   }
 
   renderUserProfileDetails() {
-
     return (
       <UserProfileDetails
         user={this.state.user}
@@ -209,24 +211,9 @@ export default class UserProfile extends Component {
             </Button>
             <Button
               onClick={this.state.firstTimeLogin ? this.handleCancel : this.handleDeleteUser}
-              color="success"
-            >
+              color="success">
               {buttonTextCancel}
-            </Button>
-                  {/* Above delete button doesn't work, button commented below works */}
-            {/* <Button
-              onClick={() => {
-                if (
-                  window.confirm(
-                    "Are you sure you want to delete your profile?"
-                  )
-                )
-                  this.handleDeleteUser();
-              }}
-              color="success"
-            >
-              {buttonTextCancel}
-            </Button> */}
+            </Button> 
           </Col>
         </Row>
       </Container>

@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import history from "./history";
 import { AuthenticatedRoute } from "./Components/AuthenticatedRoute";
 import { AuthenticatedRouteSales } from "./Components/AuthenticatedRouteSales";
-
 import Home from "./Views/Home";
 import ProfileView from "./Views/ProfileView";
 import ConsultantSkillsAutoSuggestions from "./Containers/ConsultantSkillsAutoSuggestions";
