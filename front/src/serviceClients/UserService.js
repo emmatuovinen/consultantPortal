@@ -13,7 +13,13 @@ export function CreateUser(userData, callback) {
     email: userData.email,
     role: userData.role,
     phoneNumber: userData.phoneNumber,
-    description: userData.description
+    description: userData.description,
+    linkedInUrl: userData.linkedInUrl,
+    gitHubUrl: userData.gitHubUrl,
+    pictureUrl: userData.pictureUrl,
+    userSkills: userData.userSkills,
+    preferableRoles: userData.preferableRoles,
+    lessPreferableRoles: []
   };
   Axios.post(API + "Users/", newUser, { headers: { Authorization: AuthStr } })
     .then(response => {
@@ -79,6 +85,7 @@ export function DeleteUser(userId, callback) {
 }
 
 export function EditProfile(userId, user, callback) {
+  console.log("UserService: ", userId, user);
   Axios.put(API + "Users/" + userId, user, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);

@@ -12,8 +12,6 @@ import {
 import UserProfileForm from "../Components/UserProfileForm";
 import UserProfileDetails from "../Components/UserProfileDetails";
 
-//const USER_ID = "2"; // hard coded userId for demo purposes
-
 export default class UserProfile extends Component {
   state = {
     userEmail: authContext._user.userName,
@@ -24,13 +22,13 @@ export default class UserProfile extends Component {
       email: "",
       phoneNumber: "",
       description: "",
-      role: this.props.role,
+      role: "",
       userSkills: [],
       linkedInUrl: "",
       gitHubUrl: "",
       pictureUrl: "",
       preferableRoles: [],
-      //lessPreferableRoles: []
+      lessPreferableRoles: []
     },
     isEditing: false,
     userIsConsultant: false,
@@ -46,26 +44,23 @@ export default class UserProfile extends Component {
         the UserProfileForm is rendered for the user to fill the data in.
         Email, firstname and lastname are prefilled in.
 */
-    console.log("UserProfile, email: ", this.state.userEmail);
-    console.log("this.props.role: ", this.props.role);
+    let userRole = sessionStorage.getItem('aw-role');
+    console.log("userRole from sessionStorage: ", userRole);
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
-        let userIsConsultant = user.role === "Consultant";
+        let userIsConsultant = userRole === "Consultants";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
-        console.log("Mitä ihmettä: ", this.state.user, this.state.userIsConsultant);
       } else if (response.status === 404) {
         
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
-        copyOfUser.role = this.props.role;
-        console.log("UserProfile.js, rooli: ", this.props.role);
-        let userIsConsultant = copyOfUser.role === "Consultant";
+        copyOfUser.role = userRole;
+        let userIsConsultant = userRole === "Consultants";
         this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
-        console.log("Kun status 404: ", this.state.userIsConsultant, this.state.user);
       } else {
         console.log("Error in retrieving user information from the database: ", response.status);
       }
@@ -80,25 +75,35 @@ export default class UserProfile extends Component {
     DeleteUser(this.state.user.userId);
   };
 
+  /*
+    - This function is a handler for the Cancel button in the UserProfileForm component
+      when the user is login for the first time and the form is rendered as a first page
+      for the user to fill his/her information in.
+      This function just sets the states which causes the rendering of the UserProfileDetails page
+  */
   handleCancel = () => {
     this.setState({ isEditing: !this.state.isEditing, firstTimeLogin: false });
   }
 
+  // - Function for handling the update of the user information
   editMode = btn => {
+    console.log("editMode: ", this.state.user);
     if (btn.target.value === "Save") {
       EditProfile(this.state.user.userId, this.state.user, response => {
         if (response.status === 200) {
-          console.log("success", response.status);
+          console.log("editMode success", response.status);
           // some kind of 'save successfull' message for the user?
         } else {
-          console.log("error", response.status);
+          console.log("editMode error:", response.status);
           // some kind of redirect to an error page?
         }
       });
     }
     this.setState({ isEditing: !this.state.isEditing });
   };
-
+/* - Function for adding the user information to the database when
+    the user is loggin in for the first time i.e. creating the user to DB.
+*/
   createMode = () => {
     console.log("User data: ", this.state.user);
     CreateUser(this.state.user, response => {
@@ -150,10 +155,12 @@ export default class UserProfile extends Component {
       case "userSkills":
         copyOfUser.userSkills.push(event.target.innerHTML);
         break;
+      // case "roleInterests":
+      //   copyOfUser.roleInterests.push(event.target.value);
+      //   break;
       default:
         break;
     }
-    console.log("copyOfUser: ", copyOfUser);
     this.setState({ user: copyOfUser });
   };
 
@@ -180,8 +187,6 @@ export default class UserProfile extends Component {
   
 
   render() {
-    console.log("Userprofile.js", this.props.role )
-    console.log("Userprofile.js", this.props.props )
 
     let buttonTextSave = this.state.isEditing ? "Save" : "Edit";
     let buttonTextCancel = this.state.firstTimeLogin ? "Cancel" : "Delete Profile";
