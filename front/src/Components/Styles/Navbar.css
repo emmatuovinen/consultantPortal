@@ -60,6 +60,7 @@ a.nav-link {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
+  
 }
 
 @media (max-width: 870px) {
@@ -73,6 +74,6 @@ a.nav-link {
       rgb(255, 255, 255, 0) 120%
     );
     padding-bottom: 3em;
-    line-height: 1.5em;
+    line-height: 1.5em;   
   }
 }
