@@ -67,20 +67,17 @@ export default class UserProfile extends Component {
     });
   }
 
-
   handleDeleteUser = () => {
-    // now we can only delete our hard coded user, update this in the future -->
-    // Now deletes "real user" from test database
-    console.log(this.state.user.userId)
-    DeleteUser(this.state.user.userId, response => {
-      if (response.status === 200) {
-        console.log("editMode success", response.status);
-        // some kind of 'save successfull' message for the user?
-      } else {
-        console.log("editMode error:", response.status);
-        // some kind of redirect to an error page?
-      }
-    });
+    if (window.confirm("Are you sure you want to delete your profile?")) {
+      console.log(this.state.user.userId)
+      DeleteUser(this.state.user.userId, response => {
+        if (response.status === 200) {
+          console.log("Profile deleted, status: ", response.status);
+        } else {
+        console.log("delete: ", response.status);
+        }
+      })
+    }
   };
 
   /*
@@ -184,7 +181,6 @@ export default class UserProfile extends Component {
   }
 
   renderUserProfileDetails() {
-
     return (
       <UserProfileDetails
         user={this.state.user}
@@ -211,29 +207,9 @@ export default class UserProfile extends Component {
             <Button onClick={this.state.firstTimeLogin ? this.createMode : this.editMode} value={buttonTextSave}>
               {buttonTextSave}
             </Button>
-            {/* <Button
-              onClick={this.state.firstTimeLogin
-                ? this.handleCancel
-                : function() {
-                  if (window.confirm("Are you sure you want to delete your profile?"))
-                    this.handleDeleteUser();
-                  }}
-                  color="success"
-            >
-              {buttonTextCancel}
-            </Button> */}
-                  {/* Above commented delete button doesn't work, button  below works */}
-             <Button
-              onClick={() => {
-                if (
-                  window.confirm(
-                    "Are you sure you want to delete your profile?"
-                  )
-                )
-                  this.handleDeleteUser();
-              }}
-              color="success"
-            >
+            <Button
+              onClick={this.state.firstTimeLogin ? this.handleCancel : this.handleDeleteUser}
+              color="success">
               {buttonTextCancel}
             </Button> 
           </Col>
