@@ -27,10 +27,10 @@ namespace WebApi.Repository
                         .ToListAsync();
         }
 
-        public async Task<User> GetUser(ObjectId dbId)
+        public async Task<User> GetUser(ObjectId DBId)
         {
             FilterDefinition<User> filter =
-                Builders<User>.Filter.Eq(u => u.DBId, dbId);
+                Builders<User>.Filter.Eq(u => u.DBId, DBId);
             return await _context
                 .Users
                 .Find(filter)

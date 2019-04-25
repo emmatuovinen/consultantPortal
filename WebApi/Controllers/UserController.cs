@@ -31,10 +31,11 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{dbId}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(ObjectId dbId)
+        [HttpGet("{DbId}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(ObjectId DbId)
         {
-            var user = await _repo.GetUser(dbId);
+         
+            var user = await _repo.GetUser(DbId);
 
             if (user == null)
             {
@@ -44,19 +45,19 @@ namespace WebApi.Controllers
             return new ObjectResult(user);
         }
 
-        // GET api/users/{email}
-        [HttpGet("{email}", Name = "GetUserbyEmail")]
-        public async Task<ActionResult<User>> GetUserbyEmail(string email)
-        {
-            var user = await _repo.GetUserbyEmail(email);
+        //// GET api/users/{email}
+        //[HttpGet("{email}", Name = "GetUserbyEmail")]
+        //public async Task<ActionResult<User>> GetUserbyEmail(string email)
+        //{
+        //    var user = await _repo.GetUserbyEmail(email);
 
-            if (user == null)
-            {
-                return new NotFoundResult();
-            }
+        //    if (user == null)
+        //    {
+        //        return new NotFoundResult();
+        //    }
 
-            return new ObjectResult(user);
-        }
+        //    return new ObjectResult(user);
+        //}
 
         // GET api/users/consultants
         [HttpGet, Route("consultants")]
