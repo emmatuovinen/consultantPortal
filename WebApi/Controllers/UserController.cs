@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using WebApi.Repository;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class UsersController : ControllerBase
@@ -30,10 +31,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{_id:long}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(long _id)
+        [HttpGet("{_id:ObjectID}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(ObjectId DBId)
         {
-            var user = await _repo.GetUser(_id);
+            var user = await _repo.GetUser(DBId);
 
             if (user == null)
             {
@@ -75,16 +76,16 @@ namespace WebApi.Controllers
 
         // PUT: api/users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(long id, [FromBody]User user)
+        public async Task<IActionResult> Put(ObjectId DBId, [FromBody]User user)
         {
-            var updatedUser = await _repo.GetUser(id);
+            var updatedUser = await _repo.GetUser(DBId);
 
             if (updatedUser == null)
             {
                 return new NotFoundResult();
             }
 
-            updatedUser.UserId = id;
+            //updatedUser.DBId = DBId;
 
             updatedUser.FirstName = user.FirstName;
             updatedUser.LastName = user.LastName;
@@ -120,16 +121,16 @@ namespace WebApi.Controllers
 
         //DELETE: api/users/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(ObjectId DBId)
         {
-            var userFromDb = await _repo.GetUser(id);
+            var userFromDb = await _repo.GetUser(DBId);
 
             if (userFromDb == null)
             {
                 return new NotFoundResult();
             }
 
-            await _repo.Delete(id);
+            await _repo.Delete(DBId);
 
             return new OkResult();
         }

@@ -27,10 +27,10 @@ namespace WebApi.Repository
                         .ToListAsync();
         }
 
-        public async Task<User> GetUser(long id)
+        public async Task<User> GetUser(ObjectId DBId)
         {
             FilterDefinition<User> filter =
-                Builders<User>.Filter.Eq(u => u.UserId, id);
+                Builders<User>.Filter.Eq(u => u.DBId, DBId);
             return await _context
                 .Users
                 .Find(filter)
@@ -75,9 +75,9 @@ namespace WebApi.Repository
 
         }
 
-        public async Task<bool> Delete(long id)
+        public async Task<bool> Delete(ObjectId DBId)
         {
-            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.UserId, id);
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.DBId, DBId);
 
             DeleteResult deleteResult = await _context
                                                 .Users
