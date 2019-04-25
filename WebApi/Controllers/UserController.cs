@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{DBId:ObjectID}", Name = "GetUser")]
+        [HttpGet("{DBId}", Name = "GetUser")]
         public async Task<ActionResult<User>> Get(ObjectId DBId)
         {
             var user = await _repo.GetUser(DBId);
@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{email}
-        [HttpGet("{email}", Name = "GetUserbyEmail")]
+        [HttpGet("{email: string}", Name = "GetUserbyEmail")]
         public async Task<ActionResult<User>> GetUserbyEmail(string email)
         {
             var user = await _repo.GetUserbyEmail(email);
