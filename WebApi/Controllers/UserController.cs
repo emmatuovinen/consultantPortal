@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{_id:ObjectID}", Name = "GetUser")]
+        [HttpGet("{DBId:ObjectID}", Name = "GetUser")]
         public async Task<ActionResult<User>> Get(ObjectId DBId)
         {
             var user = await _repo.GetUser(DBId);
