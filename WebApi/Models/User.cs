@@ -14,8 +14,8 @@ namespace WebApi.Models
         [BsonId, BsonElement("dbId")]
         public ObjectId DBId { get; private set; }
 
-        //[BsonElement("userId")]
-        //public long UserId { get; set; }
+        [BsonElement("userId")]
+        public long UserId { get; set; }
 
         [BsonElement("firstName")]
         public string FirstName { get; set; }

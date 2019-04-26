@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{email}
-        [HttpGet, Route("/email/{email}")]
+        [HttpGet("{email}", Name = "GetUserbyEmail")]
         public async Task<ActionResult<User>> GetUserbyEmail(string email)
         {
             var user = await _repo.GetUserbyEmail(email);
@@ -69,7 +69,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
-           // user.UserId = await _repo.GetNextId();
+            user.UserId = await _repo.GetNextId();
             await _repo.Create(user);
             return new OkObjectResult(user);
         }
