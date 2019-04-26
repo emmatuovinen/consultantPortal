@@ -69,4 +69,15 @@ export function EditPosition(positionId, position, callback) {
     });
 }
 
+export function DeletePosition(positionId, callback) {
+  Axios.delete(constants.API + "positions/" + positionId, { headers: { Authorization: AuthStr } })
+    .then(response => {
+      callback(response);
+    })
+    .catch(error => {
+      callback(error.response);
+    });
+}
+
+
 export default function() {}

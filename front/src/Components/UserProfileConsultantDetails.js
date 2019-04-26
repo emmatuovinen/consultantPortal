@@ -35,19 +35,6 @@ const UserProfileConsultantDetails = props => {
             </Label>
           </td>
         </tr>
-        {/* Commented out the less preferableRoles */}
-        {/* <tr>
-          <th scope="row">
-            <Label>Less preferable roles: </Label>
-          </th>
-          <td>
-            <Label>
-              {props.user.lessPreferableRoles.map((role, index) => {
-                return <div key={index}>{role}</div>;
-              })}
-            </Label>
-          </td>
-        </tr> */}
       </tbody>
     </Table>
   );

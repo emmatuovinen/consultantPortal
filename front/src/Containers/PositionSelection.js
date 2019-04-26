@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
   GetPositionInfo,
-  EditPosition
+  EditPosition,
+  DeletePosition
 } from "../serviceClients/PositionService";
 import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button, Badge, Row, Col } from "reactstrap";
@@ -11,13 +12,13 @@ import UserCardSmall from "../Components/UserCardSmall";
 import "../Components/Styles/PositionSelection.css";
 import "../Components/Styles/App.css";
 
-const userRole = ["consultant", "AW"]; // test array
+//const userRole = ["consultant", "AW"]; // test array
 
 class PositionSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userRole: userRole[0],
+      userRole: "",
       positionId: this.props.match.params.positionId,
       position: {
         positionDescription: "",
@@ -37,6 +38,7 @@ class PositionSelection extends Component {
 
   componentDidMount = () => {
 
+    this.setState({ userRole: sessionStorage.getItem('aw-role') })
     console.log(this.props.match.params.positionId)
     console.log("state posid", this.state.positionId)
     GetPositionInfo(this.state.positionId, response => {
@@ -72,6 +74,19 @@ class PositionSelection extends Component {
         console.log("error", response.status);
       }
     });
+  };
+
+  handleDeletePosition = () => {
+    if (window.confirm("Are you sure you want to delete your profile?")) {
+      DeletePosition(this.state.positionId, response => {
+        if (response.status === 200) {
+          console.log("Position Deleted", response.status);
+          this.props.history.push('/')
+        } else {
+          console.log("Delete: ", response.status);
+        }
+      });
+    }
   };
 
   handleChange = e => {
@@ -228,20 +243,33 @@ class PositionSelection extends Component {
                 </span>
               </Button>
             ) : (
-              <Button
-                outline
-                color="success"
-                onClick={() =>
-                  this.setState({
-                    isEditing: !this.state.isEditing,
-                    hideEditButton: !this.state.isHidden
-                  })
-                }
-                style={hideButton}
-              >
-                Edit
+                <Row>
+                  <Col lg="7">
+                    <Button
+                      outline
+                      color="success"
+                      onClick={() =>
+                        this.setState({
+                          isEditing: !this.state.isEditing,
+                          hideEditButton: !this.state.isHidden
+                        })
+                      }
+                      style={hideButton}
+                    >
+                      Edit
               </Button>
-            )}
+                    <Button
+                      outline
+                      color="success"
+                      onClick={this.handleDeletePosition
+                      }
+                      style={hideButton}
+                    >
+                      Delete
+            </Button>
+                  </Col>
+                </Row>
+              )}
           </Col>
         </Row>
         <Row>{this.renderCandidates()}</Row>

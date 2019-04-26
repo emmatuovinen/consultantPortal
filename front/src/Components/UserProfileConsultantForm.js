@@ -26,17 +26,6 @@ const UserProfileForm = props => {
           value={props.user.preferableRoles}
         />
       </FormGroup>
-      {/* Commented out the less preferableRoles */}
-      {/* <FormGroup controlid="lessPreferableRoles">
-        <Label for="lessPreferableRoles">Less preferable roles</Label>
-        <Input
-          onChange={props.handleChange}
-          type="text"
-          name="lessPreferableRoles"
-          id="lessPreferableRoles"
-          value={props.user.lessPreferableRoles}
-        />
-      </FormGroup> */}
     </Form>
   );
 };
