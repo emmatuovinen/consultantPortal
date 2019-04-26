@@ -1,9 +1,6 @@
 import React from "react";
 import { Table, Label, Badge } from "reactstrap";
 
-// HARD CODED FOR DEMO PURPOSES
-//const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
-//const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileConsultantDetails = props => {
   return (

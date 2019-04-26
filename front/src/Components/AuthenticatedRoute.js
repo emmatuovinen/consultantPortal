@@ -5,7 +5,6 @@ import {getToken} from '../adalconfig';
   export function AuthenticatedRoute ({ component: Component, props: P, ...rest }) {
     let props =  {...rest};
     let isLoggedIn = getToken();
-    //let isLoggedIn = P.isAuthenticated;
  
     return (
       <Route
@@ -17,10 +16,3 @@ import {getToken} from '../adalconfig';
         }
       />)
     }
-
-      // isLoggedIn ?
-      // <Route path={props.path} component={Component} role={P.role} />
-      // :
-      // <Redirect to={{pathname : "/login", state: {from: props.location} }} />
-    // )
-    // }

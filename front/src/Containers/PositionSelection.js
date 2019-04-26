@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import {
-  GetPositionInfo,
-  EditPosition,
-  DeletePosition
-} from "../serviceClients/PositionService";
-import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button, Badge, Row, Col } from "reactstrap";
+import { DeletePosition, EditPosition, GetPositionInfo } from "../serviceClients/PositionService";
+import { GetAllConsultants } from "../serviceClients/UserService";
 import PositionInfo from "../Components/PositionInfo";
 import PositionForm from "../Components/PositionForm";
 import UserCardSmall from "../Components/UserCardSmall";
