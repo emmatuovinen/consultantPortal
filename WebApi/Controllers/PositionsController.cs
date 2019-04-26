@@ -87,5 +87,21 @@ namespace WebApi.Models
 
             return new OkObjectResult(updatedPosition);
         }
+
+        //DELETE: /Positions/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var userFromDb = await _repo.GetPosition(id);
+
+            if (userFromDb == null)
+            {
+                return new NotFoundResult();
+            }
+
+            await _repo.Delete(id);
+
+            return new OkResult();
+        }
     }
 }
