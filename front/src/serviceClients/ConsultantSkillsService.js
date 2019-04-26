@@ -1,11 +1,11 @@
 import Axios from "axios";
 import { getToken } from "../adalconfig";
 
-const API = "http://localhost:5000/api/";
+const constants = require('./constants');
 const AuthStr = 'Bearer ' + getToken();
 
 export function GetSkillsStackOptions(callback) {
-  Axios.get(API + "Skills", { headers: { Authorization: AuthStr } })
+  Axios.get(constants.API + "Skills", { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })

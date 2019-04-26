@@ -1,9 +1,7 @@
 import Axios from "axios";
 import { getToken } from "../adalconfig";
 
-
-
-const API = "http://localhost:5000/api/";
+const constants = require('./constants');
 const AuthStr = 'Bearer ' + getToken();
 
 export function CreateUser(userData, callback) {
@@ -21,7 +19,7 @@ export function CreateUser(userData, callback) {
     preferableRoles: userData.preferableRoles,
     lessPreferableRoles: []
   };
-  Axios.post(API + "Users/", newUser, { headers: { Authorization: AuthStr } })
+  Axios.post(constants.API + "Users/", newUser, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -32,7 +30,7 @@ export function CreateUser(userData, callback) {
 
 
 export function GetAllConsultants(callback) {
-  Axios.get(API + "Users/Consultants", { headers: { Authorization: AuthStr } })
+  Axios.get(constants.API + "Users/Consultants", { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -42,7 +40,7 @@ export function GetAllConsultants(callback) {
 }
 
 export function GetAllUsers(callback) {
-  Axios.get(API + "Users/",  { headers: { Authorization: AuthStr } })
+  Axios.get(constants.API + "Users/",  { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response.data);
     })
@@ -52,7 +50,7 @@ export function GetAllUsers(callback) {
 }
 
 export function GetConsultantInfo(userId, callback) {
-  Axios.get(API + "Users/" + userId, { headers: { Authorization: AuthStr } })
+  Axios.get(constants.API + "Users/" + userId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -63,19 +61,18 @@ export function GetConsultantInfo(userId, callback) {
 
 //Get consultant by email
 export function GetConsultantInfobyEmail(userEmail, callback) {
-  Axios.get(API + "Users/" + userEmail, { headers: { Authorization: AuthStr } })
+  Axios.get(constants.API + "Users/" + userEmail, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
     .catch(error => {
       callback(error.response);
-      console.log(error.response)
     });
 }
 
 
 export function DeleteUser(userId, callback) {
-  Axios.delete(API + "Users/" + userId, { headers: { Authorization: AuthStr } })
+  Axios.delete(constants.API + "Users/" + userId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -85,8 +82,7 @@ export function DeleteUser(userId, callback) {
 }
 
 export function EditProfile(userId, user, callback) {
-  console.log("UserService: ", userId, user);
-  Axios.put(API + "Users/" + userId, user, { headers: { Authorization: AuthStr } })
+  Axios.put(constants.API + "Users/" + userId, user, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })

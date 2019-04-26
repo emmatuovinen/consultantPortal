@@ -26,9 +26,7 @@ class Login extends Component {
     };
     render() {
         return (
-            <div>
-                <LoginPage/>
-            </div>
+            <LoginPage />
         );
     }
 }

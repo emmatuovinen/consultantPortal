@@ -44,7 +44,7 @@ export default class UserProfile extends Component {
         the UserProfileForm is rendered for the user to fill the data in.
         Email, firstname and lastname are prefilled in.
 */
-    let userRole = sessionStorage.getItem('aw-role');
+    const userRole = sessionStorage.getItem('aw-role');
     console.log("userRole from sessionStorage: ", userRole);
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
@@ -52,7 +52,8 @@ export default class UserProfile extends Component {
         let userIsConsultant = userRole === "Consultant";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
-      } else if (response.status === 404) {
+      }
+      else if (response.status === 404) {
         
         let copyOfUser = { ...this.state.user };
         copyOfUser.email = authContext._user.userName;
@@ -60,8 +61,14 @@ export default class UserProfile extends Component {
         copyOfUser.lastName = authContext._user.profile.family_name;
         copyOfUser.role = userRole;
         let userIsConsultant = userRole === "Consultant";
-        this.setState({ user: copyOfUser, isEditing: !this.state.isEditing, firstTimeLogin: true, userIsConsultant: userIsConsultant });
-      } else {
+        this.setState({
+          user: copyOfUser,
+          isEditing: !this.state.isEditing,
+          firstTimeLogin: true,
+          userIsConsultant: userIsConsultant
+        });
+      }
+      else {
         console.log("Error in retrieving user information from the database: ", response.status);
       }
     });
@@ -73,7 +80,8 @@ export default class UserProfile extends Component {
       DeleteUser(this.state.user.userId, response => {
         if (response.status === 200) {
           console.log("Profile deleted, status: ", response.status);
-        } else {
+        }
+        else {
         console.log("delete: ", response.status);
         }
       })

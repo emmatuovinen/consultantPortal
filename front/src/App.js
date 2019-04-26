@@ -40,13 +40,9 @@ class App extends Component {
 
   // Login function which activates the Azure AD login when DO_NOT_LOGIN is set to false  
   login = () => {
-    const DO_NOT_LOGIN = false;
-
     runWithAdal(authContext, () => {
-      // eslint-disable-next-line
       require('./App.js');
-
-    }, DO_NOT_LOGIN);
+    }, false);
   }
 
   // Logout function
