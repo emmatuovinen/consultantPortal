@@ -45,6 +45,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{email}
+        [Route("api/[Controller]/{Action}")]
         [HttpGet("{email}", Name = "GetUserbyEmail")]
         public async Task<ActionResult<User>> GetUserbyEmail(string email)
         {
