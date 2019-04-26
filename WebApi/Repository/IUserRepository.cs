@@ -23,7 +23,7 @@ namespace WebApi.Repository
 
         Task<bool> Update(User user);
 
-        Task<bool> Delete(string DBId);
+        Task<bool> Delete(string id);
 
         Task<long> GetNextId();
         Task<bool> DeleteAllMockData();

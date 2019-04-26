@@ -44,19 +44,19 @@ namespace WebApi.Controllers
             return new ObjectResult(user);
         }
 
-        //// GET api/users/{email}
-        //[HttpGet("{email}", Name = "GetUserbyEmail")]
-        //public async Task<ActionResult<User>> GetUserbyEmail(string email)
-        //{
-        //    var user = await _repo.GetUserbyEmail(email);
+        // GET api/users/{email}
+        [HttpGet("{email}", Name = "GetUserbyEmail")]
+        public async Task<ActionResult<User>> GetUserbyEmail(string email)
+        {
+            var user = await _repo.GetUserbyEmail(email);
 
-        //    if (user == null)
-        //    {
-        //        return new NotFoundResult();
-        //    }
+            if (user == null)
+            {
+                return new NotFoundResult();
+            }
 
-        //    return new ObjectResult(user);
-        //}
+            return new ObjectResult(user);
+        }
 
         // GET api/users/consultants
         [HttpGet, Route("consultants")]
@@ -76,9 +76,9 @@ namespace WebApi.Controllers
 
         // PUT: api/users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string DBId, [FromBody]User user)
+        public async Task<IActionResult> Put(string id, [FromBody]User user)
         {
-            var updatedUser = await _repo.GetUser(DBId);
+            var updatedUser = await _repo.GetUser(id);
 
             if (updatedUser == null)
             {
@@ -121,16 +121,16 @@ namespace WebApi.Controllers
 
         //DELETE: api/users/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string DBId)
+        public async Task<IActionResult> Delete(string id)
         {
-            var userFromDb = await _repo.GetUser(DBId);
+            var userFromDb = await _repo.GetUser(id);
 
             if (userFromDb == null)
             {
                 return new NotFoundResult();
             }
 
-            await _repo.Delete(DBId);
+            await _repo.Delete(id);
 
             return new OkResult();
         }
