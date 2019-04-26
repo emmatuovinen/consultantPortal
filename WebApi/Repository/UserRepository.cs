@@ -27,10 +27,10 @@ namespace WebApi.Repository
                         .ToListAsync();
         }
 
-        public async Task<User> GetUser(ObjectId dbId)
+        public async Task<User> GetUser(string id)
         {
             FilterDefinition<User> filter =
-                Builders<User>.Filter.Eq(u => u.DBId, dbId);
+                Builders<User>.Filter.Eq(u => u.Id, id);
             return await _context
                 .Users
                 .Find(filter)
@@ -67,7 +67,7 @@ namespace WebApi.Repository
         {
             ReplaceOneResult updateResult =
                 await _context.Users.ReplaceOneAsync(
-                    filter: u => u.DBId == user.DBId,
+                    filter: u => u.Id == user.Id,
                     replacement: user);
 
             return updateResult.IsAcknowledged
@@ -75,9 +75,9 @@ namespace WebApi.Repository
 
         }
 
-        public async Task<bool> Delete(ObjectId DBId)
+        public async Task<bool> Delete(string id)
         {
-            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.DBId, DBId);
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Id, id);
 
             DeleteResult deleteResult = await _context
                                                 .Users

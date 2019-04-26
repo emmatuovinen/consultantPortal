@@ -31,10 +31,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{dbId}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(string dbId)
+        [HttpGet("{id:length(24)}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(string id)
         {
-            var user = await _repo.GetUser(ObjectId.Parse(dbId));
+            var user = await _repo.GetUser(id);
 
             if (user == null)
             {
@@ -76,7 +76,7 @@ namespace WebApi.Controllers
 
         // PUT: api/users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(ObjectId DBId, [FromBody]User user)
+        public async Task<IActionResult> Put(string DBId, [FromBody]User user)
         {
             var updatedUser = await _repo.GetUser(DBId);
 
@@ -121,7 +121,7 @@ namespace WebApi.Controllers
 
         //DELETE: api/users/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(ObjectId DBId)
+        public async Task<IActionResult> Delete(string DBId)
         {
             var userFromDb = await _repo.GetUser(DBId);
 
