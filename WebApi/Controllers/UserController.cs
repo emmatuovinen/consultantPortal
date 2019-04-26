@@ -69,7 +69,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
-            user.UserId = await _repo.GetNextId();
+           // user.UserId = await _repo.GetNextId();
             await _repo.Create(user);
             return new OkObjectResult(user);
         }
