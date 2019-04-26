@@ -31,11 +31,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{DbId}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(string dbid)
+        [HttpGet("{id}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(string id)
         {
-            
-            var user = await _repo.GetUser(ObjectId.Parse(dbid));
+            var user = await _repo.GetUser(ObjectId.Parse(id));
 
             if (user == null)
             {
