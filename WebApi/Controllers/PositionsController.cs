@@ -10,7 +10,7 @@ using WebApi.Repository;
 
 namespace WebApi.Models
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PositionsController : ControllerBase
