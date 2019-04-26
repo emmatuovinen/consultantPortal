@@ -50,7 +50,7 @@ export default class UserProfile extends Component {
     GetConsultantInfobyEmail(this.state.userEmail, response => {
       if (response.status === 200) {
         let user = response.data;
-        let userIsConsultant = userRole === "Consultant";
+        let userIsConsultant = userRole !== "AW";
         user.userSkills = user.userSkills || [];
         this.setState({ user, userIsConsultant });
       }
@@ -61,7 +61,7 @@ export default class UserProfile extends Component {
         copyOfUser.firstName = authContext._user.profile.given_name;
         copyOfUser.lastName = authContext._user.profile.family_name;
         copyOfUser.role = userRole;
-        let userIsConsultant = userRole === "Consultant";
+        let userIsConsultant = userRole !== "AW";
         this.setState({
           user: copyOfUser,
           isEditing: !this.state.isEditing,
