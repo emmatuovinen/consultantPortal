@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{email}
-        [HttpGet("{email}", Name = "GetUserbyEmail")]
+        [HttpGet, Route("/email/{email}")]
         public async Task<ActionResult<User>> GetUserbyEmail(string email)
         {
             var user = await _repo.GetUserbyEmail(email);
