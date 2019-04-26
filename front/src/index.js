@@ -6,14 +6,12 @@ import { authContext } from './adalconfig';
   - DO_NOT_LOGIN = true enables the user to see the landing page without the need to login first
 */
 
-const DO_NOT_LOGIN = true;
-
 runWithAdal(authContext, () => {
 
   // eslint-disable-next-line
   require('./indexApp.js');
 
-},DO_NOT_LOGIN);
+},true);
 
 
 
