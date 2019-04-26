@@ -11,7 +11,7 @@ import {
 import "./Styles/userCard.css";
 
 const UserCard = props => {
-  const userProfileUrl = `view-profile/${props.userId}`;
+  const userProfileUrl = `view-profile/${props.dbId}`;
 
   let skills;
   if (props.userSkills) {

@@ -16,6 +16,7 @@ export default class UserProfile extends Component {
   state = {
     userEmail: authContext._user.userName,
     user: {
+      dbId: "",
       userId: "",
       firstName: "",
       lastName: "",
@@ -69,8 +70,8 @@ export default class UserProfile extends Component {
 
   handleDeleteUser = () => {
     if (window.confirm("Are you sure you want to delete your profile?")) {
-      console.log(this.state.user.userId)
-      DeleteUser(this.state.user.userId, response => {
+      console.log(this.state.user.dbId)
+      DeleteUser(this.state.user.dbId, response => {
         if (response.status === 200) {
           console.log("Profile deleted, status: ", response.status);
         } else {
@@ -94,7 +95,7 @@ export default class UserProfile extends Component {
   editMode = btn => {
     console.log("editMode: ", this.state.user);
     if (btn.target.value === "Save") {
-      EditProfile(this.state.user.userId, this.state.user, response => {
+      EditProfile(this.state.user.dbId, this.state.user, response => {
         if (response.status === 200) {
           console.log("editMode success", response.status);
           // some kind of 'save successfull' message for the user?

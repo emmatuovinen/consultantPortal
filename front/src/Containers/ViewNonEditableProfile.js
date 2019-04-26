@@ -7,7 +7,7 @@ import "../Components/Styles/App.css";
 
 class ViewNonEditableProfile extends Component {
   state = {
-    userId: this.props.match.params.id,
+    dbId: this.props.match.params.id,
     user: {
       firstName: "",
       lastName: "",
@@ -20,7 +20,8 @@ class ViewNonEditableProfile extends Component {
   };
 
   componentDidMount() {
-    GetConsultantInfo(this.state.userId, response => {
+    console.log("view", this.props.match)
+    GetConsultantInfo(this.state.dbId, response => {
       if (response.status === 200) {
         let user = response.data;
         let userIsConsultant = user.role === "Consultant";
