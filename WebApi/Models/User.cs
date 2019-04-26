@@ -11,9 +11,8 @@ namespace WebApi.Models
 {
     public class User
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [BsonId, BsonElement("dbId")]
+        public ObjectId DBId { get; private set; }
 
         [BsonElement("userId")]
         public long UserId { get; set; }

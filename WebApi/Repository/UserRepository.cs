@@ -29,8 +29,9 @@ namespace WebApi.Repository
 
         public async Task<User> GetUser(string id)
         {
+            var parsedId = ObjectId.Parse(id);
             FilterDefinition<User> filter =
-                Builders<User>.Filter.Eq(u => u.Id, id);
+                Builders<User>.Filter.Eq(u => u.DBId, parsedId);
             return await _context
                 .Users
                 .Find(filter)
@@ -65,9 +66,10 @@ namespace WebApi.Repository
 
         public async Task<bool> Update(User user)
         {
+
             ReplaceOneResult updateResult =
                 await _context.Users.ReplaceOneAsync(
-                    filter: u => u.Id == user.Id,
+                    filter: u => u.DBId == user.DBId,
                     replacement: user);
 
             return updateResult.IsAcknowledged
@@ -77,7 +79,9 @@ namespace WebApi.Repository
 
         public async Task<bool> Delete(string id)
         {
-            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.Id, id);
+            var parsedId = ObjectId.Parse(id);
+
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u.DBId, parsedId);
 
             DeleteResult deleteResult = await _context
                                                 .Users
