@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import {
-  GetPositionInfo,
-  EditPosition
-} from "../serviceClients/PositionService";
-import { GetAllConsultants } from "../serviceClients/UserService";
 import { Container, Button, Badge, Row, Col } from "reactstrap";
-import PositionInfo from "../Components/PositionInfo";
+
+import { EditPosition, GetPositionInfo } from "../serviceClients/PositionService";
+import { GetAllConsultants } from "../serviceClients/UserService";
 import PositionForm from "../Components/PositionForm";
 import UserCardSmall from "../Components/UserCardSmall";
 import "../Components/Styles/PositionSelection.css";
@@ -37,8 +34,6 @@ class PositionSelection extends Component {
 
   componentDidMount = () => {
 
-    console.log(this.props.match.params.positionId)
-    console.log("state posid", this.state.positionId)
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
         console.log(response.data)
