@@ -65,5 +65,18 @@ namespace WebApi.Repository
                     .Find(filter)
                     .FirstOrDefaultAsync();
         }
+        public async Task<bool> Delete(string id)
+        {
+            var parsedId = ObjectId.Parse(id);
+
+            FilterDefinition<Position> filter = Builders<Position>.Filter.Eq(u => u.PositionId, parsedId);
+
+            DeleteResult deleteResult = await _context
+                                                .Positions
+                                                .DeleteOneAsync(filter);
+
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
+        }
     }
 }

@@ -42,8 +42,8 @@ class ConsultantList extends Component {
     let consultantsListed = filteredConsultants.map(consultant => {
       return (
         <UserCard
-          userId={consultant.userId}
-          key={consultant.userId}
+          dbId={consultant.dbId}
+          key={consultant.dbId}
           firstName={consultant.firstName}
           lastName={consultant.lastName}
           role={consultant.role}

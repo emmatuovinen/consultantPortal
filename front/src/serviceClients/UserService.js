@@ -49,8 +49,8 @@ export function GetAllUsers(callback) {
     });
 }
 
-export function GetConsultantInfo(userId, callback) {
-  Axios.get(constants.API + "Users/" + userId, { headers: { Authorization: AuthStr } })
+export function GetConsultantInfo(dbId, callback) {
+  Axios.get(constants.API + "Users/" + dbId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -71,8 +71,8 @@ export function GetConsultantInfobyEmail(userEmail, callback) {
 }
 
 
-export function DeleteUser(userId, callback) {
-  Axios.delete(constants.API + "Users/" + userId, { headers: { Authorization: AuthStr } })
+export function DeleteUser(dbId, callback) {
+  Axios.delete(constants.API + "Users/" + dbId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -81,8 +81,8 @@ export function DeleteUser(userId, callback) {
     });
 }
 
-export function EditProfile(userId, user, callback) {
-  Axios.put(constants.API + "Users/" + userId, user, { headers: { Authorization: AuthStr } })
+export function EditProfile(dbId, user, callback) {
+  Axios.put(constants.API + "Users/" + dbId, user, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })

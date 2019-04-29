@@ -18,8 +18,9 @@ class AddNewPosition extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log("add new position", this.state.position)
     let position = { ...this.state.position };
-
+    console.log("let position from state", position)
     CreatePosition(position, response => {
       if (response.status === 200 || response.status === 201) {
         alert("Position saved");

@@ -16,6 +16,8 @@ namespace WebApi.Repository
         Task Create(Position position);
 
         Task<bool> Update(Position position);
+        Task<bool> Delete(string id);
+
 
         Task<Position> GetPosition(string PositionId);
     }
