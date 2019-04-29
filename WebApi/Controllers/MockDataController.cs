@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             {
                 var user = new User
                 {
-                    UserId = await _userRepo.GetNextId(),
+                    //UserId = await _userRepo.GetNextId(),
                     FirstName = "Myyjä" + i,
                     LastName = "Mallikas" + i,
                     Role = "AM",
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
                 await _userRepo.Create(user);
                 user = new User
                 {
-                    UserId = await _userRepo.GetNextId(),
+                    //UserId = await _userRepo.GetNextId(),
                     FirstName = "Consult" + i,
                     LastName = "Konsultti" + i,
                     Role = "Consultant",
@@ -80,7 +80,7 @@ namespace WebApi.Controllers
             {
                 new User()
                 {
-                    UserId = 1,
+                    //UserId = 1,
                     FirstName = "Essi", LastName = "Lehtola",
                     Role = "Consultant", Email = "essi.lehtola@hotmail.com ",
                     PhoneNumber = "0401234567",
@@ -94,7 +94,7 @@ namespace WebApi.Controllers
                 },
                  new User()
                 {
-                    UserId = 2,
+                    //UserId = 2,
                     FirstName = "Jouni", LastName = "Nieminen",
                     Role = "Consultant", Email = "jouni.nieminen@outlook.com",
                     PhoneNumber = "0400488182",
@@ -108,7 +108,7 @@ namespace WebApi.Controllers
                 },
                   new User()
                 {
-                    UserId = 3,
+                    //UserId = 3,
                     FirstName = "Arttu", LastName = "Kailanto",
                     Role = "Consultant", Email = "arttukailanto@gmail.com ",
                     PhoneNumber = "0401234567",
@@ -122,7 +122,7 @@ namespace WebApi.Controllers
                 },
                    new User()
                 {
-                    UserId = 4,
+                    //UserId = 4,
                     FirstName = "Emma", LastName = "Tuovinen",
                     Role = "Consultant", Email = "emma.n.tuovinen@gmail.com ",
                     PhoneNumber = "0401234567",
@@ -136,7 +136,7 @@ namespace WebApi.Controllers
                 },
                     new User()
                 {
-                    UserId = 5,
+                    //UserId = 5,
                     FirstName = "Roosa", LastName = "Tähkiö",
                     Role = "Consultant", Email = "roosa.tahkio@outlook.com",
                     PhoneNumber = "0401234567",
@@ -150,7 +150,7 @@ namespace WebApi.Controllers
                 },
                      new User()
                 {
-                    UserId = 6,
+                    //UserId = 6,
                     FirstName = "Aino", LastName = "Rouvinen",
                     Role = "Consultant", Email = "aino.rouvinen@outlook.com",
                     PhoneNumber = "0401234567",

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{_id:long}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(long _id)
+        [HttpGet("{id:length(24)}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(string id)
         {
-            var user = await _repo.GetUser(_id);
+            var user = await _repo.GetUser(id);
 
             if (user == null)
             {
@@ -75,7 +76,7 @@ namespace WebApi.Controllers
 
         // PUT: api/users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(long id, [FromBody]User user)
+        public async Task<IActionResult> Put(string id, [FromBody]User user)
         {
             var updatedUser = await _repo.GetUser(id);
 
@@ -84,7 +85,7 @@ namespace WebApi.Controllers
                 return new NotFoundResult();
             }
 
-            updatedUser.UserId = id;
+            //updatedUser.DBId = DBId;
 
             updatedUser.FirstName = user.FirstName;
             updatedUser.LastName = user.LastName;
@@ -120,7 +121,7 @@ namespace WebApi.Controllers
 
         //DELETE: api/users/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(string id)
         {
             var userFromDb = await _repo.GetUser(id);
 
