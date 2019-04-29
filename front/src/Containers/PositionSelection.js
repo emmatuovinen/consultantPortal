@@ -35,8 +35,6 @@ class PositionSelection extends Component {
   componentDidMount = () => {
 
     this.setState({ userRole: sessionStorage.getItem('aw-role') })
-    console.log(this.props.match.params.positionId)
-    console.log("state posid", this.state.positionId)
     GetPositionInfo(this.state.positionId, response => {
       if (response.status === 200) {
         console.log(response.data)
