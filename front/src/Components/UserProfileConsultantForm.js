@@ -2,9 +2,6 @@ import React from "react";
 import { Form, FormGroup, Label, Input, Badge } from "reactstrap";
 import ConsultantSkillsAutoSuggestions from "../Containers/ConsultantSkillsAutoSuggestions";
 
-// HARD CODED FOR DEMO PURPOSES
-// const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
-// const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileForm = props => {
   return (
@@ -26,17 +23,6 @@ const UserProfileForm = props => {
           value={props.user.preferableRoles}
         />
       </FormGroup>
-      {/* Commented out the less preferableRoles */}
-      {/* <FormGroup controlid="lessPreferableRoles">
-        <Label for="lessPreferableRoles">Less preferable roles</Label>
-        <Input
-          onChange={props.handleChange}
-          type="text"
-          name="lessPreferableRoles"
-          id="lessPreferableRoles"
-          value={props.user.lessPreferableRoles}
-        />
-      </FormGroup> */}
     </Form>
   );
 };
