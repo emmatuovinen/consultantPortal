@@ -2,9 +2,6 @@ import React from "react";
 import { Form, FormGroup, Label, Input, Badge } from "reactstrap";
 import ConsultantSkillsAutoSuggestions from "../Containers/ConsultantSkillsAutoSuggestions";
 
-// HARD CODED FOR DEMO PURPOSES
-// const ROLE_INTERESTS = ["Front-end", "Back-end", "DevOps"];
-// const LESS_PREFERABLE_ROLES = ["Project manager", "Scrum Master"];
 
 const UserProfileForm = props => {
   return (
