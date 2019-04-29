@@ -13,6 +13,8 @@ namespace WebApi.Repository
         Task<IEnumerable<User>> GetAllUsers();
         // api/users/{id}/[GET]
         Task<User> GetUser(long id);
+        // api/users/{email}/[GET]
+        Task<User> GetUserbyEmail(string email);
         // api/users/[POST]
         Task Create(User user);
 

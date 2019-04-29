@@ -1,9 +1,11 @@
 import Axios from "axios";
+import { getToken } from "../adalconfig";
 
-const API = "http://localhost:5000/api/";
+const constants = require('./constants');
+const AuthStr = 'Bearer ' + getToken();
 
 export function GetAllPositions(callback) {
-  Axios.get(API + "positions")
+  Axios.get(constants.API + "positions", { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -28,7 +30,7 @@ export function CreatePosition(positionData, callback) {
     "PositionData: ",
     positionData
   );
-  Axios.post(API + "positions/", newPosition)
+  Axios.post(constants.API + "positions/", newPosition, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -38,7 +40,7 @@ export function CreatePosition(positionData, callback) {
 }
 
 export function GetActivePositions(callback) {
-  Axios.get(API + "positions/getActivePositions")
+  Axios.get(constants.API + "positions/getActivePositions", { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -48,7 +50,7 @@ export function GetActivePositions(callback) {
 }
 
 export function GetPositionInfo(positionId, callback) {
-  Axios.get(API + "positions/" + positionId)
+  Axios.get(constants.API + "positions/" + positionId, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })
@@ -58,7 +60,7 @@ export function GetPositionInfo(positionId, callback) {
 }
 
 export function EditPosition(positionId, position, callback) {
-  Axios.put(API + "positions/" + positionId, position)
+  Axios.put(constants.API + "positions/" + positionId, position, { headers: { Authorization: AuthStr } })
     .then(response => {
       callback(response);
     })

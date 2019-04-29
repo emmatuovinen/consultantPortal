@@ -15,6 +15,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using WebApi.Config;
 using WebApi.Context;
 using WebApi.Repository;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebApi
 {
@@ -39,7 +41,9 @@ namespace WebApi
                   options.Container = Configuration.GetSection("MongoDb:Container").Value;
                   options.IsContained = Configuration["DOTNET_RUNNING_IN_CONTAINER"] != null;
               });
-
+            services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
+                .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IDbContext, DbContext>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ISkillsRepository, SkillsRepository>();
@@ -83,6 +87,7 @@ namespace WebApi
             });
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import PositionsList from "../Containers/PositionsList";
 
-import ConsultantList from "../Containers/ConsultantList";
 
 class Home extends Component {
+
   render() {
+  
     return (
-      <div>
-        <ConsultantList />
+      <div>  
+        <PositionsList />
       </div>
     );
   }

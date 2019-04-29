@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using WebApi.Repository;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class UsersController : ControllerBase
@@ -28,10 +30,10 @@ namespace WebApi.Controllers
         }
 
         // GET api/users/{id}
-        [HttpGet("{id}", Name = "GetUser")]
-        public async Task<ActionResult<User>> Get(long id)
+        [HttpGet("{_id:long}", Name = "GetUser")]
+        public async Task<ActionResult<User>> Get(long _id)
         {
-            var user = await _repo.GetUser(id);
+            var user = await _repo.GetUser(_id);
 
             if (user == null)
             {
@@ -40,6 +42,21 @@ namespace WebApi.Controllers
 
             return new ObjectResult(user);
         }
+
+        // GET api/users/{email}
+        [HttpGet("{email}", Name = "GetUserbyEmail")]
+        public async Task<ActionResult<User>> GetUserbyEmail(string email)
+        {
+            var user = await _repo.GetUserbyEmail(email);
+
+            if (user == null)
+            {
+                return new NotFoundResult();
+            }
+
+            return new ObjectResult(user);
+        }
+
         // GET api/users/consultants
         [HttpGet, Route("consultants")]
         public async Task<ActionResult<IEnumerable<User>>> GetAllConsultants()
