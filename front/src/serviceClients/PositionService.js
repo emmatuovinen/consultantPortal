@@ -15,6 +15,7 @@ export function GetAllPositions(callback) {
 }
 
 export function CreatePosition(positionData, callback) {
+  console.log("positionservice positiondata", positionData)
   let newPosition = {
     Company: positionData.company,
     PositionDescription: positionData.positionDescription,
@@ -22,13 +23,11 @@ export function CreatePosition(positionData, callback) {
     Location: positionData.location,
     IsActive: positionData.isActive,
     PositionStatus: positionData.positionStatus,
-    PositionSkills: positionData.skills
+    PositionSkills: positionData.positionSkills
   };
   console.log(
     "Axios createposition: ",
-    newPosition,
-    "PositionData: ",
-    positionData
+    newPosition
   );
   Axios.post(constants.API + "positions/", newPosition, { headers: { Authorization: AuthStr } })
     .then(response => {
