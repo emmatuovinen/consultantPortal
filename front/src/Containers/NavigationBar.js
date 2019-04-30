@@ -3,6 +3,8 @@ import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } f
 import logo from "../Components/images/aw-logo.svg";
 import "../Components/Styles/Navbar.css";
 
+const AW_NAVBAR_LOGO = <img src={logo} style={{ width: 150, height: 35, marginTop: 1 }} alt="AW-logo" />
+
 export default class NavigationBar extends Component {
   constructor(props) {
     super(props);
@@ -22,52 +24,68 @@ export default class NavigationBar extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  render() {
+  renderLoggedOutNavbar = () => {
+    return (
+      <Navbar light>
+        <NavbarBrand>
+          {AW_NAVBAR_LOGO}
+        </NavbarBrand>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink
+              style={{ cursor: 'pointer' }}
+              onClick={this.props.childProps.login}>Login</NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
+    )
+  }
+
+  renderLoggedInNavbar = () => {
     return (
       <>
         {
           this.props.childProps.role !== "" &&
           <Navbar light expand="md">
             <NavbarBrand href="/">
-              <img
-                src={logo}
-                style={{ width: 150, height: 35, marginTop: 1 }}
-                alt="AW-logo" />
+              {AW_NAVBAR_LOGO}
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar className="collapsed-items">
               <Nav className="ml-auto" navbar>
-                {this.props.childProps.isAuthenticated === true
-                  ? <>
-                    <NavItem>
-                      <NavLink href="/consultants">Consultants</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/positions">Positions</NavLink>
-                    </NavItem>
-                    {this.state.userIsAW &&
-                      <NavItem>
-                        <NavLink href="/positions/add">Add position</NavLink>
-                      </NavItem>
-                    }
-                    <NavItem>
-                      <NavLink href="/profile">My Profile</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        style={{ cursor: 'pointer' }}
-                        onClick={this.props.childProps.logout}>Logout</NavLink>
-                    </NavItem>
-                  </>
-                  : <NavItem>
-                    <NavLink
-                      style={{ cursor: 'pointer' }}
-                      onClick={this.props.childProps.login}>Login</NavLink>
-                  </NavItem>}
+                <NavItem>
+                  <NavLink href="/consultants">Consultants</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/positions">Positions</NavLink>
+                </NavItem>
+                {this.state.userIsAW &&
+                  <NavItem>
+                    <NavLink href="/positions/add">Add position</NavLink>
+                  </NavItem>
+                }
+                <NavItem>
+                  <NavLink href="/profile">My Profile</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    style={{ cursor: 'pointer' }}
+                    onClick={this.props.childProps.logout}>Logout</NavLink>
+                </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
         }
+      </>
+    )
+  }
+
+  render() {
+    return (
+      <>
+        {this.props.childProps.isAuthenticated === false
+          ? this.renderLoggedOutNavbar()
+          : this.renderLoggedInNavbar()}
       </>
     );
   }
