@@ -82,11 +82,11 @@ export default class NavigationBar extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.props.childProps.isAuthenticated === false
           ? this.renderLoggedOutNavbar()
           : this.renderLoggedInNavbar()}
-      </div>
+      </>
     );
   }
 }
